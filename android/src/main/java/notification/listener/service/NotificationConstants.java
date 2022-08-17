@@ -6,6 +6,7 @@ public final class NotificationConstants {
     public static String PACKAGE_NAME = "package_name";
     public static String NOTIFICATION_CONTENT = "message";
     public static String NOTIFICATION_TITLE = "title";
+    public static String NOTIFICATION_SUBCONTENT = "subContent";
     public static String HAS_EXTRAS_PICTURE = "contain_image";
     public static String EXTRAS_PICTURE = "extras_picture";
     public static String NOTIFICATIONS_ICON = "notifications_icon";
