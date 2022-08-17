@@ -41,6 +41,8 @@ class ServiceNotificationEvent {
 
   /// the content of the notification
   String? content;
+  
+  String? subContent;
 
   ServiceNotificationEvent({
     this.id,
@@ -52,6 +54,7 @@ class ServiceNotificationEvent {
     this.title,
     this.notificationIcon,
     this.content,
+    this.subContent,
   });
 
   ServiceNotificationEvent.fromMap(Map<dynamic, dynamic> map) {
@@ -64,6 +67,7 @@ class ServiceNotificationEvent {
     title = map['title'];
     notificationIcon = map['notificationIcon'];
     content = map['content'];
+    subContent = map['subContent'];
   }
 
   /// send a direct message reply to the incoming notification
@@ -88,6 +92,7 @@ class ServiceNotificationEvent {
       packageName: $packageName
       title: $title
       content: $content
+      subContent: $subContent
       hasRemoved: $hasRemoved
       hasExtrasPicture: $hasExtrasPicture
       ''';
