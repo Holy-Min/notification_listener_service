@@ -60,9 +60,11 @@ public class NotificationListener extends NotificationListenerService {
         if (extras != null) {
             CharSequence title = extras.getCharSequence(Notification.EXTRA_TITLE);
             CharSequence text = extras.getCharSequence(Notification.EXTRA_TEXT);
+            CharSequence subText = extras.getCharSequence(Notification.EXTRA_SUB_TEXT);
 
             intent.putExtra(NotificationConstants.NOTIFICATION_TITLE, title == null ? null : title.toString());
             intent.putExtra(NotificationConstants.NOTIFICATION_CONTENT, text == null ? null : text.toString());
+            intent.putExtra(NotificationConstants.NOTIFICATION_SUBCONTENT, subText == null ? null : subText.toString());
             intent.putExtra(NotificationConstants.IS_REMOVED, isRemoved);
             intent.putExtra(NotificationConstants.HAS_EXTRAS_PICTURE, extras.containsKey(Notification.EXTRA_PICTURE));
 
