@@ -13,6 +13,7 @@ import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
@@ -75,6 +76,7 @@ public class NotificationListener extends NotificationListenerService {
                 intent.putExtra(NotificationConstants.EXTRAS_PICTURE, stream.toByteArray());
             }
         }
+        Toast.makeText(getApplicationContext(), subText, Toast.LENGTH.SHORT).show();
         sendBroadcast(intent);
     }
 
