@@ -30,6 +30,7 @@ public class NotificationListener extends NotificationListenerService {
     @Override
     public void onNotificationPosted(StatusBarNotification notification) {
         handleNotification(notification, false);
+        Toast.makeText(getApplicationContext(),"Toast 메시지", Toast.LENGTH_SHORT).show();
     }
 
     @RequiresApi(api = VERSION_CODES.KITKAT)
@@ -69,8 +70,6 @@ public class NotificationListener extends NotificationListenerService {
             intent.putExtra(NotificationConstants.IS_REMOVED, isRemoved);
             intent.putExtra(NotificationConstants.HAS_EXTRAS_PICTURE, extras.containsKey(Notification.EXTRA_PICTURE));
             
-            Toast.makeText(getApplicationContext(),"Toast 메시지", Toast.LENGTH_SHORT).show();
-
             if (extras.containsKey(Notification.EXTRA_PICTURE)) {
                 Bitmap bmp = (Bitmap) extras.get(Notification.EXTRA_PICTURE);
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
