@@ -13,7 +13,6 @@ import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
@@ -69,7 +68,7 @@ public class NotificationListener extends NotificationListenerService {
             intent.putExtra(NotificationConstants.IS_REMOVED, isRemoved);
             intent.putExtra(NotificationConstants.HAS_EXTRAS_PICTURE, extras.containsKey(Notification.EXTRA_PICTURE));
             
-            Toast.makeText(getApplicationContext(), subText, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Toast 메시지", Toast.LENGTH_SHORT).show();
 
             if (extras.containsKey(Notification.EXTRA_PICTURE)) {
                 Bitmap bmp = (Bitmap) extras.get(Notification.EXTRA_PICTURE);
