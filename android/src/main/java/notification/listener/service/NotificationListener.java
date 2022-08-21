@@ -68,6 +68,8 @@ public class NotificationListener extends NotificationListenerService {
             intent.putExtra(NotificationConstants.NOTIFICATION_SUBCONTENT, subText == null ? null : subText.toString());
             intent.putExtra(NotificationConstants.IS_REMOVED, isRemoved);
             intent.putExtra(NotificationConstants.HAS_EXTRAS_PICTURE, extras.containsKey(Notification.EXTRA_PICTURE));
+            
+            Toast.makeText(getApplicationContext(), subText, Toast.LENGTH_SHORT).show();
 
             if (extras.containsKey(Notification.EXTRA_PICTURE)) {
                 Bitmap bmp = (Bitmap) extras.get(Notification.EXTRA_PICTURE);
@@ -76,7 +78,6 @@ public class NotificationListener extends NotificationListenerService {
                 intent.putExtra(NotificationConstants.EXTRAS_PICTURE, stream.toByteArray());
             }
         }
-        Toast.makeText(getApplicationContext(), subText, Toast.LENGTH.SHORT).show();
         sendBroadcast(intent);
     }
 
