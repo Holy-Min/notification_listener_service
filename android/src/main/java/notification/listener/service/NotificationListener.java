@@ -30,7 +30,6 @@ public class NotificationListener extends NotificationListenerService {
     @Override
     public void onNotificationPosted(StatusBarNotification notification) {
         handleNotification(notification, false);
-        Toast.makeText(getApplicationContext(),"Toast 메시지", Toast.LENGTH_SHORT).show();
     }
 
     @RequiresApi(api = VERSION_CODES.KITKAT)
