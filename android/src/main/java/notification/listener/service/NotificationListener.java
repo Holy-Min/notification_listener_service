@@ -28,7 +28,7 @@ import notification.listener.service.models.Action;
 @RequiresApi(api = VERSION_CODES.JELLY_BEAN_MR2)
 public class NotificationListener extends NotificationListenerService {
 
-    NotiDatabase notiDb;
+    NotiDatabase notiDb = new NotiDatabase();
 
     @RequiresApi(api = VERSION_CODES.KITKAT)
     @Override
