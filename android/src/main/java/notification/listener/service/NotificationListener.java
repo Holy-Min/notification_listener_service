@@ -14,6 +14,8 @@ import android.os.Bundle;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 import android.widget.Toast;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import androidx.annotation.RequiresApi;
 
@@ -25,6 +27,8 @@ import notification.listener.service.models.Action;
 @SuppressLint("OverrideAbstract")
 @RequiresApi(api = VERSION_CODES.JELLY_BEAN_MR2)
 public class NotificationListener extends NotificationListenerService {
+
+    NotiDatabase notiDb;
 
     @RequiresApi(api = VERSION_CODES.KITKAT)
     @Override
@@ -41,42 +45,68 @@ public class NotificationListener extends NotificationListenerService {
     @RequiresApi(api = VERSION_CODES.KITKAT)
     private void handleNotification(StatusBarNotification notification, boolean isRemoved) {
         String packageName = notification.getPackageName();
-        Bundle extras = notification.getNotification().extras;
-        byte[] drawable = getSmallIcon(packageName);
 
-        Action action = NotificationUtils.getQuickReplyAction(notification.getNotification(), packageName);
+        if(packageName == "com.kakao.talk") {
+            Bundle extras = notification.getNotification().extras;
+            byte[] drawable = getSmallIcon(packageName);
+
+            Action action = NotificationUtils.getQuickReplyAction(notification.getNotification(), packageName);
 
 
-        Intent intent = new Intent(NotificationConstants.INTENT);
-        intent.putExtra(NotificationConstants.PACKAGE_NAME, packageName);
-        intent.putExtra(NotificationConstants.ID, notification.getId());
-        intent.putExtra(NotificationConstants.CAN_REPLY, action != null);
+            Intent intent = new Intent(NotificationConstants.INTENT);
+            intent.putExtra(NotificationConstants.PACKAGE_NAME, packageName);
+            intent.putExtra(NotificationConstants.ID, notification.getId());
+            intent.putExtra(NotificationConstants.CAN_REPLY, action != null);
 
-        if (NotificationUtils.getQuickReplyAction(notification.getNotification(), packageName) != null) {
-            cachedNotifications.put(notification.getId(), action);
-        }
-
-        intent.putExtra(NotificationConstants.NOTIFICATIONS_ICON, drawable);
-
-        if (extras != null) {
-            CharSequence title = extras.getCharSequence(Notification.EXTRA_TITLE);
-            CharSequence text = extras.getCharSequence(Notification.EXTRA_TEXT);
-            CharSequence subText = extras.getCharSequence(Notification.EXTRA_SUB_TEXT);
-
-            intent.putExtra(NotificationConstants.NOTIFICATION_TITLE, title == null ? null : title.toString());
-            intent.putExtra(NotificationConstants.NOTIFICATION_CONTENT, text == null ? null : text.toString());
-            intent.putExtra(NotificationConstants.NOTIFICATION_SUBCONTENT, subText == null ? null : subText.toString());
-            intent.putExtra(NotificationConstants.IS_REMOVED, isRemoved);
-            intent.putExtra(NotificationConstants.HAS_EXTRAS_PICTURE, extras.containsKey(Notification.EXTRA_PICTURE));
-            
-            if (extras.containsKey(Notification.EXTRA_PICTURE)) {
-                Bitmap bmp = (Bitmap) extras.get(Notification.EXTRA_PICTURE);
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                intent.putExtra(NotificationConstants.EXTRAS_PICTURE, stream.toByteArray());
+            if (NotificationUtils.getQuickReplyAction(notification.getNotification(), packageName) != null) {
+                cachedNotifications.put(notification.getId(), action);
             }
+
+            intent.putExtra(NotificationConstants.NOTIFICATIONS_ICON, drawable);
+
+            if (extras != null) {
+                CharSequence title = extras.getCharSequence(Notification.EXTRA_TITLE);
+                CharSequence text = extras.getCharSequence(Notification.EXTRA_TEXT);
+                CharSequence subText = extras.getCharSequence(Notification.EXTRA_SUB_TEXT);
+
+                intent.putExtra(NotificationConstants.NOTIFICATION_TITLE, title == null ? null : title.toString());
+                intent.putExtra(NotificationConstants.NOTIFICATION_CONTENT, text == null ? null : text.toString());
+                intent.putExtra(NotificationConstants.NOTIFICATION_SUBCONTENT, subText == null ? title.toString() : subText.toString());
+                intent.putExtra(NotificationConstants.IS_REMOVED, isRemoved);
+                intent.putExtra(NotificationConstants.HAS_EXTRAS_PICTURE, extras.containsKey(Notification.EXTRA_PICTURE));
+
+                String room = "";
+                if(subText != null) {
+                    room = subText.toString();;
+                }
+                else {
+                    room = title.toString();
+                }
+                LocalDate now = LocalDate.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("a hh시 mm분");
+                String formatedNow = now.format(formatter);
+
+                if(title != null && text != null) {
+                    notiDb = NotiDatabase.getInstance(applicationContext);
+                    
+                    int roomnid = notiDb.roomDataDao().checkId(room.toString());
+                    if(roomnid == 0) {
+                        notiDb.roomDataDao().insert(RoomData(room.toString()));
+                    }
+
+                    notiDb.notiDataDao().insert(NotiData(title.toString(), text.toString(), room.toString(), formatedNow, 1));
+                }
+
+                if (extras.containsKey(Notification.EXTRA_PICTURE)) {
+                    Bitmap bmp = (Bitmap) extras.get(Notification.EXTRA_PICTURE);
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    intent.putExtra(NotificationConstants.EXTRAS_PICTURE, stream.toByteArray());
+                }
+            }
+            sendBroadcast(intent);
         }
-        sendBroadcast(intent);
+
     }
 
 
