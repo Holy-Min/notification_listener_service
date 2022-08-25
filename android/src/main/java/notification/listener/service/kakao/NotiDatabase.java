@@ -19,7 +19,7 @@ public abstract class NotiDatabase extends RoomDatabase {
     public synchronized static NotiDatabase getInstance(Context context){
         if (database == null)
         {
-            database = Room.databaseBuilder(context.getApplicationContext(), NotiDatabase.class, "kakao.db")
+            database = Room.databaseBuilder(context.getApplicationContext(), NotiDatabase.class, "kakaoChat.db")
                     .allowMainThreadQueries()
                     .build();
         }
