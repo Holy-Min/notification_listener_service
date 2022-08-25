@@ -24,6 +24,4 @@ public class NotiData {
     @ColumnInfo(name = "send")
     public int send;
 
-    @ColumnInfo(name = "id")
-    public String id;
 }
