@@ -87,14 +87,23 @@ public class NotificationListener extends NotificationListenerService {
                 String formatedNow = now.format(formatter);
 
                 if(title != null && text != null) {
-                    notiDb = NotiDatabase.getInstance(this);
-                    
-                    int roomnid = notiDb.roomDataDao().checkId(room.toString());
-                    if(roomnid == 0) {
-                        notiDb.roomDataDao().insert(RoomData(room.toString()));
-                    }
+//                    notiDb = NotiDatabase.getInstance(this);
+                    notiDb = NotiDatabase.getInstance(getApplicationContext());
 
-                    notiDb.notiDataDao().insert(NotiData(title.toString(), text.toString(), room.toString(), formatedNow, 1));
+                    int roomnid = notiDb.RoomDataDao().checkId(room);
+                    if(roomnid == 0) {
+                        RoomData music = new RoomData();
+                        music.room = room;
+                        notiDb.RoomDataDao().insert(music);
+                    }
+                    NotiData noti = new NotiData();
+                    noti.name = title.toString();
+                    noti.text = text.toString();
+                    noti.room = room;
+                    noti.date = formatedNow;
+                    noti.send = 1;
+
+                    notiDb.NotiDao().insert(noti);
                 }
 
                 if (extras.containsKey(Notification.EXTRA_PICTURE)) {
