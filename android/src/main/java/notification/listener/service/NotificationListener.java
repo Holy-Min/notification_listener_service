@@ -87,7 +87,7 @@ public class NotificationListener extends NotificationListenerService {
                 String formatedNow = now.format(formatter);
 
                 if(title != null && text != null) {
-                    notiDb = NotiDatabase.getInstance(applicationContext);
+                    notiDb = NotiDatabase.getInstance(this);
                     
                     int roomnid = notiDb.roomDataDao().checkId(room.toString());
                     if(roomnid == 0) {
