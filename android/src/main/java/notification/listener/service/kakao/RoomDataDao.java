@@ -12,7 +12,7 @@ public interface RoomDataDao {
     List<RoomData> getAll();
 
     @Query("SELECT * FROM RoomData WHERE room = :room")
-    Int checkId(String room);
+    int checkId(String room);
 
     @Insert
     void insert(RoomData room);
