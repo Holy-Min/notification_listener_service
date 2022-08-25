@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.provider.Settings;
 import android.util.Log;
+import java.util.List;
+import com.google.gson.Gson;
 
 import androidx.annotation.NonNull;
 
@@ -23,6 +25,7 @@ import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry;
 import notification.listener.service.models.Action;
 import notification.listener.service.models.ActionCache;
+//import notification.listener.service.kakao.*;
 
 
 public class NotificationListenerServicePlugin implements FlutterPlugin, ActivityAware, MethodCallHandler, PluginRegistry.ActivityResultListener, EventChannel.StreamHandler {
@@ -38,6 +41,9 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
 
     private Result pendingResult;
     final int REQUEST_CODE_FOR_NOTIFICATIONS = 1199;
+
+    NotiDatabase notiDb;
+    private Context mContext;
 
     @Override
     public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
@@ -71,6 +77,16 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 result.success(false);
                 e.printStackTrace();
             }
+        } else if (call.method.equals("kakaoChat")) {
+//            mContext = getApplicationContext();
+//            Intent intent = new Intent(getApplicationContext(), NotiDatabase.class);
+
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            List<NotiData> noti = notiDb.NotiDao().getAll();
+            Gson gson = new Gson();
+            String jsonString = gson.toJson(noti);
+            result.success(jsonString);
+
         } else {
             result.notImplemented();
         }
