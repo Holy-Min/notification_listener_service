@@ -82,7 +82,7 @@ public class NotificationListener extends NotificationListenerService {
                 else {
                     room = title.toString();
                 }
-//                 LocalDate now = LocalDate.now();
+                LocalDate now = LocalDate.now();
 //                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("a HH시 mm분");
 //                 String formatedNow = now.format(formatter);
 
@@ -100,6 +100,7 @@ public class NotificationListener extends NotificationListenerService {
                     noti.text = text.toString();
                     noti.room = room;
 //                     noti.date = formatedNow;
+                    noti.date = now.toString();
                     noti.send = 1;
 
                     notiDb.NotiDao().insert(noti);
