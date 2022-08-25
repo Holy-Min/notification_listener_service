@@ -46,7 +46,7 @@ public class NotificationListener extends NotificationListenerService {
     private void handleNotification(StatusBarNotification notification, boolean isRemoved) {
         String packageName = notification.getPackageName();
 
-//        if(packageName == "com.kakao.talk") {
+       if(packageName.equals("com.kakao.talk")) {
             Bundle extras = notification.getNotification().extras;
             byte[] drawable = getSmallIcon(packageName);
 
@@ -116,7 +116,7 @@ public class NotificationListener extends NotificationListenerService {
                 }
             }
             sendBroadcast(intent);
-//        }
+       }
 
     }
 
