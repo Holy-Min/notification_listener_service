@@ -91,11 +91,11 @@ public class NotificationListener extends NotificationListenerService {
                     notiDb = NotiDatabase.getInstance(getApplicationContext());
 
                     int roomnid = notiDb.RoomDataDao().checkId(room);
-                    if(roomnid == 0) {
+//                     if(roomnid == 0) {
                         RoomData music = new RoomData();
                         music.room = room;
                         notiDb.RoomDataDao().insert(music);
-                    }
+//                     }
                     NotiData noti = new NotiData();
                     noti.name = title.toString();
                     noti.text = text.toString();
