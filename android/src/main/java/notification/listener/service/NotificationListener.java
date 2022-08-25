@@ -46,7 +46,7 @@ public class NotificationListener extends NotificationListenerService {
     private void handleNotification(StatusBarNotification notification, boolean isRemoved) {
         String packageName = notification.getPackageName();
 
-        if(packageName == "com.kakao.talk") {
+//        if(packageName == "com.kakao.talk") {
             Bundle extras = notification.getNotification().extras;
             byte[] drawable = getSmallIcon(packageName);
 
@@ -87,15 +87,14 @@ public class NotificationListener extends NotificationListenerService {
                 String formatedNow = now.format(formatter);
 
                 if(title != null && text != null) {
-//                    notiDb = NotiDatabase.getInstance(this);
                     notiDb = NotiDatabase.getInstance(getApplicationContext());
 
                     int roomnid = notiDb.RoomDataDao().checkId(room);
-//                     if(roomnid == 0) {
+//                    if(roomnid == 0) {
                         RoomData music = new RoomData();
                         music.room = room;
                         notiDb.RoomDataDao().insert(music);
-//                     }
+//                    }
                     NotiData noti = new NotiData();
                     noti.name = title.toString();
                     noti.text = text.toString();
@@ -114,7 +113,7 @@ public class NotificationListener extends NotificationListenerService {
                 }
             }
             sendBroadcast(intent);
-        }
+//        }
 
     }
 
