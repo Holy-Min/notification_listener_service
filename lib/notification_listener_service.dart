@@ -45,4 +45,10 @@ class NotificationListenerService {
       return false;
     }
   }
+
+  static Future getKakaoChat() async {
+    final content = await methodeChannel.invokeMethod('kakaoChat');
+    // final kakao = content.toString();
+    return content;
+  }
 }
