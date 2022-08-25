@@ -14,7 +14,7 @@ import android.os.Bundle;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 import android.widget.Toast;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import androidx.annotation.RequiresApi;
@@ -82,9 +82,8 @@ public class NotificationListener extends NotificationListenerService {
                 else {
                     room = title.toString();
                 }
-                LocalDate now = LocalDate.now();
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm");
-                String formatedNow = now.format(formatter);
+                LocalDateTime now = LocalDateTime.now();
+                String formatedNow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm"));
 
                 if(title != null && text != null) {
                     notiDb = NotiDatabase.getInstance(getApplicationContext());
