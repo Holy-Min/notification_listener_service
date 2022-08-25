@@ -84,23 +84,23 @@ public class NotificationListener extends NotificationListenerService {
                 }
                 LocalDate now = LocalDate.now();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm");
-//                 String formatedNow = now.format(formatter);
+                String formatedNow = now.format(formatter);
 
                 if(title != null && text != null) {
                     notiDb = NotiDatabase.getInstance(getApplicationContext());
 
                     int roomnid = notiDb.RoomDataDao().checkId(room);
-//                    if(roomnid == 0) {
+                   if(roomnid == 0) {
                         RoomData music = new RoomData();
                         music.room = room;
                         notiDb.RoomDataDao().insert(music);
-//                    }
+                   }
                     NotiData noti = new NotiData();
                     noti.name = title.toString();
                     noti.text = text.toString();
                     noti.room = room;
-//                     noti.date = formatedNow;
-                    noti.date = now.toString();
+                    noti.date = formatedNow;
+//                     noti.date = now.toString();
                     noti.send = 1;
 
                     notiDb.NotiDao().insert(noti);
