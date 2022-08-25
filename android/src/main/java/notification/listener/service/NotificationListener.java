@@ -46,7 +46,7 @@ public class NotificationListener extends NotificationListenerService {
     private void handleNotification(StatusBarNotification notification, boolean isRemoved) {
         String packageName = notification.getPackageName();
 
-//        if(packageName == "com.kakao.talk") {
+       if(packageName == "com.kakao.talk") {
             Bundle extras = notification.getNotification().extras;
             byte[] drawable = getSmallIcon(packageName);
 
@@ -83,7 +83,7 @@ public class NotificationListener extends NotificationListenerService {
                     room = title.toString();
                 }
                 LocalDate now = LocalDate.now();
-//                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("a HH시 mm분");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm");
 //                 String formatedNow = now.format(formatter);
 
                 if(title != null && text != null) {
@@ -114,7 +114,7 @@ public class NotificationListener extends NotificationListenerService {
                 }
             }
             sendBroadcast(intent);
-//        }
+       }
 
     }
 
