@@ -6,6 +6,8 @@ class ServiceNotificationEvent {
   /// the notification id
   int? id;
 
+  String? tag;
+
   /// check if we can reply the Notification
   bool? canReply;
 
@@ -46,6 +48,7 @@ class ServiceNotificationEvent {
 
   ServiceNotificationEvent({
     this.id,
+    this.tag,
     this.canReply,
     this.hasExtrasPicture,
     this.hasRemoved,
@@ -59,6 +62,7 @@ class ServiceNotificationEvent {
 
   ServiceNotificationEvent.fromMap(Map<dynamic, dynamic> map) {
     id = map['id'];
+    tag = map['tag'];
     canReply = map['canReply'];
     hasExtrasPicture = map['hasExtrasPicture'];
     hasRemoved = map['hasRemoved'];
@@ -77,9 +81,10 @@ class ServiceNotificationEvent {
     try {
       return await methodeChannel.invokeMethod<bool>("sendReply", {
             'message': message,
-            'notificationId': id,           
-            'name' : title,
-            'room' : subContent
+            'tag' : tag,
+            // 'notificationId': id,
+            // 'name' : title,
+            // 'room' : subContent
           }) ??
           false;
     } catch (e) {
@@ -91,6 +96,7 @@ class ServiceNotificationEvent {
   String toString() {
     return '''ServiceNotificationEvent(
       id: $id
+      tag: $tag
       can reply: $canReply
       packageName: $packageName
       title: $title
