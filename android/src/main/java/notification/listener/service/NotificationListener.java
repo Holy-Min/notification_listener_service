@@ -48,12 +48,11 @@ public class NotificationListener extends NotificationListenerService {
     @RequiresApi(api = VERSION_CODES.KITKAT)
     private void handleNotification(StatusBarNotification notification, boolean isRemoved) {
         String packageName = notification.getPackageName();
-        System.out.println("겟유저 : " + notification.getUser());
-        System.out.println("겟키 : " + notification.getKey());
-        System.out.println("겟태그 : " + notification.getTag());
-        System.out.println("겟유아이디 : " + notification.getUid());
+        String tag = notification.getTag();
 
-        
+//        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+//        StatusBarNotification[] barNotifications = notificationManager.getActiveNotifications();
+//        System.out.println("노티피케이션 확인 :" + barNotifications);
 
         if(packageName.equals("com.kakao.talk")) {
             Bundle extras = notification.getNotification().extras;
@@ -61,14 +60,17 @@ public class NotificationListener extends NotificationListenerService {
 
             Action action = NotificationUtils.getQuickReplyAction(notification.getNotification(), packageName);
 
-
             Intent intent = new Intent(NotificationConstants.INTENT);
             intent.putExtra(NotificationConstants.PACKAGE_NAME, packageName);
             intent.putExtra(NotificationConstants.ID, notification.getId());
+            intent.putExtra(NotificationConstants.TAG, tag);
             intent.putExtra(NotificationConstants.CAN_REPLY, action != null);
 
+//            if (NotificationUtils.getQuickReplyAction(notification.getNotification(), packageName) != null) {
+//                cachedNotifications.put(notification.getId(), action);
+//            }
             if (NotificationUtils.getQuickReplyAction(notification.getNotification(), packageName) != null) {
-                cachedNotifications.put(notification.getId(), action);
+                cachedNotifications.put(notification.getTag(), action);
             }
 
             intent.putExtra(NotificationConstants.NOTIFICATIONS_ICON, drawable);
@@ -77,12 +79,9 @@ public class NotificationListener extends NotificationListenerService {
                 CharSequence title = extras.getCharSequence(Notification.EXTRA_TITLE);
                 CharSequence text = extras.getCharSequence(Notification.EXTRA_TEXT);
                 CharSequence subText = extras.getCharSequence(Notification.EXTRA_SUB_TEXT );
-//                 String person = extras.getString(Notification.EXTRA_MESSAGING_PERSON);
-//                 System.out.println("person 값 확인 : " + person);
 
                 intent.putExtra(NotificationConstants.NOTIFICATION_TITLE, title == null ? null : title.toString());
                 intent.putExtra(NotificationConstants.NOTIFICATION_CONTENT, text == null ? null : text.toString());
-//                 intent.putExtra(NotificationConstants.NOTIFICATION_PERSON, person == null ? null : person.toString());
                 intent.putExtra(NotificationConstants.NOTIFICATION_SUBCONTENT, subText == null ? title.toString() : subText.toString());
                 intent.putExtra(NotificationConstants.IS_REMOVED, isRemoved);
                 intent.putExtra(NotificationConstants.HAS_EXTRAS_PICTURE, extras.containsKey(Notification.EXTRA_PICTURE));
