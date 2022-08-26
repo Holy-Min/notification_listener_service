@@ -90,7 +90,7 @@ public class NotificationListener extends NotificationListenerService {
                     notiDb = NotiDatabase.getInstance(getApplicationContext());
 
                     int roomnid = notiDb.RoomDataDao().checkId(room);
-                    System.out.println("룸아이디 확인" + roomnid);
+//                     System.out.println("룸아이디 확인" + roomnid);
 
 
                    if(roomnid == 0) {
