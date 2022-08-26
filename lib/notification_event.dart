@@ -76,9 +76,9 @@ class ServiceNotificationEvent {
     if (!canReply!) throw Exception("이 알림은 답장을 보낼 수 없는 상태입니다.");
     try {
       return await methodeChannel.invokeMethod<bool>("sendReply", {
-            'message': message,
+            'message': title,
             'notificationId': id,
-            'name' : title,
+            'name' : message,
             // 'room' : subContent
           }) ??
           false;
