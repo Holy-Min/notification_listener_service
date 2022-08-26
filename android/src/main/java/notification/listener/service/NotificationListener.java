@@ -74,12 +74,12 @@ public class NotificationListener extends NotificationListenerService {
                 CharSequence title = extras.getCharSequence(Notification.EXTRA_TITLE);
                 CharSequence text = extras.getCharSequence(Notification.EXTRA_TEXT);
                 CharSequence subText = extras.getCharSequence(Notification.EXTRA_SUB_TEXT );
-                String person = extras.getString(Notification.EXTRA_MESSAGING_PERSON);
-                System.out.println("person 값 확인 : " + person);
+//                 String person = extras.getString(Notification.EXTRA_MESSAGING_PERSON);
+//                 System.out.println("person 값 확인 : " + person);
 
                 intent.putExtra(NotificationConstants.NOTIFICATION_TITLE, title == null ? null : title.toString());
                 intent.putExtra(NotificationConstants.NOTIFICATION_CONTENT, text == null ? null : text.toString());
-                intent.putExtra(NotificationConstants.NOTIFICATION_PERSON, person == null ? null : person.toString());
+//                 intent.putExtra(NotificationConstants.NOTIFICATION_PERSON, person == null ? null : person.toString());
                 intent.putExtra(NotificationConstants.NOTIFICATION_SUBCONTENT, subText == null ? title.toString() : subText.toString());
                 intent.putExtra(NotificationConstants.IS_REMOVED, isRemoved);
                 intent.putExtra(NotificationConstants.HAS_EXTRAS_PICTURE, extras.containsKey(Notification.EXTRA_PICTURE));
