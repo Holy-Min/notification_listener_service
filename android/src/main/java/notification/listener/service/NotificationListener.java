@@ -50,6 +50,8 @@ public class NotificationListener extends NotificationListenerService {
         String packageName = notification.getPackageName();
         System.out.println("겟유저 : " + notification.getUser());
         System.out.println("겟키 : " + notification.getKey());
+        System.out.println("겟태그 : " + notification.getTag());
+        System.out.println("겟유아이디 : " + notification.getUid());
 
         
 
