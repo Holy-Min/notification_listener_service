@@ -43,7 +43,6 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
     final int REQUEST_CODE_FOR_NOTIFICATIONS = 1199;
 
     NotiDatabase notiDb;
-    private Context mContext;
 
     @Override
     public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
@@ -77,7 +76,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 result.success(false);
                 e.printStackTrace();
             }
-        } else if (call.method.equals("kakaoChat")) {
+        } else if (call.method.equals("getKakaoChat")) {
 //            mContext = getApplicationContext();
 //            Intent intent = new Intent(getApplicationContext(), NotiDatabase.class);
 
@@ -87,7 +86,24 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             String jsonString = gson.toJson(noti);
             result.success(jsonString);
 
-        } else {
+        } else if (call.method.equals("getKakaoRoom")) {
+
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            List<RoomData> noti = notiDb.RoomDataDao().getAll();
+            Gson gson = new Gson();
+            String jsonString = gson.toJson(noti);
+            result.success(jsonString);
+
+        }else if (call.method.equals("getChatInfo")) {
+            String room = call.argument("roomName");
+
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            List<NotiData> noti = notiDb.NotiDao().getRoom(room);
+            Gson gson = new Gson();
+            String jsonString = gson.toJson(noti);
+            result.success(jsonString);
+
+        }else {
             result.notImplemented();
         }
     }
