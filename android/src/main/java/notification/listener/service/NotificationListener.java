@@ -48,16 +48,9 @@ public class NotificationListener extends NotificationListenerService {
     @RequiresApi(api = VERSION_CODES.KITKAT)
     private void handleNotification(StatusBarNotification notification, boolean isRemoved) {
         String packageName = notification.getPackageName();
+        System.out.println("겟유저 : " + notification.getUser);
+        System.out.println("겟키 : " + notification.getKey);
 
-//         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        StatusBarNotification[] barNotifications = notificationManager.getActiveNotifications();
-        
-        System.out.println("노티피케이션 확인 :" + barNotifications);  
-        System.out.println("리스트 길이" + barNotifications.length);
-        for(int i = 0; i < barNotifications.length; i++) {
-            System.out.println("노티피케이션 확인 :" + barNotifications[i]);    
-        }
         
 
         if(packageName.equals("com.kakao.talk")) {
