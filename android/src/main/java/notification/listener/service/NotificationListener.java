@@ -48,8 +48,8 @@ public class NotificationListener extends NotificationListenerService {
     @RequiresApi(api = VERSION_CODES.KITKAT)
     private void handleNotification(StatusBarNotification notification, boolean isRemoved) {
         String packageName = notification.getPackageName();
-        System.out.println("겟유저 : " + notification.getUser);
-        System.out.println("겟키 : " + notification.getKey);
+        System.out.println("겟유저 : " + notification.getUser());
+        System.out.println("겟키 : " + notification.getKey());
 
         
 
