@@ -83,8 +83,8 @@ class ServiceNotificationEvent {
             'message': message,
             'tag' : tag,
             // 'notificationId': id,
-            // 'name' : title,
-            // 'room' : subContent
+            'name' : title,
+            'room' : subContent
           }) ??
           false;
     } catch (e) {
