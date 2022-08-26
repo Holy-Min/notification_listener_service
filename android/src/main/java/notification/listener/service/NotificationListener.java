@@ -50,7 +50,7 @@ public class NotificationListener extends NotificationListenerService {
             Bundle extras = notification.getNotification().extras;
             byte[] drawable = getSmallIcon(packageName);
 //             System.out.println("노티 확인 :" + extras);
-            System.out.println("노티 확인 :" + notification.getNotification());
+            System.out.println("노티 확인 :" + notification);
 
             Action action = NotificationUtils.getQuickReplyAction(notification.getNotification(), packageName);
 
