@@ -69,8 +69,8 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             final String message = call.argument("message");
             final String name = call.argument("defaultName");
             final String room = call.argument("room");
-            final int notificationId = call.argument("notificationId");
-        
+//            final int notificationId = call.argument("notificationId");
+            final String tag = call.argument("tag");
 
             LocalDateTime now = LocalDateTime.now();
             String formatedNow = now.format(DateTimeFormatter.ofPattern("a HH시 mm분"));
@@ -83,7 +83,8 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             noti.send = 2;
 
 
-            final Action action = ActionCache.cachedNotifications.get(notificationId);
+//            final Action action = ActionCache.cachedNotifications.get(notificationId);
+            final Action action = ActionCache.cachedNotifications.get(tag);
             if (action == null) {
                 result.error("Notification", "Can't find this cached notification", null);
             }
