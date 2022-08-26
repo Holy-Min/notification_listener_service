@@ -6,6 +6,7 @@ import static notification.listener.service.models.ActionCache.cachedNotificatio
 import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.content.Intent;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -20,6 +21,7 @@ import java.time.format.DateTimeFormatter;
 import androidx.annotation.RequiresApi;
 
 import java.io.ByteArrayOutputStream;
+import android.app.NotificationManager;
 
 import notification.listener.service.models.Action;
 
@@ -46,11 +48,13 @@ public class NotificationListener extends NotificationListenerService {
     private void handleNotification(StatusBarNotification notification, boolean isRemoved) {
         String packageName = notification.getPackageName();
 
-       if(packageName.equals("com.kakao.talk")) {
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        StatusBarNotification[] barNotifications = notificationManager.getActiveNotifications();
+        System.out.println("노티피케이션 확인 :" + barNotifications);
+
+        if(packageName.equals("com.kakao.talk")) {
             Bundle extras = notification.getNotification().extras;
             byte[] drawable = getSmallIcon(packageName);
-            System.out.println("노티 확인 :" + extras);
-//             System.out.println("노티 확인 :" + notification);
 
             Action action = NotificationUtils.getQuickReplyAction(notification.getNotification(), packageName);
 
@@ -69,43 +73,41 @@ public class NotificationListener extends NotificationListenerService {
             if (extras != null) {
                 CharSequence title = extras.getCharSequence(Notification.EXTRA_TITLE);
                 CharSequence text = extras.getCharSequence(Notification.EXTRA_TEXT);
-                CharSequence subText = extras.getCharSequence(Notification.EXTRA_SUB_TEXT);
+                CharSequence subText = extras.getCharSequence(Notification.EXTRA_SUB_TEXT );
+                String person = extras.getString(Notification.EXTRA_MESSAGING_PERSON);
+                System.out.println("person 값 확인 : " + person);
 
                 intent.putExtra(NotificationConstants.NOTIFICATION_TITLE, title == null ? null : title.toString());
                 intent.putExtra(NotificationConstants.NOTIFICATION_CONTENT, text == null ? null : text.toString());
+                intent.putExtra(NotificationConstants.NOTIFICATION_PERSON, person == null ? null : person.toString());
                 intent.putExtra(NotificationConstants.NOTIFICATION_SUBCONTENT, subText == null ? title.toString() : subText.toString());
                 intent.putExtra(NotificationConstants.IS_REMOVED, isRemoved);
                 intent.putExtra(NotificationConstants.HAS_EXTRAS_PICTURE, extras.containsKey(Notification.EXTRA_PICTURE));
 
                 String room = "";
                 if(subText != null) {
-                    room = subText.toString();;
+                    room = subText.toString();
                 }
                 else {
                     room = title.toString();
                 }
                 LocalDateTime now = LocalDateTime.now();
-//                 String formatedNow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm"));
                 String formatedNow = now.format(DateTimeFormatter.ofPattern("a HH시 mm분"));
 
                 if(title != null && text != null) {
                     notiDb = NotiDatabase.getInstance(getApplicationContext());
 
                     int roomnid = notiDb.RoomDataDao().checkId(room);
-//                     System.out.println("룸아이디 확인" + roomnid);
-
-
-                   if(roomnid == 0) {
+                    if(roomnid == 0) {
                         RoomData music = new RoomData();
                         music.room = room;
                         notiDb.RoomDataDao().insert(music);
-                   }
+                    }
                     NotiData noti = new NotiData();
                     noti.name = title.toString();
                     noti.text = text.toString();
                     noti.room = room;
                     noti.date = formatedNow;
-//                     noti.date = now.toString();
                     noti.send = 1;
 
                     notiDb.NotiDao().insert(noti);
@@ -119,7 +121,7 @@ public class NotificationListener extends NotificationListenerService {
                 }
             }
             sendBroadcast(intent);
-       }
+        }
 
     }
 
