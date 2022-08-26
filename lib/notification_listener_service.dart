@@ -47,7 +47,19 @@ class NotificationListenerService {
   }
 
   static Future getKakaoChat() async {
-    final content = await methodeChannel.invokeMethod('kakaoChat');
+    final content = await methodeChannel.invokeMethod('getKakaoChat');
+    // final kakao = content.toString();
+    return content;
+  }
+
+  static Future getKakaoRoom() async {
+    final content = await methodeChannel.invokeMethod('getKakaoRoom');
+    // final kakao = content.toString();
+    return content;
+  }
+
+  static Future getChatInfo(String roomName) async {
+    final content = await methodeChannel.invokeMethod('getChatInfo', { "roomName" : roomName});
     // final kakao = content.toString();
     return content;
   }
