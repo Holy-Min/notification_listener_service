@@ -28,6 +28,7 @@ public class NotificationReceiver extends BroadcastReceiver {
         String title = intent.getStringExtra(NOTIFICATION_TITLE);
         String content = intent.getStringExtra(NOTIFICATION_CONTENT);
         String subContent = intent.getStringExtra(NOTIFICATION_SUBCONTENT);
+        String tag = intent.getStringExtra(TAG);
         byte[] notificationIcon = intent.getByteArrayExtra(NOTIFICATIONS_ICON);
         byte[] notificationExtrasPicture = intent.getByteArrayExtra(EXTRAS_PICTURE);
         boolean hasExtrasPicture = intent.getBooleanExtra(HAS_EXTRAS_PICTURE, false);
@@ -38,6 +39,7 @@ public class NotificationReceiver extends BroadcastReceiver {
 
         HashMap<String, Object> data = new HashMap<>();
         data.put("id", id);
+        data.put("tag", tag);
         data.put("packageName", packageName);
         data.put("title", title);
         data.put("content", content);
