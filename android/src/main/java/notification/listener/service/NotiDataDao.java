@@ -15,6 +15,10 @@ public interface NotiDataDao {
     @Query("SELECT * FROM NotiData WHERE room= :room")
     List<NotiData> getRoom(String room);
 
+//    @Query("INSERT INTO NotiData VALUES(name= :name, text= :text, room= :room, date= :date, send= :send)")
+    @Insert
+    void addChat(NotiData noti);
+
     @Insert
     void insert(NotiData noti);
 
