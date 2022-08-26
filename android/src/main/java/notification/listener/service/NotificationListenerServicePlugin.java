@@ -26,6 +26,8 @@ import io.flutter.plugin.common.PluginRegistry;
 import notification.listener.service.models.Action;
 import notification.listener.service.models.ActionCache;
 //import notification.listener.service.kakao.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 public class NotificationListenerServicePlugin implements FlutterPlugin, ActivityAware, MethodCallHandler, PluginRegistry.ActivityResultListener, EventChannel.StreamHandler {
@@ -62,8 +64,23 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             Intent intent = new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS);
             mActivity.startActivityForResult(intent, REQUEST_CODE_FOR_NOTIFICATIONS);
         } else if (call.method.equals("sendReply")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+
             final String message = call.argument("message");
+            final String name = call.argument("defaultName");
+            final String room = call.argument("room");
             final int notificationId = call.argument("notificationId");
+
+            LocalDateTime now = LocalDateTime.now();
+            String formatedNow = now.format(DateTimeFormatter.ofPattern("a HH시 mm분"));
+
+            NotiData noti = new NotiData();
+            noti.name = name;
+            noti.text = message;
+            noti.room = room;
+            noti.date = formatedNow;
+            noti.send = 2;
+
 
             final Action action = ActionCache.cachedNotifications.get(notificationId);
             if (action == null) {
@@ -71,6 +88,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             }
             try {
                 action.sendReply(context, message);
+                notiDb.NotiDao().insert(noti);
                 result.success(true);
             } catch (PendingIntent.CanceledException e) {
                 result.success(false);
