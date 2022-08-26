@@ -78,7 +78,7 @@ class ServiceNotificationEvent {
       return await methodeChannel.invokeMethod<bool>("sendReply", {
             'message': message,
             'notificationId': id,           
-            'title' : title,
+            'title' : "구병희사원님",
             // 'room' : subContent
           }) ??
           false;
