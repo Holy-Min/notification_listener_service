@@ -31,6 +31,7 @@ import notification.listener.service.models.Action;
 public class NotificationListener extends NotificationListenerService {
 
     NotiDatabase notiDb;
+    private Context context;
 
     @RequiresApi(api = VERSION_CODES.KITKAT)
     @Override
@@ -48,10 +49,11 @@ public class NotificationListener extends NotificationListenerService {
     private void handleNotification(StatusBarNotification notification, boolean isRemoved) {
         String packageName = notification.getPackageName();
 
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
         StatusBarNotification[] barNotifications = notificationManager.getActiveNotifications();
         
-        System.out.println("노티피케이션 확인 :" + barNotifications[0]);  
+        System.out.println("노티피케이션 확인 :" + barNotifications);  
         System.out.println("리스트 길이" + barNotifications.length);
         for(int i = 0; i < barNotifications.length; i++) {
             System.out.println("노티피케이션 확인 :" + barNotifications[i]);    
