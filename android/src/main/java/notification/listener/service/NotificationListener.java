@@ -50,7 +50,7 @@ public class NotificationListener extends NotificationListenerService {
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         StatusBarNotification[] barNotifications = notificationManager.getActiveNotifications();
-        for(int i = 0; i < barNotifications.size(); i++) {
+        for(int i = 0; i < barNotifications.length; i++) {
             System.out.println("노티피케이션 확인 :" + barNotifications[i]);    
         }
         
