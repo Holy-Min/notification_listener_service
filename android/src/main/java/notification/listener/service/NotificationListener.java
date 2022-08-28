@@ -34,7 +34,7 @@ public class NotificationListener extends NotificationListenerService {
     private Context context;
 
     public static boolean runApp = false;
-    private static NotiData noti = new NotiData();
+    private NotiData noti = new NotiData();
 
     public void setRunAppFalse() {
         this.runApp = false;
