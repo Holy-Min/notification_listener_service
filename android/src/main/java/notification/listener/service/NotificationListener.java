@@ -44,7 +44,8 @@ public class NotificationListener extends NotificationListenerService {
     }
 
     public void insertMessage() {
-//         notiDb.NotiDao().insert(noti);
+        notiDb = NotiDatabase.getInstance(getApplicationContext());
+        notiDb.NotiDao().insert(noti);
     }
 
     @RequiresApi(api = VERSION_CODES.KITKAT)
