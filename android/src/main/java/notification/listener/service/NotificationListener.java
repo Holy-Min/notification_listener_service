@@ -33,6 +33,20 @@ public class NotificationListener extends NotificationListenerService {
     NotiDatabase notiDb;
     private Context context;
 
+    private boolean runApp = false;
+    private NotiData noti = new NotiData();
+
+    public void setRunAppFalse() {
+        this.runApp = false;
+    }
+    public void setRunAppTrue() {
+        this.runApp = true;
+    }
+
+    public void insertMessage() {
+        notiDb.NotiDao().insert(noti);
+    }
+
     @RequiresApi(api = VERSION_CODES.KITKAT)
     @Override
     public void onNotificationPosted(StatusBarNotification notification) {
@@ -57,7 +71,6 @@ public class NotificationListener extends NotificationListenerService {
         if(packageName.equals("com.kakao.talk")) {
             Bundle extras = notification.getNotification().extras;
             byte[] drawable = getSmallIcon(packageName);
-            System.out.println("채팅아이디로그 확인 : " + extras);
 
             Action action = NotificationUtils.getQuickReplyAction(notification.getNotification(), packageName);
 
@@ -106,14 +119,14 @@ public class NotificationListener extends NotificationListenerService {
                         music.room = room;
                         notiDb.RoomDataDao().insert(music);
                     }
-                    NotiData noti = new NotiData();
+//                    NotiData noti = new NotiData();
                     noti.name = title.toString();
                     noti.text = text.toString();
                     noti.room = room;
                     noti.date = formatedNow;
                     noti.send = 1;
 
-                    notiDb.NotiDao().insert(noti);
+                    if(runApp == false) notiDb.NotiDao().insert(noti);
                 }
 
                 if (extras.containsKey(Notification.EXTRA_PICTURE)) {
