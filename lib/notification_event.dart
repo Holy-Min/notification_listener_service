@@ -83,7 +83,7 @@ class ServiceNotificationEvent {
             'message': message,
             'tag' : tag,
             // 'notificationId': id,
-            'name' : title,
+            'name' : "작성자(본인)",
             'room' : subContent
           }) ??
           false;
