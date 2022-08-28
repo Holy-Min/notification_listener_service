@@ -79,7 +79,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             final String tag = call.argument("tag");
 
             LocalDateTime now = LocalDateTime.now();
-            String formatedNow = now.format(DateTimeFormatter.ofPattern("a HH시 mm분"));
+            String formatedNow = now.format(DateTimeFormatter.ofPattern("a hh시 mm분"));
 
             NotiData noti = new NotiData();
             noti.name = name;
