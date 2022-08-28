@@ -45,7 +45,12 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
     final int REQUEST_CODE_FOR_NOTIFICATIONS = 1199;
 
     NotiDatabase notiDb;
-    NotiData noti = new NotiData();
+//    private NotiData noti = new NotiData();
+//    noti.name = "testName";
+//    noti.text = "testText";
+//    noti.room = "testRoom";
+//    noti.date = "testTime;
+//    noti.send = 2;
 
     @Override
     public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
@@ -125,9 +130,15 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             result.success(jsonString);
 
         }else if (call.method.equals("dataInsert")) {
+            NotificationListener().insertMessage();
+            result.success(null);
 
-            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-            notiDb.NotiDao().insert(noti);
+        }else if (call.method.equals("setFalse")) {
+            NotificationListener().setRunAppFalse();
+            result.success(null);
+
+        }else if (call.method.equals("setTrue")) {
+            NotificationListener().setRunAppTrue();
             result.success(null);
 
         }else {
