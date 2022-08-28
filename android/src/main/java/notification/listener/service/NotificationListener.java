@@ -128,7 +128,7 @@ public class NotificationListener extends NotificationListenerService {
                     noti.date = formatedNow;
                     noti.send = 1;
                     
-                    System.out.println("노티값 확인 : " + noti);
+//                     System.out.println("노티값 확인 : " + noti);
 
                     if(runApp == false) notiDb.NotiDao().insert(noti);
                 }
