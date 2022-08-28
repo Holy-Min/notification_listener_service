@@ -44,7 +44,7 @@ public class NotificationListener extends NotificationListenerService {
     }
 
     public void insertMessage() {
-        notiDb = NotiDatabase.getInstance(getApplicationContext());
+        notiDb = NotiDatabase.getInstance(this.getApplicationContext());
         notiDb.NotiDao().insert(noti);
     }
 
