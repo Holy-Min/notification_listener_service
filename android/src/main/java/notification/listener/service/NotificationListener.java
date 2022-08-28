@@ -33,7 +33,7 @@ public class NotificationListener extends NotificationListenerService {
     NotiDatabase notiDb;
     private Context context;
 
-    private boolean runApp = false;
+    public static boolean runApp = false;
     private NotiData noti = new NotiData();
 
     public void setRunAppFalse() {
@@ -44,7 +44,7 @@ public class NotificationListener extends NotificationListenerService {
     }
 
     public void insertMessage() {
-//         notiDb.NotiDao().insert(noti);
+        notiDb.NotiDao().insert(noti);
     }
 
     @RequiresApi(api = VERSION_CODES.KITKAT)
