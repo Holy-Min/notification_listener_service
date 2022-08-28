@@ -67,7 +67,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
 
             final String message = call.argument("message");
-            final String name = call.argument("defaultName");
+            final String name = call.argument("title");
             final String room = call.argument("room");
 //            final int notificationId = call.argument("notificationId");
             final String tag = call.argument("tag");
