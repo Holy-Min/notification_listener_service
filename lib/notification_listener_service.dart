@@ -63,20 +63,20 @@ class NotificationListenerService {
     // final kakao = content.toString();
     return content;
   }
-  /// send a direct message reply to the incoming notification
-  static Future<bool> sendReply(String message, String defaultName) async {
-    // if (!canReply!) throw Exception("The notification is not replyable");
-    if (!ServiceNotificationEvent().canReply!) throw Exception("이 알림은 답장을 보낼 수 없는 상태입니다.");
-    try {
-      return await methodeChannel.invokeMethod<bool>("sendReply", {
-        'message': message,
-        'notificationId': ServiceNotificationEvent().id,
-        'name' : defaultName,
-        'room' : ServiceNotificationEvent().subContent
-      }) ??
-          false;
-    } catch (e) {
-      rethrow;
-    }
+
+  static Future dataInsert() async {
+    final content = await methodeChannel.invokeMethod('dataInsert');
+    // final kakao = content.toString();
+    return content;
+  }
+
+  static Future setRunAppFalse() async {
+    await methodeChannel.invokeMethod('setFalse');
+    // final kakao = content.toString();
+  }
+
+  static Future setRunAppTrue() async {
+    await methodeChannel.invokeMethod('setTrue');
+    // final kakao = content.toString();
   }
 }
