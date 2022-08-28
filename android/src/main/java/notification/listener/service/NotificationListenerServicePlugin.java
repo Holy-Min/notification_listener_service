@@ -45,6 +45,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
     final int REQUEST_CODE_FOR_NOTIFICATIONS = 1199;
 
     NotiDatabase notiDb;
+    NotiData noti = new NotiData();
 
     @Override
     public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
@@ -122,6 +123,12 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             Gson gson = new Gson();
             String jsonString = gson.toJson(noti);
             result.success(jsonString);
+
+        }else if (call.method.equals("dataInsert")) {
+
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            notiDb.NotiDao().insert(noti);
+            result.success(null);
 
         }else {
             result.notImplemented();
