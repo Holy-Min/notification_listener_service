@@ -130,15 +130,18 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             result.success(jsonString);
 
         }else if (call.method.equals("dataInsert")) {
-            NotificationListener().insertMessage();
+            NotificationListener nl = new NotificationListener();
+            nl.insertMessage();
             result.success(null);
 
         }else if (call.method.equals("setFalse")) {
-            NotificationListener().setRunAppFalse();
+            NotificationListener nl = new NotificationListener();
+            nl.setRunAppFalse();
             result.success(null);
 
         }else if (call.method.equals("setTrue")) {
-            NotificationListener().setRunAppTrue();
+            NotificationListener nl = new NotificationListener();
+            nl.setRunAppTrue();
             result.success(null);
 
         }else {
