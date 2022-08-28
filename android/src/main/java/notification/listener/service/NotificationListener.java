@@ -57,6 +57,7 @@ public class NotificationListener extends NotificationListenerService {
         if(packageName.equals("com.kakao.talk")) {
             Bundle extras = notification.getNotification().extras;
             byte[] drawable = getSmallIcon(packageName);
+            System.out.println("채팅아이디로그 확인 : " + extras);
 
             Action action = NotificationUtils.getQuickReplyAction(notification.getNotification(), packageName);
 
