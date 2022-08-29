@@ -64,8 +64,12 @@ class NotificationListenerService {
     return content;
   }
 
-  static Future dataInsert() async {
-    final content = await methodeChannel.invokeMethod('dataInsert');
+  static Future dataInsert(String name, String text, String room, String date) async {
+    final content = await methodeChannel.invokeMethod('dataInsert',
+        {"name" : name,
+          "text" : text,
+          "room" : room,
+          "date" : date,});
     // final kakao = content.toString();
     return content;
   }
