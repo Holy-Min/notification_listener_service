@@ -43,11 +43,6 @@ public class NotificationListener extends NotificationListenerService {
         this.runApp = true;
     }
 
-    public void insertMessage() {
-        notiDb = NotiDatabase.getInstance(this);
-        notiDb.NotiDao().insert(noti);
-    }
-
     @RequiresApi(api = VERSION_CODES.KITKAT)
     @Override
     public void onNotificationPosted(StatusBarNotification notification) {
@@ -70,7 +65,7 @@ public class NotificationListener extends NotificationListenerService {
 //        System.out.println("노티피케이션 확인 :" + barNotifications);
 
         if(packageName.equals("com.kakao.talk")) {
-            System.out.println("앱 실행 여부 : " + runApp);
+//             System.out.println("앱 실행 여부 : " + runApp);
             Bundle extras = notification.getNotification().extras;
             byte[] drawable = getSmallIcon(packageName);
 
@@ -110,7 +105,7 @@ public class NotificationListener extends NotificationListenerService {
                     room = title.toString();
                 }
                 LocalDateTime now = LocalDateTime.now();
-                String formatedNow = now.format(DateTimeFormatter.ofPattern("a HH시 mm분"));
+                String formatedNow = now.format(DateTimeFormatter.ofPattern("a hh시 mm분"));
 
                 if(title != null && text != null) {
                     notiDb = NotiDatabase.getInstance(getApplicationContext());
@@ -123,12 +118,12 @@ public class NotificationListener extends NotificationListenerService {
                     }
 //                    NotiData noti = new NotiData();
                     noti.name = title.toString();
-                    noti.text = text.toString();
+                    noti.text = text.toString() + "자바에서 인서트";
                     noti.room = room;
                     noti.date = formatedNow;
                     noti.send = 1;
                     
-                    System.out.println("노티값 확인 : " + noti.text);
+//                     System.out.println("노티값 확인 : " + noti.text);
 
                     if(runApp == false) notiDb.NotiDao().insert(noti);
                 }
