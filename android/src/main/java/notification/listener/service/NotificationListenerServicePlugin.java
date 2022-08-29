@@ -142,7 +142,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             noti.text = text;
             noti.room = room;
             noti.date = date;
-            noti.send = 2;
+            noti.send = 1;
 
             notiDb.NotiDao().insert(noti);
             result.success(true);
