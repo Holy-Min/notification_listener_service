@@ -130,9 +130,22 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             result.success(jsonString);
 
         }else if (call.method.equals("dataInsert")) {
-            NotificationListener nl = new NotificationListener();
-            nl.insertMessage();
-            result.success(null);
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+
+            String name = call.argument("name");
+            String text = call.argument("text");
+            String room = call.argument("room");
+            String date = call.argument("date");
+
+            NotiData noti = new NotiData();
+            noti.name = name;
+            noti.text = text;
+            noti.room = room;
+            noti.date = date;
+            noti.send = 2;
+
+            notiDb.NotiDao().insert(noti);
+            result.success(true);
 
         }else if (call.method.equals("setFalse")) {
             NotificationListener nl = new NotificationListener();
