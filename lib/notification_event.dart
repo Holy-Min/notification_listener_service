@@ -84,7 +84,8 @@ class ServiceNotificationEvent {
             'tag' : tag,
             // 'notificationId': id,
             'name' : "작성자(본인)",
-            'room' : subContent
+            'room' : subContent,
+            'hasRemoved' : hasRemoved,
           }) ??
           false;
     } catch (e) {
