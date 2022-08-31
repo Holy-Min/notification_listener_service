@@ -77,6 +77,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             final String room = call.argument("room");
 //            final int notificationId = call.argument("notificationId");
             final String tag = call.argument("tag");
+            final Boolean hasRemoved = call.argument("hasRemoved");
 
             LocalDateTime now = LocalDateTime.now();
             String formatedNow = now.format(DateTimeFormatter.ofPattern("a hh시 mm분"));
@@ -96,7 +97,8 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             }
             try {
                 action.sendReply(context, message);
-                notiDb.NotiDao().insert(noti);
+                if(hasRemoved == false) notiDb.NotiDao().insert(noti);
+//                 notiDb.NotiDao().insert(noti);
                 result.success(true);
             } catch (PendingIntent.CanceledException e) {
                 result.success(false);
