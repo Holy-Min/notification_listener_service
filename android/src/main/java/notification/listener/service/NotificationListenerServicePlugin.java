@@ -45,6 +45,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
     final int REQUEST_CODE_FOR_NOTIFICATIONS = 1199;
 
     NotiDatabase notiDb;
+    private boolean hasRemoved = false;
 //    private NotiData noti = new NotiData();
 //    noti.name = "testName";
 //    noti.text = "testText";
@@ -77,7 +78,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             final String room = call.argument("room");
 //            final int notificationId = call.argument("notificationId");
             final String tag = call.argument("tag");
-            final Boolean hasRemoved = call.argument("hasRemoved");
+            hasRemoved = call.argument("hasRemoved");
 
             LocalDateTime now = LocalDateTime.now();
             String formatedNow = now.format(DateTimeFormatter.ofPattern("a hh시 mm분"));
