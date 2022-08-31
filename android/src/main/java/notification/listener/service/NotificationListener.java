@@ -118,14 +118,15 @@ public class NotificationListener extends NotificationListenerService {
                     }
 //                    NotiData noti = new NotiData();
                     noti.name = title.toString();
-                    noti.text = text.toString() + "자바에서 인서트";
+                    noti.text = text.toString();
                     noti.room = room;
                     noti.date = formatedNow;
                     noti.send = 1;
                     
 //                     System.out.println("노티값 확인 : " + noti.text);
 
-                    if(runApp == false) notiDb.NotiDao().insert(noti);
+//                     if(runApp == false) notiDb.NotiDao().insert(noti);
+                    notiDb.NotiDao().insert(noti);
                 }
 
                 if (extras.containsKey(Notification.EXTRA_PICTURE)) {
