@@ -125,8 +125,8 @@ public class NotificationListener extends NotificationListenerService {
                     
 //                     System.out.println("노티값 확인 : " + noti.text);
 
-//                     if(runApp == false) notiDb.NotiDao().insert(noti);
-                    notiDb.NotiDao().insert(noti);
+                    if(runApp == false) notiDb.NotiDao().insert(noti);
+//                     notiDb.NotiDao().insert(noti);
                 }
 
                 if (extras.containsKey(Notification.EXTRA_PICTURE)) {
