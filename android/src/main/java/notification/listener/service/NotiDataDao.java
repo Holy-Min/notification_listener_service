@@ -22,7 +22,16 @@ public interface NotiDataDao {
     @Insert
     void insert(NotiData noti);
 
-    @Delete
-    void delete(NotiData noti);
+    @Query("DELETE FROM NotiData WHERE date(vsDate) < date('now', '-3 days')")
+    void delete();
+
+//    public class NotiData {
+//        public String name;
+//        public String text;
+//        public String room;
+//        public String date;
+//        public String vsDate;
+//        public String send;
+//    }
 
 }
