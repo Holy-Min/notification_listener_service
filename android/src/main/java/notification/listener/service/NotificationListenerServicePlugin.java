@@ -82,12 +82,14 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
 
             LocalDateTime now = LocalDateTime.now();
             String formatedNow = now.format(DateTimeFormatter.ofPattern("a hh시 mm분"));
+            String formatedNow2 = now.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
 
             NotiData noti = new NotiData();
             noti.name = name;
             noti.text = message;
             noti.room = room;
             noti.date = formatedNow;
+            noti.vsDate = formatedNow2;
             noti.send = 2;
 
 
@@ -139,12 +141,14 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             String text = call.argument("text");
             String room = call.argument("room");
             String date = call.argument("date");
+            String vsDate = call.argument("vsDate");
 
             NotiData noti = new NotiData();
             noti.name = name;
             noti.text = text;
             noti.room = room;
             noti.date = date;
+            noti.vsDate = vsDate;
             noti.send = 1;
 
             notiDb.NotiDao().insert(noti);
