@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:notification_listener_service/notification_event.dart';
 
 const MethodChannel methodeChannel =
-    MethodChannel('x-slayer/notifications_channel');
+MethodChannel('x-slayer/notifications_channel');
 const EventChannel _eventChannel = EventChannel('x-slayer/notifications_event');
 Stream<ServiceNotificationEvent>? _stream;
 
@@ -19,7 +19,7 @@ class NotificationListenerService {
       _stream ??=
           _eventChannel.receiveBroadcastStream().map<ServiceNotificationEvent>(
                 (event) => ServiceNotificationEvent.fromMap(event),
-              );
+          );
       return _stream!;
     }
     throw Exception("Notifications API exclusively available on Android!");
@@ -84,5 +84,9 @@ class NotificationListenerService {
   static Future setRunAppTrue() async {
     await methodeChannel.invokeMethod('setTrue');
     // final kakao = content.toString();
+  }
+
+  static Future deleteChat() async {
+    await methodeChannel.invokeMethod('deleteChat');
   }
 }
