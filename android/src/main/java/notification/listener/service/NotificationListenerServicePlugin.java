@@ -82,7 +82,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
 
             LocalDateTime now = LocalDateTime.now();
             String formatedNow = now.format(DateTimeFormatter.ofPattern("a hh시 mm분"));
-            String formatedNow2 = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            String formatedNow2 = now.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
 
             NotiData noti = new NotiData();
             noti.name = name;
@@ -162,6 +162,12 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
         }else if (call.method.equals("setTrue")) {
             NotificationListener nl = new NotificationListener();
             nl.setRunAppTrue();
+            result.success(null);
+
+        }else if (call.method.equals("deleteChat")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+//            NotiData noti = new NotiData();
+            notiDb.NotiDao().delete();
             result.success(null);
 
         }else {
