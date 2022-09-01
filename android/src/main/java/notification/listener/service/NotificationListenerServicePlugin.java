@@ -215,7 +215,9 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             if (resultCode == Activity.RESULT_OK) {
                 pendingResult.success(true);
             } else if (resultCode == Activity.RESULT_CANCELED) {
-                pendingResult.success(isPermissionGranted(context));
+                if(data != null) {
+                    pendingResult.success(isPermissionGranted(context));
+                }
             } else {
                 pendingResult.success(false);
             }
