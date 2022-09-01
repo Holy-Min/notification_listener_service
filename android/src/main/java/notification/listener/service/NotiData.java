@@ -20,6 +20,9 @@ public class NotiData {
 
     @ColumnInfo(name = "date")
     public String date;
+    
+    @ColumnInfo(name = "vsDate")
+    public String vsDate;
 
     @ColumnInfo(name = "send")
     public int send;
