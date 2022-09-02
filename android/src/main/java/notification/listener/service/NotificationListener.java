@@ -34,13 +34,13 @@ public class NotificationListener extends NotificationListenerService {
     private Context context;
 
     public static boolean runApp = false;
-    private NotiData noti = new NotiData();
+    private final NotiData noti = new NotiData();
 
     public void setRunAppFalse() {
-        this.runApp = false;
+        runApp = false;
     }
     public void setRunAppTrue() {
-        this.runApp = true;
+        runApp = true;
     }
 
     @RequiresApi(api = VERSION_CODES.KITKAT)
