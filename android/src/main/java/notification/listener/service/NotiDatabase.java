@@ -10,7 +10,7 @@ import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 
-@Database(entities = {NotiData.class, RoomData.class}, version = 1)
+@Database(entities = {NotiData.class, RoomData.class}, version = 1, exportSchema = false)
 public abstract class NotiDatabase extends RoomDatabase {
     public abstract NotiDataDao NotiDao();
     public abstract RoomDataDao RoomDataDao();
