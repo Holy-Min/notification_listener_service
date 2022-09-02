@@ -89,4 +89,8 @@ class NotificationListenerService {
   static Future deleteChat() async {
     await methodeChannel.invokeMethod('deleteChat');
   }
+
+  static Future roomDelete(String room) async {
+    await methodeChannel.invokeMethod('roomDelete', {"room" : room});
+  }
 }
