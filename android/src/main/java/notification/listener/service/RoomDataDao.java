@@ -18,5 +18,7 @@ public interface RoomDataDao {
     @Insert
     void insert(RoomData room);
 
+    @Query("DELETE FROM RoomData WHERE room = :room")
+    void delete(String room);
 
 }
