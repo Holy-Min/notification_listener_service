@@ -25,6 +25,9 @@ public interface NotiDataDao {
     @Query("DELETE FROM NotiData WHERE date(vsDate) < date('now', '-3 days')")
     void delete();
 
+    @Query("DELETE FROM NotiData WHERE room = :room")
+    void roomDelete(String room);
+
 //    public class NotiData {
 //        public String name;
 //        public String text;
