@@ -126,7 +126,8 @@ public class NotificationListener extends NotificationListenerService {
                     noti.send = 1;
                     
 //                     System.out.println("노티값 확인 : " + noti.text);
-
+                    
+                    System.out.println("앱 실행 확인 : " + runApp);
                     if(runApp == false) notiDb.NotiDao().insert(noti);
 //                     notiDb.NotiDao().insert(noti);
                 }
