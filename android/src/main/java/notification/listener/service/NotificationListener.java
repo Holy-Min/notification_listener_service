@@ -113,9 +113,14 @@ public class NotificationListener extends NotificationListenerService {
 
                     int roomnid = notiDb.RoomDataDao().checkId(room);
                     if(roomnid == 0) {
-                        RoomData music = new RoomData();
-                        music.room = room;
-                        notiDb.RoomDataDao().insert(music);
+                        RoomData rommData = new RoomData();
+                        rommData.room = room;
+                        if(packageName.equals("com.kakao.talk")) {
+                            rommData.app = 1;
+                        } else if(packageName.equals("com.whatsapp")) {
+                            rommData.app = 2;
+                        }
+                        notiDb.RoomDataDao().insert(rommData);
                     }
 //                    NotiData noti = new NotiData();
                     noti.name = title.toString();
