@@ -94,7 +94,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             noti.send = 2;
             if(packageName.equals("com.kakao.talk")) {
                 noti.app = 1;
-            } else if(packageName.equals("com.kakao.talk")) {
+            } else if(packageName.equals("com.whatsapp")) {
                 noti.app = 2;
             }
 
