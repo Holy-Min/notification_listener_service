@@ -47,13 +47,13 @@ class NotificationListenerService {
   }
 
   static Future getKakaoChat() async {
-    final content = await methodeChannel.invokeMethod('getKakaoChat');
+    final content = await methodeChannel.invokeMethod('getChat');
     // final kakao = content.toString();
     return content;
   }
 
   static Future getKakaoRoom() async {
-    final content = await methodeChannel.invokeMethod('getKakaoRoom');
+    final content = await methodeChannel.invokeMethod('getRoom');
     // final kakao = content.toString();
     return content;
   }
@@ -64,13 +64,14 @@ class NotificationListenerService {
     return content;
   }
 
-  static Future dataInsert(String name, String text, String room, String date, String vsDate) async {
+  static Future dataInsert(String name, String text, String room, String date, String vsDate, String packageName) async {
     final content = await methodeChannel.invokeMethod('dataInsert',
         {"name" : name,
           "text" : text,
           "room" : room,
           "date" : date,
           "vsDate" : vsDate,
+          "packageName" : packageName
         });
     // final kakao = content.toString();
     return content;
