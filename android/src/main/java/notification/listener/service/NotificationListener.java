@@ -106,7 +106,7 @@ public class NotificationListener extends NotificationListenerService {
                 }
                 LocalDateTime now = LocalDateTime.now();
                 String formatedNow = now.format(DateTimeFormatter.ofPattern("a hh시 mm분"));
-                String formatedNow2 = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                String formatedNow2 = now.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
 
                 if(title != null && text != null) {
                     notiDb = NotiDatabase.getInstance(getApplicationContext());
@@ -124,10 +124,14 @@ public class NotificationListener extends NotificationListenerService {
                     noti.date = formatedNow;
                     noti.vsDate = formatedNow2;
                     noti.send = 1;
-                    
+                    if(packageName.equals("com.kakao.talk")) {
+                        noti.app = 1;
+                    } else if(packageName.equals("com.whatsapp")) {
+                        noti.app = 2;
+                    }
+
 //                     System.out.println("노티값 확인 : " + noti.text);
-                    
-//                     System.out.println("앱 실행 확인 : " + runApp);
+
                     if(runApp == false) notiDb.NotiDao().insert(noti);
 //                     notiDb.NotiDao().insert(noti);
                 }
