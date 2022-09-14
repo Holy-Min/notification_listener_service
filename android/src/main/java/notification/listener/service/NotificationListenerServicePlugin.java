@@ -78,6 +78,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             final String room = call.argument("room");
 //            final int notificationId = call.argument("notificationId");
             final String tag = call.argument("tag");
+            final String packageName = call.argument("packageName");
             hasRemoved = call.argument("hasRemoved");
 
             LocalDateTime now = LocalDateTime.now();
@@ -91,6 +92,11 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             noti.date = formatedNow;
             noti.vsDate = formatedNow2;
             noti.send = 2;
+            if(packageName.equals("com.kakao.talk")) {
+                noti.app = 1;
+            } else if(packageName.equals("com.kakao.talk")) {
+                noti.app = 2;
+            }
 
 
 //            final Action action = ActionCache.cachedNotifications.get(notificationId);
@@ -107,7 +113,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 result.success(false);
                 e.printStackTrace();
             }
-        } else if (call.method.equals("getKakaoChat")) {
+        } else if (call.method.equals("getChat")) {
 //            mContext = getApplicationContext();
 //            Intent intent = new Intent(getApplicationContext(), NotiDatabase.class);
 
@@ -117,7 +123,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             String jsonString = gson.toJson(noti);
             result.success(jsonString);
 
-        } else if (call.method.equals("getKakaoRoom")) {
+        } else if (call.method.equals("getRoom")) {
 
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             List<RoomData> noti = notiDb.RoomDataDao().getAll();
@@ -142,6 +148,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             String room = call.argument("room");
             String date = call.argument("date");
             String vsDate = call.argument("vsDate");
+            String packageName = call.argument("packageName");
 
             NotiData noti = new NotiData();
             noti.name = name;
@@ -150,6 +157,11 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             noti.date = date;
             noti.vsDate = vsDate;
             noti.send = 1;
+            if(packageName.equals("com.kakao.talk")) {
+                noti.app = 1;
+            } else if(packageName.equals("com.kakao.talk")) {
+                noti.app = 2;
+            }
 
             notiDb.NotiDao().insert(noti);
             result.success(true);
