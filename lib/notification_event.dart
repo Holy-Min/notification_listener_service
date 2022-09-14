@@ -43,7 +43,7 @@ class ServiceNotificationEvent {
 
   /// the content of the notification
   String? content;
-  
+
   String? subContent;
 
   ServiceNotificationEvent({
@@ -80,13 +80,14 @@ class ServiceNotificationEvent {
     if (!canReply!) throw Exception("이 알림은 답장을 보낼 수 없는 상태입니다.");
     try {
       return await methodeChannel.invokeMethod<bool>("sendReply", {
-            'message': message,
-            'tag' : tag,
-            // 'notificationId': id,
-            'name' : "작성자(본인)",
-            'room' : subContent,
-            'hasRemoved' : hasRemoved,
-          }) ??
+        'message': message,
+        'tag' : tag,
+        // 'notificationId': id,
+        'name' : "작성자(본인)",
+        'room' : subContent,
+        'hasRemoved' : hasRemoved,
+        'packageName' : packageName
+      }) ??
           false;
     } catch (e) {
       rethrow;
