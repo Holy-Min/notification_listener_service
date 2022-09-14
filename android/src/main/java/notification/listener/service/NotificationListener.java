@@ -64,7 +64,7 @@ public class NotificationListener extends NotificationListenerService {
 //        StatusBarNotification[] barNotifications = notificationManager.getActiveNotifications();
 //        System.out.println("노티피케이션 확인 :" + barNotifications);
 
-        if(packageName.equals("com.kakao.talk")) {
+        if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp")) {
 //             System.out.println("앱 실행 여부 : " + runApp);
             Bundle extras = notification.getNotification().extras;
             byte[] drawable = getSmallIcon(packageName);
