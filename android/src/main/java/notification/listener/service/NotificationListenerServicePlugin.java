@@ -149,22 +149,24 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             String date = call.argument("date");
             String vsDate = call.argument("vsDate");
             String packageName = call.argument("packageName");
+            
+            if(!name.euals("카카오톡")) {
+                NotiData noti = new NotiData();
+                noti.name = name;
+                noti.text = text;
+                noti.room = room;
+                noti.date = date;
+                noti.vsDate = vsDate;
+                noti.send = 1;
+                if(packageName.equals("com.kakao.talk")) {
+                    noti.app = 1;
+                } else if(packageName.equals("com.whatsapp")) {
+                    noti.app = 2;
+                }
 
-            NotiData noti = new NotiData();
-            noti.name = name;
-            noti.text = text;
-            noti.room = room;
-            noti.date = date;
-            noti.vsDate = vsDate;
-            noti.send = 1;
-            if(packageName.equals("com.kakao.talk")) {
-                noti.app = 1;
-            } else if(packageName.equals("com.whatsapp")) {
-                noti.app = 2;
+                notiDb.NotiDao().insert(noti);
+                result.success(true);
             }
-
-            notiDb.NotiDao().insert(noti);
-            result.success(true);
 
         }else if (call.method.equals("setFalse")) {
             NotificationListener nl = new NotificationListener();
