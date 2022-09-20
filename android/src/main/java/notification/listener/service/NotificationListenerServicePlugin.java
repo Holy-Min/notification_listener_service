@@ -150,7 +150,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             String vsDate = call.argument("vsDate");
             String packageName = call.argument("packageName");
             
-            if(!name.euals("카카오톡")) {
+            if(!name.equals("카카오톡")) {
                 NotiData noti = new NotiData();
                 noti.name = name;
                 noti.text = text;
