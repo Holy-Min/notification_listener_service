@@ -119,7 +119,7 @@ public class NotificationListener extends NotificationListenerService {
                         RoomData rommData = new RoomData();
                         rommData.room = room;
 //                         if(packageName.equals("com.samsung.android.messaging")) {
-                        if(packageName.contains("messag")) {
+                        if(packageName.contains("messaging") || packageName.contains("messenger")) {
                             rommData.app = 1;
                         } else if(packageName.equals("com.kakao.talk")) {
                             rommData.app = 2;
