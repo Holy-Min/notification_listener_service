@@ -154,7 +154,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             String date = call.argument("date");
             String vsDate = call.argument("vsDate");
             String packageName = call.argument("packageName");
-            String result = call.argument("result");
+            String str = call.argument("result");
             
          
                 NotiData noti = new NotiData();
@@ -164,7 +164,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 noti.date = date;
                 noti.vsDate = vsDate;
                 noti.send = 1;
-                noti.result = result;
+                noti.result = str;
 //                 if(packageName.equals("com.samsung.android.messaging")) {
                 if(packageName.contains("messag")) {
                     noti.app = 1;
