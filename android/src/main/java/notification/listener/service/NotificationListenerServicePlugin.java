@@ -95,7 +95,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             noti.send = 2;
             noti.result = str;
 //             if(packageName.equals("com.samsung.android.messaging")) {
-            if(packageName.contains("messag")) {
+            if(packageName.contains("messaging") || packageName.contains("messenger")) {
                 noti.app = 1;
             } else if(packageName.equals("com.kakao.talk")) {
                 noti.app = 2;
@@ -166,7 +166,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 noti.send = 1;
                 noti.result = str;
 //                 if(packageName.equals("com.samsung.android.messaging")) {
-                if(packageName.contains("messag")) {
+                if(packageName.contains("messaging") || packageName.contains("messenger")) {
                     noti.app = 1;
                 } else if(packageName.equals("com.kakao.talk")) {
                     noti.app = 2;
