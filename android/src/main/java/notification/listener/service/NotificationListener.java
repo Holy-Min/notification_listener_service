@@ -66,7 +66,7 @@ public class NotificationListener extends NotificationListenerService {
        System.out.println("노티피케이션 확인 :" + barNotifications);
 //         packageName.equals("com.samsung.android.messaging")
 
-        if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.contains("messag")) {
+//         if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.contains("messag")) {
             System.out.println("앱 실행 여부 : " + runApp);
             Bundle extras = notification.getNotification().extras;
             byte[] drawable = getSmallIcon(packageName);
@@ -147,9 +147,10 @@ public class NotificationListener extends NotificationListenerService {
 
 //                     System.out.println("노티값 확인 : " + noti.text);
 
-                    if(runApp == false) notiDb.NotiDao().insert(noti);
+                    if(runApp == false && noti.app != 0) notiDb.NotiDao().insert(noti);
+//                      if(runApp == false) notiDb.NotiDao().insert(noti);
 //                     notiDb.NotiDao().insert(noti);
-                }
+//                 }
 
                 if (extras.containsKey(Notification.EXTRA_PICTURE)) {
                     Bitmap bmp = (Bitmap) extras.get(Notification.EXTRA_PICTURE);
