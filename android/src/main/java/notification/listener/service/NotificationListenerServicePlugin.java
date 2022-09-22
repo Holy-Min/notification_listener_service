@@ -92,10 +92,12 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             noti.date = formatedNow;
             noti.vsDate = formatedNow2;
             noti.send = 2;
-            if(packageName.equals("com.kakao.talk")) {
+            if(packageName.equals("com.samsung.android.messaging")) {
                 noti.app = 1;
-            } else if(packageName.equals("com.whatsapp")) {
+            } else if(packageName.equals("com.kakao.talk")) {
                 noti.app = 2;
+            } else if(packageName.equals("com.whatsapp")) {
+                noti.app = 3;
             }
 
 
@@ -158,10 +160,12 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 noti.date = date;
                 noti.vsDate = vsDate;
                 noti.send = 1;
-                if(packageName.equals("com.kakao.talk")) {
+                if(packageName.equals("com.samsung.android.messaging")) {
                     noti.app = 1;
-                } else if(packageName.equals("com.whatsapp")) {
+                } else if(packageName.equals("com.kakao.talk")) {
                     noti.app = 2;
+                } else if(packageName.equals("com.whatsapp")) {
+                    noti.app = 3;
                 }
 
                 notiDb.NotiDao().insert(noti);
