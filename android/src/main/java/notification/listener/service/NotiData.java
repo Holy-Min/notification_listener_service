@@ -29,5 +29,8 @@ public class NotiData {
 
     @ColumnInfo(name = "app")
     public int app;
+    
+    @ColumnInfo(name = "result")
+    public String result;
 
 }
