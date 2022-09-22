@@ -64,8 +64,9 @@ public class NotificationListener extends NotificationListenerService {
 //        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 //        StatusBarNotification[] barNotifications = notificationManager.getActiveNotifications();
 //        System.out.println("노티피케이션 확인 :" + barNotifications);
+//         packageName.equals("com.samsung.android.messaging")
 
-        if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.equals("com.samsung.android.messaging")) {
+        if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.contains("messag)) {
             System.out.println("앱 실행 여부 : " + runApp);
             Bundle extras = notification.getNotification().extras;
             byte[] drawable = getSmallIcon(packageName);
@@ -116,7 +117,8 @@ public class NotificationListener extends NotificationListenerService {
                     if(roomnid == 0) {
                         RoomData rommData = new RoomData();
                         rommData.room = room;
-                        if(packageName.equals("com.samsung.android.messaging")) {
+//                         if(packageName.equals("com.samsung.android.messaging")) {
+                        if(packageName.contains("messag")) {
                             rommData.app = 1;
                         } else if(packageName.equals("com.kakao.talk")) {
                             rommData.app = 2;
@@ -132,7 +134,9 @@ public class NotificationListener extends NotificationListenerService {
                     noti.date = formatedNow;
                     noti.vsDate = formatedNow2;
                     noti.send = 1;
-                    if(packageName.equals("com.samsung.android.messaging")) {
+                    noti.result = "yet";
+//                     if(packageName.equals("com.samsung.android.messaging")) {
+                    if(packageName.contains("messag")) {
                         noti.app = 1;
                     } else if(packageName.equals("com.kakao.talk")) {
                         noti.app = 2;
