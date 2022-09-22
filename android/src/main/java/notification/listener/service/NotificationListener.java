@@ -59,12 +59,13 @@ public class NotificationListener extends NotificationListenerService {
     private void handleNotification(StatusBarNotification notification, boolean isRemoved) {
         String packageName = notification.getPackageName();
         String tag = notification.getTag();
+        System.out.println("앱 확인" + packageName);
 
 //        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 //        StatusBarNotification[] barNotifications = notificationManager.getActiveNotifications();
 //        System.out.println("노티피케이션 확인 :" + barNotifications);
 
-        if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp")) {
+//         if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp")) {
 //             System.out.println("앱 실행 여부 : " + runApp);
             Bundle extras = notification.getNotification().extras;
             byte[] drawable = getSmallIcon(packageName);
@@ -151,7 +152,7 @@ public class NotificationListener extends NotificationListenerService {
             sendBroadcast(intent);
         }
 
-    }
+//     }
 
 
     public byte[] getSmallIcon(String packageName) {
