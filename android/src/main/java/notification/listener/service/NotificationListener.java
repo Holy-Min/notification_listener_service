@@ -137,7 +137,7 @@ public class NotificationListener extends NotificationListenerService {
                     noti.send = 1;
                     noti.result = "yet";
 //                     if(packageName.equals("com.samsung.android.messaging")) {
-                    if(packageName.contains("messag")) {
+                    if(packageName.contains("messaging") || packageName.contains("messenger")) {
                         noti.app = 1;
                     } else if(packageName.equals("com.kakao.talk")) {
                         noti.app = 2;
