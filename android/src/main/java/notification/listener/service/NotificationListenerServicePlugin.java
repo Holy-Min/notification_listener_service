@@ -79,7 +79,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
 //            final int notificationId = call.argument("notificationId");
             final String tag = call.argument("tag");
             final String packageName = call.argument("packageName");
-            final String result = "whatever";
+            final String str = "whatever";
             hasRemoved = call.argument("hasRemoved");
 
             LocalDateTime now = LocalDateTime.now();
@@ -93,7 +93,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             noti.date = formatedNow;
             noti.vsDate = formatedNow2;
             noti.send = 2;
-            noti.result = result;
+            noti.result = str;
 //             if(packageName.equals("com.samsung.android.messaging")) {
             if(packageName.contains("messag")) {
                 noti.app = 1;
