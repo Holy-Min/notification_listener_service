@@ -20,7 +20,7 @@ public abstract class NotiDatabase extends RoomDatabase {
     public static synchronized NotiDatabase getInstance(Context context){
         if (database == null)
         {
-            database = Room.databaseBuilder(context.getApplicationContext(), NotiDatabase.class, "chattest.db")
+            database = Room.databaseBuilder(context.getApplicationContext(), NotiDatabase.class, "chat.db")
                     .allowMainThreadQueries()
                     .build();
         }
