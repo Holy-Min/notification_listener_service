@@ -150,7 +150,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             String vsDate = call.argument("vsDate");
             String packageName = call.argument("packageName");
             
-            if(!name.equals("카카오톡")) {
+         
                 NotiData noti = new NotiData();
                 noti.name = name;
                 noti.text = text;
@@ -166,7 +166,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
 
                 notiDb.NotiDao().insert(noti);
                 result.success(true);
-            }
+            
 
         }else if (call.method.equals("setFalse")) {
             NotificationListener nl = new NotificationListener();
