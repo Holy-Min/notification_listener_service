@@ -116,10 +116,12 @@ public class NotificationListener extends NotificationListenerService {
                     if(roomnid == 0) {
                         RoomData rommData = new RoomData();
                         rommData.room = room;
-                        if(packageName.equals("com.kakao.talk")) {
+                        if(packageName.equals("com.samsung.android.messaging")) {
                             rommData.app = 1;
-                        } else if(packageName.equals("com.whatsapp")) {
+                        } else if(packageName.equals("com.kakao.talk")) {
                             rommData.app = 2;
+                        } else if(packageName.equals("com.whatsapp")) {
+                            rommData.app = 3;
                         }
                         notiDb.RoomDataDao().insert(rommData);
                     }
@@ -130,10 +132,12 @@ public class NotificationListener extends NotificationListenerService {
                     noti.date = formatedNow;
                     noti.vsDate = formatedNow2;
                     noti.send = 1;
-                    if(packageName.equals("com.kakao.talk")) {
+                    if(packageName.equals("com.samsung.android.messaging")) {
                         noti.app = 1;
-                    } else if(packageName.equals("com.whatsapp")) {
+                    } else if(packageName.equals("com.kakao.talk")) {
                         noti.app = 2;
+                    } else if(packageName.equals("com.whatsapp")) {
+                        noti.app = 3;
                     }
 
 //                     System.out.println("노티값 확인 : " + noti.text);
