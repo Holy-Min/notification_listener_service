@@ -108,7 +108,7 @@ public class NotificationListener extends NotificationListenerService {
                 String formatedNow = now.format(DateTimeFormatter.ofPattern("a hh시 mm분"));
                 String formatedNow2 = now.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
 
-                if(!title.equals("카카오톡") && title != null && text != null) {
+                if(title != null && text != null) {
                     notiDb = NotiDatabase.getInstance(getApplicationContext());
 
                     int roomnid = notiDb.RoomDataDao().checkId(room);
