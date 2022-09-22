@@ -61,15 +61,16 @@ public class NotificationListener extends NotificationListenerService {
         String tag = notification.getTag();
         System.out.println("앱 확인" + packageName);
 
-//        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-//        StatusBarNotification[] barNotifications = notificationManager.getActiveNotifications();
-//        System.out.println("노티피케이션 확인 :" + barNotifications);
+       NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+       StatusBarNotification[] barNotifications = notificationManager.getActiveNotifications();
+       System.out.println("노티피케이션 확인 :" + barNotifications);
 //         packageName.equals("com.samsung.android.messaging")
 
         if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.contains("messag")) {
             System.out.println("앱 실행 여부 : " + runApp);
             Bundle extras = notification.getNotification().extras;
             byte[] drawable = getSmallIcon(packageName);
+            System.out.println("번들 확인 :" + extras);
 
             Action action = NotificationUtils.getQuickReplyAction(notification.getNotification(), packageName);
 
