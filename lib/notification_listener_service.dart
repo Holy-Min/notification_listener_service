@@ -100,6 +100,21 @@ class NotificationListenerService {
     return content;
   }
 
+  static Future selectMessage(String roomName) async {
+    final content = await methodeChannel.invokeMethod('selectMessage', {"roomName" : roomName});
+    return content;
+  }
+
+  static Future selectKakao(String roomName) async {
+    final content = await methodeChannel.invokeMethod('selectKakao', {"roomName" : roomName});
+    return content;
+  }
+
+  static Future selectWhatsapp(String roomName) async {
+    final content = await methodeChannel.invokeMethod('selectWhatsapp', {"roomName" : roomName});
+    return content;
+  }
+
   static Future dataInsert(String name, String text, String room, String date, String vsDate, String packageName, String result) async {
     final content = await methodeChannel.invokeMethod('dataInsert',
         {"name" : name,
