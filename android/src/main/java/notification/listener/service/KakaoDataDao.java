@@ -31,6 +31,11 @@ public interface KakaoDataDao {
     @Query("select * from KakaoData where room = :room order by nid desc limit 1")
     List<KakaoData> select(String room);
 
+    @Query("SELECT * FROM KakaoData WHERE result = 'yet'")
+//    @Query("SELECT * FROM KakaoData WHERE result = :result")
+    List<KakaoData> undetectedSelect();
+//    List<KakaoData> undetecdSelect(String result);
+
 //    public class NotiData {
 //        public String name;
 //        public String text;

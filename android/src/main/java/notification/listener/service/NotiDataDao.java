@@ -31,6 +31,11 @@ public interface NotiDataDao {
     @Query("select * from NotiData where room = :room order by nid desc limit 1")
     List<NotiData> select(String room);
 
+    @Query("SELECT * FROM NotiData WHERE result = 'yet'")
+//    @Query("SELECT * FROM NotiData WHERE result = :result")
+    List<NotiData> undetectedSelect();
+//    List<NotiData> undetecdSelect(String result);
+
 //    public class NotiData {
 //        public String name;
 //        public String text;

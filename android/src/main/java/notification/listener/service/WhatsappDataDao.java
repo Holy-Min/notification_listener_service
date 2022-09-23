@@ -31,6 +31,11 @@ public interface WhatsappDataDao {
     @Query("select * from WhatsappData where room = :room order by nid desc limit 1")
     List<WhatsappData> select(String room);
 
+    @Query("SELECT * FROM WhatsappData WHERE result = 'yet'")
+//    @Query("SELECT * FROM WhatsappData WHERE result = :result")
+    List<WhatsappData> undetectedSelect();
+//    List<WhatsappData> undetecdSelect(String result);
+
 //    public class NotiData {
 //        public String name;
 //        public String text;

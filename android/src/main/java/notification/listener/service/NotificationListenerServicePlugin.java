@@ -254,6 +254,27 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             String jsonString = gson.toJson(noti);
             result.success(jsonString);
 
+        }else if (call.method.equals("detectMessage")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            List<NotiData> noti = notiDb.NotiDao().undetectedSelect();
+            Gson gson = new Gson();
+            String jsonString = gson.toJson(noti);
+            result.success(jsonString);
+
+        }else if (call.method.equals("detectKakao")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            List<KakaoData> noti = notiDb.KakaoDao().undetectedSelect();
+            Gson gson = new Gson();
+            String jsonString = gson.toJson(noti);
+            result.success(jsonString);
+
+        }else if (call.method.equals("detectWhatsapp")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            List<WhatsappData> noti = notiDb.WhatsappDao().undetectedSelect();
+            Gson gson = new Gson();
+            String jsonString = gson.toJson(noti);
+            result.success(jsonString);
+
         }else if (call.method.equals("dataInsert")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
 
