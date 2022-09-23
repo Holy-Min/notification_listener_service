@@ -68,8 +68,7 @@ public class NotificationListener extends NotificationListenerService {
 //        System.out.println("노티피케이션 확인 :" + barNotifications);
 //         packageName.equals("com.samsung.android.messaging")
 
-//         if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.contains("messag")) {
-        if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.contains("messaging") || packageName.contains("messenger")) {
+         if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.contains("messaging") || packageName.contains("messenger")) {
             System.out.println("앱 실행 여부 : " + runApp);
             Bundle extras = notification.getNotification().extras;
             byte[] drawable = getSmallIcon(packageName);
@@ -136,53 +135,46 @@ public class NotificationListener extends NotificationListenerService {
 //                            System.out.println("앱 분류 확인 : " + 3);
 //                        }
 //                        if(runApp == false && room.app != 0) notiDb.RoomDataDao().insert(rommData);
-                    }
-                    if(kakaoroomnid == 0) {
+                    } else if(kakaoroomnid == 0) {
                         KakaoRoomData kakaoroomData = new KakaoRoomData();
                         kakaoroomData.room = room;
                         notiDb.KakaoRoomDataDao().insert(kakaoroomData);
-                    }
-                    if(whatsapproomnid == 0) {
+                    } else if(whatsapproomnid == 0) {
                         WhatsappRoomData whatsapproomData = new WhatsappRoomData();
                         whatsapproomData.room = room;
                         notiDb.WhatsappRoomDataDao().insert(whatsapproomData);
                     }
 //                    NotiData noti = new NotiData();
-                    noti.name = title.toString();
-                    noti.text = text.toString();
-                    noti.room = room;
-                    noti.date = formatedNow;
-                    noti.vsDate = formatedNow2;
-                    noti.send = 1;
-                    noti.result = "yet";
+
 //                     if(packageName.equals("com.samsung.android.messaging")) {
                     if(packageName.contains("messaging") || packageName.contains("messenger")) {
+                        noti.name = title.toString();
+                        noti.text = text.toString();
+                        noti.room = room;
+                        noti.date = formatedNow;
+                        noti.vsDate = formatedNow2;
+                        noti.send = 1;
+                        noti.result = "yet";
                         noti.app = 1;
                         if(runApp == false && noti.app != 0) notiDb.NotiDao().insert(noti);
-                    }
-
-                    kakaonoti.name = title.toString();
-                    kakaonoti.text = text.toString();
-                    kakaonoti.room = room;
-                    kakaonoti.date = formatedNow;
-                    kakaonoti.vsDate = formatedNow2;
-                    kakaonoti.send = 1;
-                    kakaonoti.result = "yet";
-
-                    if(packageName.equals("com.kakao.talk")) {
+                    } else if(packageName.equals("com.kakao.talk")) {
+                        kakaonoti.name = title.toString();
+                        kakaonoti.text = text.toString();
+                        kakaonoti.room = room;
+                        kakaonoti.date = formatedNow;
+                        kakaonoti.vsDate = formatedNow2;
+                        kakaonoti.send = 1;
+                        kakaonoti.result = "yet";
                         kakaonoti.app = 2;
                         if(runApp == false && kakaonoti.app != 0) notiDb.KakaoDao().insert(kakaonoti);
-                    }
-
-                    whatsappnoti.name = title.toString();
-                    whatsappnoti.text = text.toString();
-                    whatsappnoti.room = room;
-                    whatsappnoti.date = formatedNow;
-                    whatsappnoti.vsDate = formatedNow2;
-                    whatsappnoti.send = 1;
-                    whatsappnoti.result = "yet";
-
-                    if(packageName.equals("com.whatsapp")) {
+                    } else if(packageName.equals("com.whatsapp")) {
+                        whatsappnoti.name = title.toString();
+                        whatsappnoti.text = text.toString();
+                        whatsappnoti.room = room;
+                        whatsappnoti.date = formatedNow;
+                        whatsappnoti.vsDate = formatedNow2;
+                        whatsappnoti.send = 1;
+                        whatsappnoti.result = "yet";
                         whatsappnoti.app = 3;
                         if(runApp == false && whatsappnoti.app != 0) notiDb.WhatsappDao().insert(whatsappnoti);
                     }
@@ -203,7 +195,8 @@ public class NotificationListener extends NotificationListenerService {
             }
             sendBroadcast(intent);
         }
-        }
+         }
+
     }
 
 
