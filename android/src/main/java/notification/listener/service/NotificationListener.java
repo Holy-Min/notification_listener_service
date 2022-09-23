@@ -115,34 +115,28 @@ public class NotificationListener extends NotificationListenerService {
 
                 if(title != null && text != null) {
                     notiDb = NotiDatabase.getInstance(getApplicationContext());
-
                     int roomnid = notiDb.RoomDataDao().checkId(room);
                     int kakaoroomnid = notiDb.KakaoRoomDataDao().checkId(room);
                     int whatsapproomnid = notiDb.WhatsappRoomDataDao().checkId(room);
-                    if(roomnid == 0) {
-                        RoomData roomData = new RoomData();
-                        roomData.room = room;
-                        notiDb.RoomDataDao().insert(roomData);
-//                         if(packageName.equals("com.samsung.android.messaging")) {
-//                        if(packageName.contains("messaging") || packageName.contains("messenger")) {
-//                            rommData.app = 1;
-//                            System.out.println("앱 분류 확인 : " + 1);
-//                        } else if(packageName.equals("com.kakao.talk")) {
-//                            rommData.app = 2;
-//                            System.out.println("앱 분류 확인 : " + 2);
-//                        } else if(packageName.equals("com.whatsapp")) {
-//                            rommData.app = 3;
-//                            System.out.println("앱 분류 확인 : " + 3);
-//                        }
-//                        if(runApp == false && room.app != 0) notiDb.RoomDataDao().insert(rommData);
-                    } else if(kakaoroomnid == 0) {
-                        KakaoRoomData kakaoroomData = new KakaoRoomData();
-                        kakaoroomData.room = room;
-                        notiDb.KakaoRoomDataDao().insert(kakaoroomData);
-                    } else if(whatsapproomnid == 0) {
-                        WhatsappRoomData whatsapproomData = new WhatsappRoomData();
-                        whatsapproomData.room = room;
-                        notiDb.WhatsappRoomDataDao().insert(whatsapproomData);
+
+                    if(packageName.contains("messaging") || packageName.contains("messenger")) {
+                        if(roomnid == 0) {
+                            RoomData roomData = new RoomData();
+                            roomData.room = room;
+                            notiDb.RoomDataDao().insert(roomData);
+                        }
+                    } else if(packageName.equals("com.kakao.talk")) {
+                        if(kakaoroomnid == 0) {
+                            KakaoRoomData kakaoroomData = new KakaoRoomData();
+                            kakaoroomData.room = room;
+                            notiDb.KakaoRoomDataDao().insert(kakaoroomData);
+                        }
+                    } else if(packageName.equals("com.whatsapp")) {
+                        if(whatsapproomnid == 0) {
+                            WhatsappRoomData whatsapproomData = new WhatsappRoomData();
+                            whatsapproomData.room = room;
+                            notiDb.WhatsappRoomDataDao().insert(whatsapproomData);
+                        }
                     }
 //                    NotiData noti = new NotiData();
 
