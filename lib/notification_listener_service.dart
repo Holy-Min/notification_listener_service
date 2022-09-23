@@ -115,6 +115,21 @@ class NotificationListenerService {
     return content;
   }
 
+  static Future detectMessage() async {
+    final content = await methodeChannel.invokeMethod('detectMessage');
+    return content;
+  }
+
+  static Future detectKakao() async {
+    final content = await methodeChannel.invokeMethod('detectKakao');
+    return content;
+  }
+
+  static Future detectWhatsapp() async {
+    final content = await methodeChannel.invokeMethod('detectWhatsapp');
+    return content;
+  }
+
   static Future dataInsert(String name, String text, String room, String date, String vsDate, String packageName, String result) async {
     final content = await methodeChannel.invokeMethod('dataInsert',
         {"name" : name,
