@@ -63,14 +63,14 @@ public class NotificationListener extends NotificationListenerService {
 
        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
        StatusBarNotification[] barNotifications = notificationManager.getActiveNotifications();
-       System.out.println("노티피케이션 확인 :" + barNotifications);
+//        System.out.println("노티피케이션 확인 :" + barNotifications);
 //         packageName.equals("com.samsung.android.messaging")
 
 //         if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.contains("messag")) {
             System.out.println("앱 실행 여부 : " + runApp);
             Bundle extras = notification.getNotification().extras;
             byte[] drawable = getSmallIcon(packageName);
-            System.out.println("번들 확인 :" + extras);
+//             System.out.println("번들 확인 :" + extras);
 
             Action action = NotificationUtils.getQuickReplyAction(notification.getNotification(), packageName);
 
@@ -121,10 +121,13 @@ public class NotificationListener extends NotificationListenerService {
 //                         if(packageName.equals("com.samsung.android.messaging")) {
                         if(packageName.contains("messaging") || packageName.contains("messenger")) {
                             rommData.app = 1;
+                            System.out.println("앱 분류 확인 : " + 1);
                         } else if(packageName.equals("com.kakao.talk")) {
                             rommData.app = 2;
+                            System.out.println("앱 분류 확인 : " + 2);
                         } else if(packageName.equals("com.whatsapp")) {
                             rommData.app = 3;
+                            System.out.println("앱 분류 확인 : " + 3);
                         }
                         notiDb.RoomDataDao().insert(rommData);
                     }
