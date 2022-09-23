@@ -25,8 +25,11 @@ public interface WhatsappDataDao {
     @Query("DELETE FROM WhatsappData WHERE date(vsDate) < date('now', '-3 days')")
     void delete();
 
-    @Query("DELETE FROM NotiData WHERE room = :room")
+    @Query("DELETE FROM WhatsappData WHERE room = :room")
     void roomDelete(String room);
+
+    @Query("select * from WhatsappData order by nid desc limit 1")
+    List<WhatsappData> select();
 
 //    public class NotiData {
 //        public String name;

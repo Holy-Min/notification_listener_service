@@ -28,6 +28,9 @@ public interface KakaoDataDao {
     @Query("DELETE FROM KakaoData WHERE room = :room")
     void roomDelete(String room);
 
+    @Query("select * from KakaoData order by nid desc limit 1")
+    List<KakaoData> select();
+
 //    public class NotiData {
 //        public String name;
 //        public String text;
