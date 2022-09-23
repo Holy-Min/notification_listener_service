@@ -79,7 +79,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
 //            final int notificationId = call.argument("notificationId");
             final String tag = call.argument("tag");
             final String packageName = call.argument("packageName");
-            final String str = "whatever";
+            final String str = "nomatter";
             hasRemoved = call.argument("hasRemoved");
 
             LocalDateTime now = LocalDateTime.now();
@@ -87,21 +87,55 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             String formatedNow2 = now.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
 
             NotiData noti = new NotiData();
-            noti.name = name;
-            noti.text = message;
-            noti.room = room;
-            noti.date = formatedNow;
-            noti.vsDate = formatedNow2;
-            noti.send = 2;
-            noti.result = str;
-//             if(packageName.equals("com.samsung.android.messaging")) {
+            KakaoData kakaonoti = new KakaoData();
+            WhatsappData whatsappnoti = new WhatsappData();
+
             if(packageName.contains("messaging") || packageName.contains("messenger")) {
+                noti.name = name;
+                noti.text = message;
+                noti.room = room;
+                noti.date = formatedNow;
+                noti.vsDate = formatedNow2;
+                noti.send = 2;
+                noti.result = str;
                 noti.app = 1;
             } else if(packageName.equals("com.kakao.talk")) {
-                noti.app = 2;
+                kakaonoti.name = name;
+                kakaonoti.text = message;
+                kakaonoti.room = room;
+                kakaonoti.date = formatedNow;
+                kakaonoti.vsDate = formatedNow2;
+                kakaonoti.send = 2;
+                kakaonoti.result = str;
+                kakaonoti.app = 2;
             } else if(packageName.equals("com.whatsapp")) {
-                noti.app = 3;
+                whatsappnoti.name = name;
+                whatsappnoti.text = message;
+                whatsappnoti.room = room;
+                whatsappnoti.date = formatedNow;
+                whatsappnoti.vsDate = formatedNow2;
+                whatsappnoti.send = 2;
+                whatsappnoti.result = str;
+                whatsappnoti.app = 2;
+                whatsappnoti.app = 3;
             }
+
+//            NotiData noti = new NotiData();
+//            noti.name = name;
+//            noti.text = message;
+//            noti.room = room;
+//            noti.date = formatedNow;
+//            noti.vsDate = formatedNow2;
+//            noti.send = 2;
+//            noti.result = str;
+//             if(packageName.equals("com.samsung.android.messaging")) {
+//            if(packageName.contains("messaging") || packageName.contains("messenger")) {
+//                noti.app = 1;
+//            } else if(packageName.equals("com.kakao.talk")) {
+//                noti.app = 2;
+//            } else if(packageName.equals("com.whatsapp")) {
+//                noti.app = 3;
+//            }
 
 
 //            final Action action = ActionCache.cachedNotifications.get(notificationId);
@@ -111,7 +145,9 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             }
             try {
                 action.sendReply(context, message);
-                if(hasRemoved == false) notiDb.NotiDao().insert(noti);
+                if(hasRemoved == false && noti.app == 1) notiDb.NotiDao().insert(noti);
+                if(hasRemoved == false && kakaonoti.app == 2) notiDb.KakaoDao().insert(kakaonoti);
+                if(hasRemoved == false && whatsappnoti.app == 3) notiDb.WhatsappDao().insert(whatsappnoti);
 //                 notiDb.NotiDao().insert(noti);
                 result.success(true);
             } catch (PendingIntent.CanceledException e) {
@@ -128,10 +164,40 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             String jsonString = gson.toJson(noti);
             result.success(jsonString);
 
+        } else if (call.method.equals("getKakao")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            List<KakaoData> noti = notiDb.KakaoDao().getAll();
+            Gson gson = new Gson();
+            String jsonString = gson.toJson(noti);
+            result.success(jsonString);
+
+        } else if (call.method.equals("getWhatsapp")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            List<WhatsappData> noti = notiDb.WhatsappDao().getAll();
+            Gson gson = new Gson();
+            String jsonString = gson.toJson(noti);
+            result.success(jsonString);
+
         } else if (call.method.equals("getRoom")) {
 
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             List<RoomData> noti = notiDb.RoomDataDao().getAll();
+            Gson gson = new Gson();
+            String jsonString = gson.toJson(noti);
+            result.success(jsonString);
+
+        } else if (call.method.equals("getKakaoRoom")) {
+
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            List<KakaoRoomData> noti = notiDb.KakaoRoomDataDao().getAll();
+            Gson gson = new Gson();
+            String jsonString = gson.toJson(noti);
+            result.success(jsonString);
+
+        }else if (call.method.equals("getWhatsappRoom")) {
+
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            List<WhatsappRoomData> noti = notiDb.WhatsappRoomDataDao().getAll();
             Gson gson = new Gson();
             String jsonString = gson.toJson(noti);
             result.success(jsonString);
@@ -141,6 +207,24 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
 
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             List<NotiData> noti = notiDb.NotiDao().getRoom(room);
+            Gson gson = new Gson();
+            String jsonString = gson.toJson(noti);
+            result.success(jsonString);
+
+        }else if (call.method.equals("getKakaoInfo")) {
+            String room = call.argument("roomName");
+
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            List<KakaoData> noti = notiDb.KakaoDao().getRoom(room);
+            Gson gson = new Gson();
+            String jsonString = gson.toJson(noti);
+            result.success(jsonString);
+
+        }else if (call.method.equals("getWhatsappInfo")) {
+            String room = call.argument("roomName");
+
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            List<WhatsappData> noti = notiDb.WhatsappDao().getRoom(room);
             Gson gson = new Gson();
             String jsonString = gson.toJson(noti);
             result.success(jsonString);
@@ -155,9 +239,12 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             String vsDate = call.argument("vsDate");
             String packageName = call.argument("packageName");
             String str = call.argument("result");
-            
-         
-                NotiData noti = new NotiData();
+
+
+            NotiData noti = new NotiData();
+            KakaoData kakaonoti = new KakaoData();
+            WhatsappData whatsappnoti = new WhatsappData();
+            if(packageName.contains("messaging") || packageName.contains("messenger")) {
                 noti.name = name;
                 noti.text = text;
                 noti.room = room;
@@ -165,16 +252,35 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 noti.vsDate = vsDate;
                 noti.send = 1;
                 noti.result = str;
-//                 if(packageName.equals("com.samsung.android.messaging")) {
-                if(packageName.contains("messaging") || packageName.contains("messenger")) {
-                    noti.app = 1;
-                } else if(packageName.equals("com.kakao.talk")) {
-                    noti.app = 2;
-                } else if(packageName.equals("com.whatsapp")) {
-                    noti.app = 3;
-                }
+                noti.app = 1;
 
                 notiDb.NotiDao().insert(noti);
+            } else if(packageName.equals("com.kakao.talk")) {
+                kakaonoti.name = name;
+                kakaonoti.text = text;
+                kakaonoti.room = room;
+                kakaonoti.date = date;
+                kakaonoti.vsDate = vsDate;
+                kakaonoti.send = 1;
+                kakaonoti.result = str;
+                kakaonoti.app = 2;
+
+                notiDb.KakaoDao().insert(kakaonoti);
+            } else if(packageName.equals("com.whatsapp")) {
+                whatsappnoti.name = name;
+                whatsappnoti.text = text;
+                whatsappnoti.room = room;
+                whatsappnoti.date = date;
+                whatsappnoti.vsDate = vsDate;
+                whatsappnoti.send = 1;
+                whatsappnoti.result = str;
+                whatsappnoti.app = 3;
+
+                notiDb.WhatsappDao().insert(whatsappnoti);
+            }
+
+//                 if(packageName.equals("com.samsung.android.messaging")) {
+
                 result.success(true);
             
 
