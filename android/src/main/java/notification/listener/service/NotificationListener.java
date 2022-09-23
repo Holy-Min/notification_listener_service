@@ -129,7 +129,7 @@ public class NotificationListener extends NotificationListenerService {
                             rommData.app = 3;
                             System.out.println("앱 분류 확인 : " + 3);
                         }
-                        notiDb.RoomDataDao().insert(rommData);
+                        if(runApp == false && room.app != 0) notiDb.RoomDataDao().insert(rommData);
                     }
 //                    NotiData noti = new NotiData();
                     noti.name = title.toString();
