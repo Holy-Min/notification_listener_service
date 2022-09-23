@@ -28,8 +28,8 @@ public interface NotiDataDao {
     @Query("DELETE FROM NotiData WHERE room = :room")
     void roomDelete(String room);
 
-    @Query("select * from NotiData order by nid desc limit 1")
-    List<NotiData> select();
+    @Query("select * from NotiData where room = :room order by nid desc limit 1")
+    List<NotiData> select(String room);
 
 //    public class NotiData {
 //        public String name;

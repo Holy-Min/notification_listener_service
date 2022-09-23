@@ -28,8 +28,8 @@ public interface WhatsappDataDao {
     @Query("DELETE FROM WhatsappData WHERE room = :room")
     void roomDelete(String room);
 
-    @Query("select * from WhatsappData order by nid desc limit 1")
-    List<WhatsappData> select();
+    @Query("select * from WhatsappData where room = :room order by nid desc limit 1")
+    List<WhatsappData> select(String room);
 
 //    public class NotiData {
 //        public String name;
