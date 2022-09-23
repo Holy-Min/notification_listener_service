@@ -52,14 +52,50 @@ class NotificationListenerService {
     return content;
   }
 
+  static Future getKakao() async {
+    final content = await methodeChannel.invokeMethod('getKakao');
+    // final kakao = content.toString();
+    return content;
+  }
+
+  static Future getWhatsapp() async {
+    final content = await methodeChannel.invokeMethod('getWhatsapp');
+    // final kakao = content.toString();
+    return content;
+  }
+
   static Future getRoom() async {
     final content = await methodeChannel.invokeMethod('getRoom');
     // final kakao = content.toString();
     return content;
   }
 
+  static Future getKakaoRoom() async {
+    final content = await methodeChannel.invokeMethod('getKakaoRoom');
+    // final kakao = content.toString();
+    return content;
+  }
+
+  static Future getWhatsappRoom() async {
+    final content = await methodeChannel.invokeMethod('getWhatsappRoom');
+    // final kakao = content.toString();
+    return content;
+  }
+
   static Future getChatInfo(String roomName) async {
     final content = await methodeChannel.invokeMethod('getChatInfo', { "roomName" : roomName});
+    // final kakao = content.toString();
+    return content;
+  }
+
+  static Future getKakaoInfo(String roomName) async {
+    final content = await methodeChannel.invokeMethod('getKakaoInfo', { "roomName" : roomName});
+    // final kakao = content.toString();
+    return content;
+  }
+
+  static Future getWhatsappInfo(String roomName) async {
+    final content = await methodeChannel.invokeMethod('getWhatsappInfo', { "roomName" : roomName});
     // final kakao = content.toString();
     return content;
   }
