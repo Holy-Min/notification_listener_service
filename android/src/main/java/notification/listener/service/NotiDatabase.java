@@ -25,7 +25,7 @@ public abstract class NotiDatabase extends RoomDatabase {
     public static synchronized NotiDatabase getInstance(Context context){
         if (database == null)
         {
-            database = Room.databaseBuilder(context.getApplicationContext(), NotiDatabase.class, "messageTest.db")
+            database = Room.databaseBuilder(context.getApplicationContext(), NotiDatabase.class, "messageVer1.db")
 //                     .addMigrations(MIGRATION_1_2)
                     .allowMainThreadQueries()
                     .build();
