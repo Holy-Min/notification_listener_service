@@ -142,7 +142,7 @@ class NotificationListenerService {
     await methodeChannel.invokeMethod('updateWhatsapp', {"result" : result});
   }
 
-  static Future dataInsert(String name, String text, String room, String date, String vsDate, String packageName, String result) async {
+  static Future dataInsert(String name, String text, String room, String date, String vsDate, String packageName, String result, int read) async {
     final content = await methodeChannel.invokeMethod('dataInsert',
         {"name" : name,
           "text" : text,
@@ -150,7 +150,8 @@ class NotificationListenerService {
           "date" : date,
           "vsDate" : vsDate,
           "packageName" : packageName,
-          "result" : result
+          "result" : result,
+          "read" : read
         });
     // final kakao = content.toString();
     return content;
