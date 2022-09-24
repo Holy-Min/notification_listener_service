@@ -153,7 +153,7 @@ public class NotificationListener extends NotificationListenerService {
                         noti.send = 1;
                         noti.result = "yet";
                         noti.app = 1;
-                        noti.read = 2;
+                        noti.read = "2";
                         if(runApp == false && noti.app != 0) notiDb.NotiDao().insert(noti);
                     } else if(packageName.equals("com.kakao.talk")) {
                         kakaonoti.name = title.toString();
@@ -164,7 +164,7 @@ public class NotificationListener extends NotificationListenerService {
                         kakaonoti.send = 1;
                         kakaonoti.result = "yet";
                         kakaonoti.app = 2;
-                        kakaonoti.read = 2;
+                        kakaonoti.read = "2";
                         if(runApp == false && kakaonoti.app != 0) notiDb.KakaoDao().insert(kakaonoti);
                     } else if(packageName.equals("com.whatsapp")) {
                         whatsappnoti.name = title.toString();
@@ -175,7 +175,7 @@ public class NotificationListener extends NotificationListenerService {
                         whatsappnoti.send = 1;
                         whatsappnoti.result = "yet";
                         whatsappnoti.app = 3;
-                        whatsappnoti.read = 2;
+                        whatsappnoti.read = "2";
                         if(runApp == false && whatsappnoti.app != 0) notiDb.WhatsappDao().insert(whatsappnoti);
                     }
 

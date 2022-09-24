@@ -34,6 +34,6 @@ public class NotiData {
     public String result;
 
     @ColumnInfo(name = "read")
-    public int read;
+    public String read;
 
 }

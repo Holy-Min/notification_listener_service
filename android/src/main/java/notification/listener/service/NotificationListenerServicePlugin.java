@@ -100,7 +100,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 noti.send = 2;
                 noti.result = str;
                 noti.app = 1;
-                noti.read = 1;
+                noti.read = "1";
             } else if(packageName.equals("com.kakao.talk")) {
                 kakaonoti.name = name;
                 kakaonoti.text = message;
@@ -110,7 +110,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 kakaonoti.send = 2;
                 kakaonoti.result = str;
                 kakaonoti.app = 2;
-                kakaonoti.read = 1;
+                kakaonoti.read = "1";
             } else if(packageName.equals("com.whatsapp")) {
                 whatsappnoti.name = name;
                 whatsappnoti.text = message;
@@ -120,7 +120,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 whatsappnoti.send = 2;
                 whatsappnoti.result = str;
                 whatsappnoti.app = 3;
-                whatsappnoti.read = 1;
+                whatsappnoti.read = "1";
             }
 
 //            NotiData noti = new NotiData();
