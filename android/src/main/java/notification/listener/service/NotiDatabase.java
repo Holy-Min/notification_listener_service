@@ -41,7 +41,7 @@ public abstract class NotiDatabase extends RoomDatabase {
             database.execSQL("ALTER TABLE NotiData" + "ADD COLUMN 'read' INTEGER DEFAULT 2");
             database.execSQL("ALTER TABLE WhatsappData" + "ADD COLUMN 'read' INTEGER DEFAULT 2");
         }
-    }
+    };
 
     public static void destroyInstance() {
         database = null;
