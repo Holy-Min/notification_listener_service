@@ -142,6 +142,33 @@ class NotificationListenerService {
     await methodeChannel.invokeMethod('updateWhatsapp', {"result" : result});
   }
 
+  static Future countMessage(String roomName) async {
+    final content = await methodeChannel.invokeMethod('countMessage', {"room" : roomName});
+    return content;
+  }
+
+  static Future countKakao(String roomName) async {
+    final content = await methodeChannel.invokeMethod('countKakao', {"room" : roomName});
+    return content;
+  }
+
+  static Future countWhatsapp(String roomName) async {
+    final content = await methodeChannel.invokeMethod('countWhatsapp', {"room" : roomName});
+    return content;
+  }
+
+  static Future readMessage(String roomName) async {
+    await methodeChannel.invokeMethod('readMessage', {"room" : roomName});
+  }
+
+  static Future readKakao(String roomName) async {
+    await methodeChannel.invokeMethod('readKakao', {"room" : roomName});
+  }
+
+  static Future readWhatsapp(String roomName) async {
+    await methodeChannel.invokeMethod('readWhatsapp', {"room" : roomName});
+  }
+
   static Future dataInsert(String name, String text, String room, String date, String vsDate, String packageName, String result, String read) async {
     final content = await methodeChannel.invokeMethod('dataInsert',
         {"name" : name,
