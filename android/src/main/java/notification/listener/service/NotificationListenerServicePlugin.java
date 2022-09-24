@@ -100,6 +100,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 noti.send = 2;
                 noti.result = str;
                 noti.app = 1;
+                noti.read = 1;
             } else if(packageName.equals("com.kakao.talk")) {
                 kakaonoti.name = name;
                 kakaonoti.text = message;
@@ -109,6 +110,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 kakaonoti.send = 2;
                 kakaonoti.result = str;
                 kakaonoti.app = 2;
+                kakaonoti.read = 1;
             } else if(packageName.equals("com.whatsapp")) {
                 whatsappnoti.name = name;
                 whatsappnoti.text = message;
@@ -117,8 +119,8 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 whatsappnoti.vsDate = formatedNow2;
                 whatsappnoti.send = 2;
                 whatsappnoti.result = str;
-                whatsappnoti.app = 2;
                 whatsappnoti.app = 3;
+                whatsappnoti.read = 1;
             }
 
 //            NotiData noti = new NotiData();
@@ -285,7 +287,6 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             String str = call.argument("result");
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             notiDb.KakaoDao().update(str);
-            System.out.println("db 업데이트 완료");
             result.success(true);
 
         }else if (call.method.equals("updateWhatsapp")) {
@@ -304,6 +305,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             String vsDate = call.argument("vsDate");
             String packageName = call.argument("packageName");
             String str = call.argument("result");
+            String read = call.argument("read");
 
 
             NotiData noti = new NotiData();
@@ -319,6 +321,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 noti.send = 1;
                 noti.result = str;
                 noti.app = 1;
+                noti.read = 2;
 
                 notiDb.NotiDao().insert(noti);
             } else if(packageName.equals("com.kakao.talk")) {
@@ -330,6 +333,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 kakaonoti.send = 1;
                 kakaonoti.result = str;
                 kakaonoti.app = 2;
+                kakaonoti.read = 2;
 
                 notiDb.KakaoDao().insert(kakaonoti);
             } else if(packageName.equals("com.whatsapp")) {
@@ -341,6 +345,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 whatsappnoti.send = 1;
                 whatsappnoti.result = str;
                 whatsappnoti.app = 3;
+                whatsappnoti.read = 2;
 
                 notiDb.WhatsappDao().insert(whatsappnoti);
             }

@@ -29,6 +29,9 @@ public interface KakaoDataDao {
     @Query("update KakaoData set result = :result where nid = (select nid from (select * from KakaoData where result = 'yet' limit 1))")
     void update(String result);
 
+//    @Query("update KakaoData set read = 1 where room = (select nid from (select * from KakaoData where read = 2))")
+//    void update(String result);
+
     @Query("DELETE FROM KakaoData WHERE room = :room")
     void roomDelete(String room);
 

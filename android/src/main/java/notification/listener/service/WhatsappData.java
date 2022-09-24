@@ -33,4 +33,7 @@ public class WhatsappData {
     @ColumnInfo(name = "result")
     public String result;
 
+    @ColumnInfo(name = "read")
+    public int read;
+
 }
