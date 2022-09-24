@@ -11,7 +11,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 
 @Database(entities = {NotiData.class, KakaoData.class, WhatsappData.class, RoomData.class, KakaoRoomData.class, WhatsappRoomData.class},
-        version = 1, exportSchema = false)
+        version = 2, exportSchema = false)
 public abstract class NotiDatabase extends RoomDatabase {
     public abstract NotiDataDao NotiDao();
     public abstract KakaoDataDao KakaoDao();
@@ -26,11 +26,20 @@ public abstract class NotiDatabase extends RoomDatabase {
         if (database == null)
         {
             database = Room.databaseBuilder(context.getApplicationContext(), NotiDatabase.class, "messageTest2.db")
+                    .addMigrations(MIGRATION_1_2)
                     .allowMainThreadQueries()
                     .build();
         }
         return database;
 
+    }
+
+    private val MIGRATION_1_2 = object : Migration(1, 2) {
+        override fun migrate(database: SupportSQLiteDatabase) {
+            database.execSQL("ALTER TABLE KakaoData ADD COLUMN 'read' INTEGER DEFAULT 2")
+            database.execSQL("ALTER TABLE NotiData ADD COLUMN 'read' INTEGER DEFAULT 2")
+            database.execSQL("ALTER TABLE WhatsappData ADD COLUMN 'read' INTEGER DEFAULT 2")
+        }
     }
 
     public static void destroyInstance() {
