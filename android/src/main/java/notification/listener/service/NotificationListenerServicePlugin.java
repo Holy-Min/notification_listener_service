@@ -321,7 +321,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 noti.send = 1;
                 noti.result = str;
                 noti.app = 1;
-                noti.read = "2";
+                noti.read = 2;
 
                 notiDb.NotiDao().insert(noti);
             } else if(packageName.equals("com.kakao.talk")) {
@@ -333,7 +333,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 kakaonoti.send = 1;
                 kakaonoti.result = str;
                 kakaonoti.app = 2;
-                kakaonoti.read = "2";
+                kakaonoti.read = 2;
 
                 notiDb.KakaoDao().insert(kakaonoti);
             } else if(packageName.equals("com.whatsapp")) {
@@ -345,7 +345,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 whatsappnoti.send = 1;
                 whatsappnoti.result = str;
                 whatsappnoti.app = 3;
-                whatsappnoti.read = "2";
+                whatsappnoti.read = 2;
 
                 notiDb.WhatsappDao().insert(whatsappnoti);
             }
@@ -358,7 +358,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
         }else if (call.method.equals("setFalse")) {
             NotificationListener nl = new NotificationListener();
             nl.setRunAppFalse();
-            result.success(null);
+            result.success(true);
 
         }else if (call.method.equals("setTrue")) {
             NotificationListener nl = new NotificationListener();
@@ -375,6 +375,42 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             String room = call.argument("room");
             notiDb.NotiDao().roomDelete(room);
             notiDb.RoomDataDao().delete(room);
+            result.success(true);
+
+        }else if (call.method.equals("countMessage")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            String room = call.argument("room");
+            int count = notiDb.NotiDao().roomCount(room);
+            result.success(count);
+
+        }else if (call.method.equals("countKakao")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            String room = call.argument("room");
+            int count = notiDb.KakaoDao().roomCount(room);
+            result.success(count);
+
+        }else if (call.method.equals("countWhatsapp")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            String room = call.argument("room");
+            int count = notiDb.WhatsappDao().roomCount(room);
+            result.success(count);
+
+        }else if (call.method.equals("readMessage")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            String room = call.argument("room");
+            notiDb.NotiDao().read(room);
+            result.success(true);
+
+        }else if (call.method.equals("readKakao")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            String room = call.argument("room");
+            notiDb.KakaoDao().read(room);
+            result.success(true);
+
+        }else if (call.method.equals("readWhatsapp")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            String room = call.argument("room");
+            notiDb.WhatsappDao().read(room);
             result.success(true);
 
         }else {

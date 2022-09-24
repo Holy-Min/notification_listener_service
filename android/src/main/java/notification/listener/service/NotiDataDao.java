@@ -35,9 +35,13 @@ public interface NotiDataDao {
     List<NotiData> select(String room);
 
     @Query("SELECT * FROM NotiData WHERE result = 'yet'")
-//    @Query("SELECT * FROM NotiData WHERE result = :result")
     List<NotiData> undetectedSelect();
-//    List<NotiData> undetecdSelect(String result);
+
+    @Query("select count(*) from NotiData where room = :room and read = '2'")
+    int roomCount(String room);
+
+    @Query("update NotiData set read = '1' where room = :room and read = '2'")
+    void read(String room);
 
 //    public class NotiData {
 //        public String name;

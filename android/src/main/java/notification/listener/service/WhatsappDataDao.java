@@ -35,9 +35,13 @@ public interface WhatsappDataDao {
     List<WhatsappData> select(String room);
 
     @Query("SELECT * FROM WhatsappData WHERE result = 'yet'")
-//    @Query("SELECT * FROM WhatsappData WHERE result = :result")
     List<WhatsappData> undetectedSelect();
-//    List<WhatsappData> undetecdSelect(String result);
+
+    @Query("select count(*) from WhatsappData where room = :room and read = '2'")
+    int roomCount(String room);
+
+    @Query("update WhatsappData set read = '1' where room = :room and read = '2'")
+    void read(String room);
 
 //    public class NotiData {
 //        public String name;

@@ -41,6 +41,12 @@ public interface KakaoDataDao {
     @Query("SELECT * FROM KakaoData WHERE result = 'yet'")
     List<KakaoData> undetectedSelect();
 
+    @Query("select count(*) from KakaoData where room = :room and read = '2'")
+    int roomCount(String room);
+
+    @Query("update KakaoData set read = '1' where room = :room and read = '2'")
+    void read(String room);
+
 
 
 //    public class NotiData {
