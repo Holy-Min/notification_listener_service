@@ -40,6 +40,9 @@ public interface WhatsappDataDao {
     @Query("select count(*) from WhatsappData where room = :room and read = '2'")
     int roomCount(String room);
 
+    @Query("select text from WhatsappData where room = :room order by nid desc limit 1")
+    String lastText(String room);
+
     @Query("update WhatsappData set read = '1' where room = :room and read = '2'")
     void read(String room);
 
