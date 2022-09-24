@@ -25,7 +25,7 @@ public interface NotiDataDao {
     @Query("DELETE FROM NotiData WHERE date(vsDate) < date('now', '-3 days')")
     void delete();
 
-    @Query("update NotiData set result = :result where result = 'yet'")
+    @Query("update NotiData set result = :result where nid = (select nid from (select * from NotiData where result = 'yet' limit 1))")
     void update(String result);
 
     @Query("DELETE FROM NotiData WHERE room = :room")
