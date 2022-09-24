@@ -184,6 +184,21 @@ class NotificationListenerService {
     return content;
   }
 
+  static Future lastDateMessage(String roomName) async {
+    final content = await methodeChannel.invokeMethod('lastDateMessage', {"room" : roomName});
+    return content;
+  }
+
+  static Future lastDateKakao(String roomName) async {
+    final content = await methodeChannel.invokeMethod('lastDateKakao', {"room" : roomName});
+    return content;
+  }
+
+  static Future lastDateWhatsapp(String roomName) async {
+    final content = await methodeChannel.invokeMethod('lastDateWhatsapp', {"room" : roomName});
+    return content;
+  }
+
   static Future dataInsert(String name, String text, String room, String date, String vsDate, String packageName, String result, String read) async {
     final content = await methodeChannel.invokeMethod('dataInsert',
         {"name" : name,
