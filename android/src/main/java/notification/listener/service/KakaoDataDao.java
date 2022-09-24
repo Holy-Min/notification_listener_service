@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Delete;
+import androidx.room.Update;
 
 import java.util.List;
 
@@ -25,6 +26,9 @@ public interface KakaoDataDao {
     @Query("DELETE FROM KakaoData WHERE date(vsDate) < date('now', '-3 days')")
     void delete();
 
+    @Query("update KakaoData set result = :result where result = 'yet'")
+    void update(String result);
+
     @Query("DELETE FROM KakaoData WHERE room = :room")
     void roomDelete(String room);
 
@@ -32,9 +36,9 @@ public interface KakaoDataDao {
     List<KakaoData> select(String room);
 
     @Query("SELECT * FROM KakaoData WHERE result = 'yet'")
-//    @Query("SELECT * FROM KakaoData WHERE result = :result")
     List<KakaoData> undetectedSelect();
-//    List<KakaoData> undetecdSelect(String result);
+
+
 
 //    public class NotiData {
 //        public String name;

@@ -25,6 +25,9 @@ public interface WhatsappDataDao {
     @Query("DELETE FROM WhatsappData WHERE date(vsDate) < date('now', '-3 days')")
     void delete();
 
+    @Query("update WhatsappData set result = :result where result = 'yet'")
+    void update(String result);
+
     @Query("DELETE FROM WhatsappData WHERE room = :room")
     void roomDelete(String room);
 
