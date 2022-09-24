@@ -47,6 +47,9 @@ public interface KakaoDataDao {
     @Query("select text from KakaoData where room = :room order by nid desc limit 1")
     String lastText(String room);
 
+    @Query("select date from KakaoData where room = :room order by nid desc limit 1")
+    String lastDate(String room);
+
     @Query("update KakaoData set read = '1' where room = :room and read = '2'")
     void read(String room);
 
