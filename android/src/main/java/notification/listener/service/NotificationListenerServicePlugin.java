@@ -285,6 +285,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             String str = call.argument("result");
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             notiDb.KakaoDao().update(str);
+            System.out.println("db 업데이트 완료");
             result.success(true);
 
         }else if (call.method.equals("updateWhatsapp")) {
