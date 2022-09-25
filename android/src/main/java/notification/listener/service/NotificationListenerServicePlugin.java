@@ -33,7 +33,8 @@ import java.time.format.DateTimeFormatter;
 
 public class NotificationListenerServicePlugin implements FlutterPlugin, ActivityAware, MethodCallHandler, PluginRegistry.ActivityResultListener, EventChannel.StreamHandler {
 
-    private static final String defaultSMS = Telephony.Sms.getDefaultSmsPackage(context.getApplicationContext());
+//     private static final String defaultSMS = Telephony.Sms.getDefaultSmsPackage(context.getApplicationContext());
+    private static final String defaultSMS = Telephony.Sms.getDefaultSmsPackage(this);
 
     private static final String CHANNEL_TAG = "x-slayer/notifications_channel";
     private static final String EVENT_TAG = "x-slayer/notifications_event";
