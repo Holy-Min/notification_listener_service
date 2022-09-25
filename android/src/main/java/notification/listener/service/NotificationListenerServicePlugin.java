@@ -34,7 +34,7 @@ import java.time.format.DateTimeFormatter;
 public class NotificationListenerServicePlugin implements FlutterPlugin, ActivityAware, MethodCallHandler, PluginRegistry.ActivityResultListener, EventChannel.StreamHandler {
 
 //     private static final String defaultSMS = Telephony.Sms.getDefaultSmsPackage(context.getApplicationContext());
-    private static final String defaultSMS = Telephony.Sms.getDefaultSmsPackage(this);
+//     private static final String defaultSMS = Telephony.Sms.getDefaultSmsPackage(this);
 
     private static final String CHANNEL_TAG = "x-slayer/notifications_channel";
     private static final String EVENT_TAG = "x-slayer/notifications_event";
@@ -89,6 +89,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             LocalDateTime now = LocalDateTime.now();
             String formatedNow = now.format(DateTimeFormatter.ofPattern("a hh시 mm분"));
             String formatedNow2 = now.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+            String defaultSMS = Telephony.Sms.getDefaultSmsPackage(context.getApplicationContext());
 
             NotiData noti = new NotiData();
             KakaoData kakaonoti = new KakaoData();
@@ -302,6 +303,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
 
         }else if (call.method.equals("dataInsert")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            String defaultSMS = Telephony.Sms.getDefaultSmsPackage(context.getApplicationContext());
 
             String name = call.argument("name");
             String text = call.argument("text");
