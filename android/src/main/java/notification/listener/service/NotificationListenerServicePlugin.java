@@ -11,6 +11,7 @@ import android.provider.Settings;
 import android.util.Log;
 import java.util.List;
 import com.google.gson.Gson;
+import android.provider.Telephony;
 
 import androidx.annotation.NonNull;
 
@@ -31,6 +32,8 @@ import java.time.format.DateTimeFormatter;
 
 
 public class NotificationListenerServicePlugin implements FlutterPlugin, ActivityAware, MethodCallHandler, PluginRegistry.ActivityResultListener, EventChannel.StreamHandler {
+
+    private static final String defaultSMS = Telephony.Sms.getDefaultSmsPackage(context);
 
     private static final String CHANNEL_TAG = "x-slayer/notifications_channel";
     private static final String EVENT_TAG = "x-slayer/notifications_event";
@@ -90,7 +93,8 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             KakaoData kakaonoti = new KakaoData();
             WhatsappData whatsappnoti = new WhatsappData();
 
-            if(packageName.contains("messaging")) {
+            if(packageName.equals(dafaultSMS)) {
+//            if(packageName.contains("messaging")) {
 //            if(packageName.contains("messaging") || packageName.contains("messenger")) {
                 noti.name = name;
                 noti.text = message;
@@ -311,7 +315,8 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             NotiData noti = new NotiData();
             KakaoData kakaonoti = new KakaoData();
             WhatsappData whatsappnoti = new WhatsappData();
-            if(packageName.contains("messaging")) {
+            if(packageName.equals(dafaultSMS)) {
+//            if(packageName.contains("messaging")) {
 //            if(packageName.contains("messaging") || packageName.contains("messenger")) {
                 noti.name = name;
                 noti.text = text;
