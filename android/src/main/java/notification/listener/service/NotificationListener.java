@@ -17,6 +17,7 @@ import android.service.notification.StatusBarNotification;
 import android.widget.Toast;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import android.provider.Telephony.Sms;
 
 import androidx.annotation.RequiresApi;
 
@@ -62,6 +63,8 @@ public class NotificationListener extends NotificationListenerService {
         String packageName = notification.getPackageName();
         String tag = notification.getTag();
         System.out.println("앱 확인" + packageName);
+        String defaultSMS = Sms.getDefalutSmsPackage(context);
+        System.out.println("기본 메시지앱 확인" + defaultSMS);
 
        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
        StatusBarNotification[] barNotifications = notificationManager.getActiveNotifications();
@@ -70,7 +73,7 @@ public class NotificationListener extends NotificationListenerService {
 
          if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.contains("messaging")) {
 //         if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.contains("messaging") || packageName.contains("messenger")) {
-            System.out.println("앱 실행 여부 : " + runApp);
+//            System.out.println("앱 실행 여부 : " + runApp);
             Bundle extras = notification.getNotification().extras;
             byte[] drawable = getSmallIcon(packageName);
 //             System.out.println("번들 확인 :" + extras);
