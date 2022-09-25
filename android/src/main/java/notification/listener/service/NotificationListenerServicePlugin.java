@@ -33,7 +33,7 @@ import java.time.format.DateTimeFormatter;
 
 public class NotificationListenerServicePlugin implements FlutterPlugin, ActivityAware, MethodCallHandler, PluginRegistry.ActivityResultListener, EventChannel.StreamHandler {
 
-    private static final String defaultSMS = Telephony.Sms.getDefaultSmsPackage(context);
+    private static final String defaultSMS = Telephony.Sms.getDefaultSmsPackage(context.getApplicationContext());
 
     private static final String CHANNEL_TAG = "x-slayer/notifications_channel";
     private static final String EVENT_TAG = "x-slayer/notifications_event";
@@ -93,7 +93,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             KakaoData kakaonoti = new KakaoData();
             WhatsappData whatsappnoti = new WhatsappData();
 
-            if(packageName.equals(dafaultSMS)) {
+            if(packageName.equals(defaultSMS)) {
 //            if(packageName.contains("messaging")) {
 //            if(packageName.contains("messaging") || packageName.contains("messenger")) {
                 noti.name = name;
@@ -315,7 +315,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             NotiData noti = new NotiData();
             KakaoData kakaonoti = new KakaoData();
             WhatsappData whatsappnoti = new WhatsappData();
-            if(packageName.equals(dafaultSMS)) {
+            if(packageName.equals(defaultSMS)) {
 //            if(packageName.contains("messaging")) {
 //            if(packageName.contains("messaging") || packageName.contains("messenger")) {
                 noti.name = name;
