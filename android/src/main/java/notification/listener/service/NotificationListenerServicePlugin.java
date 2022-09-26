@@ -459,32 +459,32 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
 
         }else if (call.method.equals("totalMessage")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-            String text = notiDb.NotiDao().total();
+            int text = notiDb.NotiDao().total();
             result.success(text);
 
         }else if (call.method.equals("totalKakao")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-            String text = notiDb.KakaoDao().total();
+            int text = notiDb.KakaoDao().total();
             result.success(text);
 
         }else if (call.method.equals("totalWhatsapp")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-            String text = notiDb.WhatsappDao().total();
+            int text = notiDb.WhatsappDao().total();
             result.success(text);
 
         }else if (call.method.equals("resultMessage")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-            String text = notiDb.NotiDao().resultCount();
+            int text = notiDb.NotiDao().resultCount();
             result.success(text);
 
         }else if (call.method.equals("resultKakao")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-            String text = notiDb.NotiDao().resultCount();
+            int text = notiDb.NotiDao().resultCount();
             result.success(text);
 
         }else if (call.method.equals("resultWhatsapp")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-            String text = notiDb.NotiDao().resultCount();
+            int text = notiDb.NotiDao().resultCount();
             result.success(text);
 
         }else {
