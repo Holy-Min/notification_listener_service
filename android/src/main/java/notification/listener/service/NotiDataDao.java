@@ -40,6 +40,12 @@ public interface NotiDataDao {
     @Query("select count(*) from NotiData where room = :room and read = '2'")
     int roomCount(String room);
 
+    @Query("select count(*) from NotiData")
+    int total();
+
+    @Query("select count(*) from NotiData where result = '2'")
+    int resultCount();
+
     @Query("select text from NotiData where room = :room order by nid desc limit 1")
     String lastText(String room);
 
