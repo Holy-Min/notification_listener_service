@@ -132,19 +132,19 @@ public class NotificationListener extends NotificationListenerService {
                         if(roomnid == 0) {
                             RoomData roomData = new RoomData();
                             roomData.room = room;
-                            notiDb.RoomDataDao().insert(roomData);
+                            if(isRemoved == false) notiDb.RoomDataDao().insert(roomData);
                         }
                     } else if(packageName.equals("com.kakao.talk") && (!title.equals("카카오톡") || !title.equals("KakaoTalk"))) {
                         if(kakaoroomnid == 0) {
                             KakaoRoomData kakaoroomData = new KakaoRoomData();
                             kakaoroomData.room = room;
-                            notiDb.KakaoRoomDataDao().insert(kakaoroomData);
+                            if(isRemoved == false) notiDb.KakaoRoomDataDao().insert(kakaoroomData);
                         }
                     } else if(packageName.equals("com.whatsapp")) {
                         if(whatsapproomnid == 0) {
                             WhatsappRoomData whatsapproomData = new WhatsappRoomData();
                             whatsapproomData.room = room;
-                            notiDb.WhatsappRoomDataDao().insert(whatsapproomData);
+                            if(isRemoved == false) notiDb.WhatsappRoomDataDao().insert(whatsapproomData);
                         }
                     }
 //                    NotiData noti = new NotiData();
