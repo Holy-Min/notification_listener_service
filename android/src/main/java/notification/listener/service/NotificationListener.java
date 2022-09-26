@@ -134,7 +134,7 @@ public class NotificationListener extends NotificationListenerService {
                             roomData.room = room;
                             notiDb.RoomDataDao().insert(roomData);
                         }
-                    } else if(packageName.equals("com.kakao.talk") && (!title.equals("카카오톡") || !title.equals('KakaoTalk))) {
+                    } else if(packageName.equals("com.kakao.talk") && (!title.equals("카카오톡") || !title.equals("KakaoTalk"))) {
                         if(kakaoroomnid == 0) {
                             KakaoRoomData kakaoroomData = new KakaoRoomData();
                             kakaoroomData.room = room;
@@ -163,7 +163,7 @@ public class NotificationListener extends NotificationListenerService {
                         noti.app = 1;
                         noti.read = "2";
                         if(runApp == false && noti.app != 0 && isRemoved == false) notiDb.NotiDao().insert(noti);
-                    } else if(packageName.equals("com.kakao.talk") && (!title.equals("카카오톡") || !title.equals('KakaoTalk))) {
+                    } else if(packageName.equals("com.kakao.talk") && (!title.equals("카카오톡") || !title.equals("KakaoTalk"))) {
                         kakaonoti.name = title.toString();
                         kakaonoti.text = text.toString();
                         kakaonoti.room = room;
