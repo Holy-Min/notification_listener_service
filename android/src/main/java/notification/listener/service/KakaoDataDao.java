@@ -44,6 +44,12 @@ public interface KakaoDataDao {
     @Query("select count(*) from KakaoData where room = :room and read = '2'")
     int roomCount(String room);
 
+    @Query("select count(*) from KakaoData")
+    int total();
+
+    @Query("select count(*) from KakaoData where result = '2'")
+    int resultCount();
+
     @Query("select text from KakaoData where room = :room order by nid desc limit 1")
     String lastText(String room);
 
@@ -52,7 +58,6 @@ public interface KakaoDataDao {
 
     @Query("update KakaoData set read = '1' where room = :room and read = '2'")
     void read(String room);
-
 
 
 //    public class NotiData {
