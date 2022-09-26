@@ -173,7 +173,7 @@ public class NotificationListener extends NotificationListenerService {
                         kakaonoti.result = "yet";
                         kakaonoti.app = 2;
                         kakaonoti.read = "2";
-                        if(runApp == false && kakaonoti.app != 0) && isRemoved == false notiDb.KakaoDao().insert(kakaonoti);
+                        if(runApp == false && kakaonoti.app != 0) && isRemoved == false) notiDb.KakaoDao().insert(kakaonoti);
                     } else if(packageName.equals("com.whatsapp")) {
                         whatsappnoti.name = title.toString();
                         whatsappnoti.text = text.toString();
