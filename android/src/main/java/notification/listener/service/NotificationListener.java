@@ -77,7 +77,7 @@ public class NotificationListener extends NotificationListenerService {
 //            System.out.println("앱 실행 여부 : " + runApp);
             Bundle extras = notification.getNotification().extras;
             byte[] drawable = getSmallIcon(packageName);
-//             System.out.println("번들 확인 :" + extras);
+            System.out.println("번들 확인 :" + extras);
 
             Action action = NotificationUtils.getQuickReplyAction(notification.getNotification(), packageName);
 
