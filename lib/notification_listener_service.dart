@@ -199,30 +199,30 @@ class NotificationListenerService {
     return content;
   }
 
-  static Future totalMessage(String roomName) async {
+  static Future totalMessage() async {
     final content = await methodeChannel.invokeMethod('totalMessage');
     return content;
   }
 
-  static Future totalKakao(String roomName) async {
+  static Future totalKakao() async {
     final content = await methodeChannel.invokeMethod('totalKakao');
     return content;
   }
 
-  static Future totalWhatsapp(String roomName) async {
+  static Future totalWhatsapp() async {
     final content = await methodeChannel.invokeMethod('totalWhatsapp');
     return content;
   }
 
-  static Future resultMessage(String roomName) async {
+  static Future resultMessage() async {
     final content = await methodeChannel.invokeMethod('resultMessage');
     return content;
 
-  }static Future resultKakao(String roomName) async {
+  }static Future resultKakao() async {
     final content = await methodeChannel.invokeMethod('resultKakao');
     return content;
 
-  }static Future resultWhatsapp(String roomName) async {
+  }static Future resultWhatsapp() async {
     final content = await methodeChannel.invokeMethod('resultWhatsapp');
     return content;
   }
