@@ -360,8 +360,8 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
 
 //                 if(packageName.equals("com.samsung.android.messaging")) {
 
-                result.success(true);
-            
+            result.success(true);
+
 
         }else if (call.method.equals("setFalse")) {
             NotificationListener nl = new NotificationListener();
@@ -455,6 +455,36 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             String room = call.argument("room");
             String text = notiDb.WhatsappDao().lastDate(room);
+            result.success(text);
+
+        }else if (call.method.equals("totalMessage")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            String text = notiDb.NotiDao().total();
+            result.success(text);
+
+        }else if (call.method.equals("totalKakao")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            String text = notiDb.KakaoDao().total();
+            result.success(text);
+
+        }else if (call.method.equals("totalWhatsapp")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            String text = notiDb.WhatsappDao().total();
+            result.success(text);
+
+        }else if (call.method.equals("resultMessage")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            String text = notiDb.NotiDao().resultCount();
+            result.success(text);
+
+        }else if (call.method.equals("resultKakao")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            String text = notiDb.NotiDao().resultCount();
+            result.success(text);
+
+        }else if (call.method.equals("resultWhatsapp")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            String text = notiDb.NotiDao().resultCount();
             result.success(text);
 
         }else {
