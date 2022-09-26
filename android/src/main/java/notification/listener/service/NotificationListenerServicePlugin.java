@@ -479,12 +479,12 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
 
         }else if (call.method.equals("resultKakao")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-            int text = notiDb.NotiDao().resultCount();
+            int text = notiDb.KakaoDao().resultCount();
             result.success(text);
 
         }else if (call.method.equals("resultWhatsapp")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-            int text = notiDb.NotiDao().resultCount();
+            int text = notiDb.WhatsappDao().resultCount();
             result.success(text);
 
         }else {
