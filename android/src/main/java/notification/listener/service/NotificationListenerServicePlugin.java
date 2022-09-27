@@ -95,8 +95,8 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             KakaoData kakaonoti = new KakaoData();
             WhatsappData whatsappnoti = new WhatsappData();
 
-            if(packageName.equals(defaultSMS)) {
-//            if(packageName.contains("messaging")) {
+//             if(packageName.equals(defaultSMS)) {
+           if(packageName.contains("messaging")) {
 //            if(packageName.contains("messaging") || packageName.contains("messenger")) {
                 noti.name = name;
                 noti.text = message;
@@ -318,8 +318,8 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             NotiData noti = new NotiData();
             KakaoData kakaonoti = new KakaoData();
             WhatsappData whatsappnoti = new WhatsappData();
-            if(packageName.equals(defaultSMS)) {
-//            if(packageName.contains("messaging")) {
+//             if(packageName.equals(defaultSMS)) {
+           if(packageName.contains("messaging")) {
 //            if(packageName.contains("messaging") || packageName.contains("messenger")) {
                 noti.name = name;
                 noti.text = text;
