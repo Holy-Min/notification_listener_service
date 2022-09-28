@@ -64,7 +64,7 @@ public class NotificationListener extends NotificationListenerService {
         String tag = notification.getTag();
         System.out.println("앱 확인" + packageName);
         String defaultSMS = Telephony.Sms.getDefaultSmsPackage(context);
-        System.out.println("기본 메시지앱 확인" + defaultSMS);
+//         System.out.println("기본 메시지앱 확인" + defaultSMS);
 
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -108,6 +108,7 @@ public class NotificationListener extends NotificationListenerService {
                 intent.putExtra(NotificationConstants.HAS_EXTRAS_PICTURE, extras.containsKey(Notification.EXTRA_PICTURE));
 
                 System.out.println("제거됨 확인 :" + isRemoved);
+                System.out.println("앱 실행 여부 확인" + runApp);
 
                 String room = "";
                 if(subText != null) {
