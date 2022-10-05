@@ -72,7 +72,7 @@ public class NotificationListener extends NotificationListenerService {
             continue;
         }
 
-//         System.out.println("기본 메시지앱 확인" + defaultSMS);
+        System.out.println("기본 메시지앱 확인" + defaultSMS);
 
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
