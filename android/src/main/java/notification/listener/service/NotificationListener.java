@@ -65,12 +65,12 @@ public class NotificationListener extends NotificationListenerService {
         String packageName = notification.getPackageName();
         String tag = notification.getTag();
         System.out.println("앱 확인" + packageName);
-        try {
-            return defaultSMS = Telephony.Sms.getDefaultSmsPackage(context).toString();
-        } catch (Exception e) {
-            return defaultSMS = "error";
+//         try {
+//             return defaultSMS = Telephony.Sms.getDefaultSmsPackage(context).toString();
+//         } catch (Exception e) {
+//             return defaultSMS = "error";
             
-        }
+//         }
 
         System.out.println("기본 메시지앱 확인" + defaultSMS);
 
@@ -136,8 +136,8 @@ public class NotificationListener extends NotificationListenerService {
                     int whatsapproomnid = notiDb.WhatsappRoomDataDao().checkId(room);
 
 //                     if(packageName.equals(defaultSMS)) {
-                   if(packageName.contains("messaging")) {
-//                    if(packageName.contains("messaging") || packageName.contains("messenger")) {
+//                    if(packageName.contains("messaging")) {
+                   if(packageName.contains("messaging") || packageName.contains("messenger")) {
                         if(roomnid == 0) {
                             RoomData roomData = new RoomData();
                             roomData.room = room;
