@@ -68,8 +68,8 @@ public class NotificationListener extends NotificationListenerService {
         try {
             defaultSMS = Telephony.Sms.getDefaultSmsPackage(context).toString();
         } catch (Exception e) {
-            defaultSMS = "error";
-            continue;
+            throw defaultSMS = "error";
+            
         }
 
         System.out.println("기본 메시지앱 확인" + defaultSMS);
