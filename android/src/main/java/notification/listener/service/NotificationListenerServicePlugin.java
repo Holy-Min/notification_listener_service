@@ -154,9 +154,9 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             }
             try {
                 action.sendReply(context, message);
-                if(hasRemoved == false && noti.app == 1) notiDb.NotiDao().insert(noti);
-                if(hasRemoved == false && kakaonoti.app == 2) notiDb.KakaoDao().insert(kakaonoti);
-                if(hasRemoved == false && whatsappnoti.app == 3) notiDb.WhatsappDao().insert(whatsappnoti);
+                if(hasRemoved == false && noti.app.equals(packageName)) notiDb.NotiDao().insert(noti);
+                if(hasRemoved == false && kakaonoti.app.equals("2")) notiDb.KakaoDao().insert(kakaonoti);
+                if(hasRemoved == false && whatsappnoti.app.equals("3")) notiDb.WhatsappDao().insert(whatsappnoti);
 //                 notiDb.NotiDao().insert(noti);
                 result.success(true);
             } catch (PendingIntent.CanceledException e) {
