@@ -257,14 +257,14 @@ class NotificationListenerService {
   }
 
   static Future messageRoomDelete(String room) async {
-    await methodeChannel.invokeMethod('roomDelete', {"room" : room});
+    await methodeChannel.invokeMethod('messageRoomDelete', {"room" : room});
   }
 
   static Future kakaoRoomDelete(String room) async {
-    await methodeChannel.invokeMethod('roomDelete', {"room" : room});
+    await methodeChannel.invokeMethod('kakaoRoomDelete', {"room" : room});
   }
 
   static Future WhatsappRoomDelete(String room) async {
-    await methodeChannel.invokeMethod('roomDelete', {"room" : room});
+    await methodeChannel.invokeMethod('WhatsappRoomDelete', {"room" : room});
   }
 }
