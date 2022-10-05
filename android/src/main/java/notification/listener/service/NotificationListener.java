@@ -69,14 +69,14 @@ public class NotificationListener extends NotificationListenerService {
 //             return defaultSMS = Telephony.Sms.getDefaultSmsPackage(context).toString();
 //         } catch (Exception e) {
 //             return defaultSMS = "error";
-            
+
 //         }
 
         System.out.println("기본 메시지앱 확인" + defaultSMS);
 
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-       StatusBarNotification[] barNotifications = notificationManager.getActiveNotifications();
+        StatusBarNotification[] barNotifications = notificationManager.getActiveNotifications();
 //        System.out.println("노티피케이션 확인 :" + barNotifications);
 //         packageName.equals("com.samsung.android.messaging")
 
@@ -137,7 +137,7 @@ public class NotificationListener extends NotificationListenerService {
 
 //                     if(packageName.equals(defaultSMS)) {
 //                    if(packageName.contains("messaging")) {
-                   if(packageName.contains("messaging") || packageName.contains("messenger")) {
+                    if(packageName.contains("messaging") || packageName.contains("messenger")) {
                         if(roomnid == 0) {
                             RoomData roomData = new RoomData();
                             roomData.room = room;
@@ -160,7 +160,7 @@ public class NotificationListener extends NotificationListenerService {
 
 //                     if(packageName.equals("com.samsung.android.messaging")) {
 //                     if(packageName.equals(defaultSMS)) {
-                   if(packageName.contains("messaging")) {
+                    if(packageName.contains("messaging")) {
 //                    if(packageName.contains("messaging") || packageName.contains("messenger")) {
                         noti.name = title.toString();
                         noti.text = text.toString();
@@ -169,10 +169,10 @@ public class NotificationListener extends NotificationListenerService {
                         noti.vsDate = formatedNow2;
                         noti.send = 1;
                         noti.result = "yet";
-                        noti.app = 1;
+                        noti.app = packageName;
                         noti.read = "2";
 //                         if(runApp == false) notiDb.NotiDao().insert(noti);
-                       if(runApp == false && isRemoved == false) notiDb.NotiDao().insert(noti);
+                        if(runApp == false && isRemoved == false) notiDb.NotiDao().insert(noti);
                     } else if(packageName.equals("com.kakao.talk") && (!title.equals("카카오톡") || !title.equals("KakaoTalk"))) {
                         kakaonoti.name = title.toString();
                         kakaonoti.text = text.toString();
@@ -181,10 +181,10 @@ public class NotificationListener extends NotificationListenerService {
                         kakaonoti.vsDate = formatedNow2;
                         kakaonoti.send = 1;
                         kakaonoti.result = "yet";
-                        kakaonoti.app = 2;
+                        kakaonoti.app = "2";
                         kakaonoti.read = "2";
 //                         if(runApp == false)  notiDb.KakaoDao().insert(kakaonoti);
-                       if(runApp == false && isRemoved == false)  notiDb.KakaoDao().insert(kakaonoti);
+                        if(runApp == false && isRemoved == false)  notiDb.KakaoDao().insert(kakaonoti);
                     } else if(packageName.equals("com.whatsapp")) {
                         whatsappnoti.name = title.toString();
                         whatsappnoti.text = text.toString();
@@ -193,10 +193,10 @@ public class NotificationListener extends NotificationListenerService {
                         whatsappnoti.vsDate = formatedNow2;
                         whatsappnoti.send = 1;
                         whatsappnoti.result = "yet";
-                        whatsappnoti.app = 3;
+                        whatsappnoti.app = "3";
                         whatsappnoti.read = "2";
 //                         if(runApp == false) notiDb.WhatsappDao().insert(whatsappnoti);
-                       if(runApp == false && isRemoved == false) notiDb.WhatsappDao().insert(whatsappnoti);
+                        if(runApp == false && isRemoved == false) notiDb.WhatsappDao().insert(whatsappnoti);
                     }
 
 //                     System.out.println("노티값 확인 : " + noti.text);
@@ -206,16 +206,16 @@ public class NotificationListener extends NotificationListenerService {
 //                     notiDb.NotiDao().insert(noti);
 //                 }
 
-                if (extras.containsKey(Notification.EXTRA_PICTURE)) {
-                    Bitmap bmp = (Bitmap) extras.get(Notification.EXTRA_PICTURE);
-                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                    intent.putExtra(NotificationConstants.EXTRAS_PICTURE, stream.toByteArray());
+                    if (extras.containsKey(Notification.EXTRA_PICTURE)) {
+                        Bitmap bmp = (Bitmap) extras.get(Notification.EXTRA_PICTURE);
+                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                        bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                        intent.putExtra(NotificationConstants.EXTRAS_PICTURE, stream.toByteArray());
+                    }
                 }
+                sendBroadcast(intent);
             }
-            sendBroadcast(intent);
         }
-         }
 
     }
 

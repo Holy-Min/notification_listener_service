@@ -28,7 +28,7 @@ public class NotiData {
     public int send;
 
     @ColumnInfo(name = "app")
-    public int app;
+    public String app;
     
     @ColumnInfo(name = "result")
     public String result;

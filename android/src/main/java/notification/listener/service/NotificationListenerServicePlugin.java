@@ -105,7 +105,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 noti.vsDate = formatedNow2;
                 noti.send = 2;
                 noti.result = str;
-                noti.app = 1;
+                noti.app = packageName;
                 noti.read = "1";
             } else if(packageName.equals("com.kakao.talk")) {
                 kakaonoti.name = name;
@@ -115,7 +115,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 kakaonoti.vsDate = formatedNow2;
                 kakaonoti.send = 2;
                 kakaonoti.result = str;
-                kakaonoti.app = 2;
+                kakaonoti.app = "2";
                 kakaonoti.read = "1";
             } else if(packageName.equals("com.whatsapp")) {
                 whatsappnoti.name = name;
@@ -125,7 +125,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 whatsappnoti.vsDate = formatedNow2;
                 whatsappnoti.send = 2;
                 whatsappnoti.result = str;
-                whatsappnoti.app = 3;
+                whatsappnoti.app = "3";
                 whatsappnoti.read = "1";
             }
 
@@ -319,8 +319,8 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             KakaoData kakaonoti = new KakaoData();
             WhatsappData whatsappnoti = new WhatsappData();
 //             if(packageName.equals(defaultSMS)) {
-           if(packageName.contains("messaging")) {
-//            if(packageName.contains("messaging") || packageName.contains("messenger")) {
+//           if(packageName.contains("messaging")) {
+            if(packageName.contains("messaging") || packageName.contains("messenger")) {
                 noti.name = name;
                 noti.text = text;
                 noti.room = room;
@@ -328,7 +328,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 noti.vsDate = vsDate;
                 noti.send = 1;
                 noti.result = str;
-                noti.app = 1;
+                noti.app = packageName;
                 noti.read = "2";
 
                 notiDb.NotiDao().insert(noti);
@@ -340,7 +340,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 kakaonoti.vsDate = vsDate;
                 kakaonoti.send = 1;
                 kakaonoti.result = str;
-                kakaonoti.app = 2;
+                kakaonoti.app = "2";
                 kakaonoti.read = "2";
 
                 notiDb.KakaoDao().insert(kakaonoti);
@@ -352,7 +352,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 whatsappnoti.vsDate = vsDate;
                 whatsappnoti.send = 1;
                 whatsappnoti.result = str;
-                whatsappnoti.app = 3;
+                whatsappnoti.app = "3";
                 whatsappnoti.read = "2";
 
                 notiDb.WhatsappDao().insert(whatsappnoti);
