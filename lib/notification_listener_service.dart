@@ -256,7 +256,15 @@ class NotificationListenerService {
     await methodeChannel.invokeMethod('deleteChat');
   }
 
-  static Future roomDelete(String room) async {
+  static Future messageRoomDelete(String room) async {
+    await methodeChannel.invokeMethod('roomDelete', {"room" : room});
+  }
+
+  static Future kakaRoomDelete(String room) async {
+    await methodeChannel.invokeMethod('roomDelete', {"room" : room});
+  }
+
+  static Future WhatsappRoomDelete(String room) async {
     await methodeChannel.invokeMethod('roomDelete', {"room" : room});
   }
 }
