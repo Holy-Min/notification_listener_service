@@ -66,9 +66,9 @@ public class NotificationListener extends NotificationListenerService {
         String tag = notification.getTag();
         System.out.println("앱 확인" + packageName);
         try {
-            defaultSMS = Telephony.Sms.getDefaultSmsPackage(context).toString();
+            return defaultSMS = Telephony.Sms.getDefaultSmsPackage(context).toString();
         } catch (Exception e) {
-            throw defaultSMS = "error";
+            return defaultSMS = "error";
             
         }
 
