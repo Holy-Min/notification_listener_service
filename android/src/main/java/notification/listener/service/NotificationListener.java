@@ -78,7 +78,7 @@ public class NotificationListener extends NotificationListenerService {
        StatusBarNotification[] barNotifications = notificationManager.getActiveNotifications();
 //        System.out.println("노티피케이션 확인 :" + barNotifications);
 //         packageName.equals("com.samsung.android.messaging")
-        if(defaultSMS.equals("error")) {
+        if(defaultSMS != null && defaultSMS.equals("error")) {
             //          if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.equals(defaultSMS)) {
             if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.contains("messaging") || packageName.contains("messenger")) {
 //            System.out.println("앱 실행 여부 : " + runApp);
@@ -215,7 +215,7 @@ public class NotificationListener extends NotificationListenerService {
                     sendBroadcast(intent);
                 }
             }
-        } else {
+        } else if(defaultSMS != null) {
             if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.equals(defaultSMS)) {
                 Bundle extras = notification.getNotification().extras;
                 byte[] drawable = getSmallIcon(packageName);
