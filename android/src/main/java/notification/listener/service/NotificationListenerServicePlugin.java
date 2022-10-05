@@ -303,7 +303,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
 
         }else if (call.method.equals("dataInsert")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-            String defaultSMS = Telephony.Sms.getDefaultSmsPackage(context.getApplicationContext());
+//             String defaultSMS = Telephony.Sms.getDefaultSmsPackage(context.getApplicationContext());
 
             String name = call.argument("name");
             String text = call.argument("text");
