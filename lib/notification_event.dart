@@ -75,7 +75,7 @@ class ServiceNotificationEvent {
   }
 
   /// send a direct message reply to the incoming notification
-  Future<bool> sendReply(String message, String defaultName) async {
+  Future<bool> sendReply(String message) async {
     // if (!canReply!) throw Exception("The notification is not replyable");
     if (!canReply!) throw Exception("이 알림은 답장을 보낼 수 없는 상태입니다.");
     try {
