@@ -127,7 +127,7 @@ public class NotificationListener extends NotificationListenerService {
                 }
                 LocalDateTime now = LocalDateTime.now();
                 String formatedNow = now.format(DateTimeFormatter.ofPattern("a hh시 mm분"));
-                String formatedNow2 = now.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+                String formatedNow2 = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
                 if(title != null && text != null) {
                     notiDb = NotiDatabase.getInstance(getApplicationContext());
