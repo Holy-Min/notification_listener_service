@@ -88,7 +88,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
 
             LocalDateTime now = LocalDateTime.now();
             String formatedNow = now.format(DateTimeFormatter.ofPattern("a hh시 mm분"));
-            String formatedNow2 = now.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+            String formatedNow2 = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             String defaultSMS = Telephony.Sms.getDefaultSmsPackage(context.getApplicationContext());
 
             NotiData noti = new NotiData();
