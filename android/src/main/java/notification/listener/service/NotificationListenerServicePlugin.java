@@ -89,15 +89,15 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             LocalDateTime now = LocalDateTime.now();
             String formatedNow = now.format(DateTimeFormatter.ofPattern("a hh시 mm분"));
             String formatedNow2 = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-            String defaultSMS = Telephony.Sms.getDefaultSmsPackage(context.getApplicationContext());
+//             String defaultSMS = Telephony.Sms.getDefaultSmsPackage(context.getApplicationContext());
 
             NotiData noti = new NotiData();
             KakaoData kakaonoti = new KakaoData();
             WhatsappData whatsappnoti = new WhatsappData();
 
 //             if(packageName.equals(defaultSMS)) {
-           if(packageName.contains("messaging")) {
-//            if(packageName.contains("messaging") || packageName.contains("messenger")) {
+//            if(packageName.contains("messaging")) {
+           if(packageName.contains("messaging") || packageName.contains("messenger")) {
                 noti.name = name;
                 noti.text = message;
                 noti.room = room;
@@ -128,23 +128,6 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 whatsappnoti.app = "3";
                 whatsappnoti.read = "1";
             }
-
-//            NotiData noti = new NotiData();
-//            noti.name = name;
-//            noti.text = message;
-//            noti.room = room;
-//            noti.date = formatedNow;
-//            noti.vsDate = formatedNow2;
-//            noti.send = 2;
-//            noti.result = str;
-//             if(packageName.equals("com.samsung.android.messaging")) {
-//            if(packageName.contains("messaging") || packageName.contains("messenger")) {
-//                noti.app = 1;
-//            } else if(packageName.equals("com.kakao.talk")) {
-//                noti.app = 2;
-//            } else if(packageName.equals("com.whatsapp")) {
-//                noti.app = 3;
-//            }
 
 
 //            final Action action = ActionCache.cachedNotifications.get(notificationId);
