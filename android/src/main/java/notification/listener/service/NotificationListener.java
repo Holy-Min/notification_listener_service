@@ -126,7 +126,7 @@ public class NotificationListener extends NotificationListenerService {
                     room = title.toString();
                 }
                 LocalDateTime now = LocalDateTime.now();
-                String formatedNow = now.format(DateTimeFormatter.ofPattern("a hh시 mm분"));
+                String formatedNow = now.format(DateTimeFormatter.ofPattern("a hh:mm"));
                 String formatedNow2 = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
                 if(title != null && text != null) {
