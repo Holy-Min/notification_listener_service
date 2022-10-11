@@ -11,6 +11,9 @@ public class RoomData {
 
     @ColumnInfo(name = "room")
     public String room;
+    
+    @ColumnInfo(name = "app")
+    public String app;
 
 //    public RoomData(String room) {
 //        this.room = room;
