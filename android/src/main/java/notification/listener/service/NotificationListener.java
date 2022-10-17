@@ -166,7 +166,7 @@ public class NotificationListener extends NotificationListenerService {
 //                     if(packageName.equals(defaultSMS)) {
                     if(packageName.contains("messaging")) {
 //                    if(packageName.contains("messaging") || packageName.contains("messenger")) {
-                        noti.name = title.toString();
+                        if(!title.toString().equals("\u2068나\u2069") || !title.toString().equals("\u2068Me\u2069")) noti.name = title.toString();
                         noti.text = text.toString();
                         noti.room = room;
                         noti.date = formatedNow;
