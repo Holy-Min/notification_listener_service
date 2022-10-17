@@ -80,11 +80,15 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             final String message = call.argument("message");
             final String name = call.argument("name");
             final String room = call.argument("room");
+            System.out.println("답장하는 채팅방 : " + room);
 //            final int notificationId = call.argument("notificationId");
             final String tag = call.argument("tag");
+            System.out.println("답장 태그 : " + tag);
             final String packageName = call.argument("packageName");
-            final String str = "nomatter";
+            System.out.println("답장하는 앱 : " + packageName);
+            final String str = "1";
             hasRemoved = call.argument("hasRemoved");
+            System.out.println("알림 제거 확인 : " + hasRemoved);
 
             LocalDateTime now = LocalDateTime.now();
             String formatedNow = now.format(DateTimeFormatter.ofPattern("a hh:mm"));
