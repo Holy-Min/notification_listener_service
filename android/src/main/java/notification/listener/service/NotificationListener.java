@@ -166,19 +166,22 @@ public class NotificationListener extends NotificationListenerService {
 //                     if(packageName.equals(defaultSMS)) {
                     if(packageName.contains("messaging")) {
 //                    if(packageName.contains("messaging") || packageName.contains("messenger")) {
-                        System.out.println("name 확인 :" + title);
-                        noti.name = title.toString();
+//                         System.out.println("name 확인 :" + title);
+//                         noti.name = title.toString();
 //                         if(!title.toString().equals("\u2068나\u2069") || !title.toString().equals("\u2068Me\u2069")) noti.name = title.toString();
-                        noti.text = text.toString();
-                        noti.room = room;
-                        noti.date = formatedNow;
-                        noti.vsDate = formatedNow2;
-                        noti.send = 1;
-                        noti.result = "yet";
-                        noti.app = packageName;
-                        noti.read = "2";
+                        if(!title.equals("\u2068나\u2069") || !title.equals("\u2068Me\u2069"))  {
+                            noti.name = title.toString();
+                            noti.text = text.toString();
+                            noti.room = room;
+                            noti.date = formatedNow;
+                            noti.vsDate = formatedNow2;
+                            noti.send = 1;
+                            noti.result = "yet";
+                            noti.app = packageName;
+                            noti.read = "2";
 //                         if(runApp == false) notiDb.NotiDao().insert(noti);
-                        if(runApp == false && isRemoved == false) notiDb.NotiDao().insert(noti);
+                            if(runApp == false && isRemoved == false) notiDb.NotiDao().insert(noti);
+                        }
                     } else if(packageName.equals("com.kakao.talk") && (!title.equals("카카오톡") || !title.equals("KakaoTalk"))) {
                         kakaonoti.name = title.toString();
                         kakaonoti.text = text.toString();
