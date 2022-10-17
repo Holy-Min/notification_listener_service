@@ -252,8 +252,16 @@ class NotificationListenerService {
     // final kakao = content.toString();
   }
 
-  static Future deleteChat() async {
-    await methodeChannel.invokeMethod('deleteChat');
+  static Future deleteMessage() async {
+    await methodeChannel.invokeMethod('deleteMessage');
+  }
+
+  static Future deleteKakao() async {
+    await methodeChannel.invokeMethod('deleteKakao');
+  }
+
+  static Future deleteWhatsapp() async {
+    await methodeChannel.invokeMethod('deleteWhatsapp');
   }
 
   static Future messageRoomDelete(String room) async {
