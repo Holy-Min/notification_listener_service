@@ -342,9 +342,9 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
 //             if(packageName.equals(defaultSMS)) {
 //           if(packageName.contains("messaging")) {
             if(packageName.contains("messaging") || packageName.contains("messenger")) {
-                noti.name = name;
+                if(!noti.name.equals("나") || !noti.name.equals("Me")) noti.name = name;
                 noti.text = text;
-                if(!noti.room.equals("나") || !noti.room.equals("Me")) noti.room = room;
+                noti.room = room;
                 noti.date = date;
                 noti.vsDate = vsDate;
                 noti.send = 1;
