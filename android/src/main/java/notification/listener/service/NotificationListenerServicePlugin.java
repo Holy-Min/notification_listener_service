@@ -101,37 +101,37 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
 
 //             if(packageName.equals(defaultSMS)) {
 //            if(packageName.contains("messaging")) {
-           if(packageName.contains("messaging") || packageName.contains("messenger")) {
-                noti.name = name;
-                noti.text = message;
-                noti.room = room;
-                noti.date = formatedNow;
-                noti.vsDate = formatedNow2;
-                noti.send = 2;
-                noti.result = str;
-                noti.app = packageName;
-                noti.read = "1";
-            } else if(packageName.equals("com.kakao.talk")) {
-                kakaonoti.name = name;
-                kakaonoti.text = message;
-                kakaonoti.room = room;
-                kakaonoti.date = formatedNow;
-                kakaonoti.vsDate = formatedNow2;
-                kakaonoti.send = 2;
-                kakaonoti.result = str;
-                kakaonoti.app = "2";
-                kakaonoti.read = "1";
-            } else if(packageName.equals("com.whatsapp")) {
-                whatsappnoti.name = name;
-                whatsappnoti.text = message;
-                whatsappnoti.room = room;
-                whatsappnoti.date = formatedNow;
-                whatsappnoti.vsDate = formatedNow2;
-                whatsappnoti.send = 2;
-                whatsappnoti.result = str;
-                whatsappnoti.app = "3";
-                whatsappnoti.read = "1";
-            }
+//           if(packageName.contains("messaging") || packageName.contains("messenger")) {
+//                noti.name = name;
+//                noti.text = message;
+//                noti.room = room;
+//                noti.date = formatedNow;
+//                noti.vsDate = formatedNow2;
+//                noti.send = 2;
+//                noti.result = str;
+//                noti.app = packageName;
+//                noti.read = "1";
+//            } else if(packageName.equals("com.kakao.talk")) {
+//                kakaonoti.name = name;
+//                kakaonoti.text = message;
+//                kakaonoti.room = room;
+//                kakaonoti.date = formatedNow;
+//                kakaonoti.vsDate = formatedNow2;
+//                kakaonoti.send = 2;
+//                kakaonoti.result = str;
+//                kakaonoti.app = "2";
+//                kakaonoti.read = "1";
+//            } else if(packageName.equals("com.whatsapp")) {
+//                whatsappnoti.name = name;
+//                whatsappnoti.text = message;
+//                whatsappnoti.room = room;
+//                whatsappnoti.date = formatedNow;
+//                whatsappnoti.vsDate = formatedNow2;
+//                whatsappnoti.send = 2;
+//                whatsappnoti.result = str;
+//                whatsappnoti.app = "3";
+//                whatsappnoti.read = "1";
+//            }
 
 
 //            final Action action = ActionCache.cachedNotifications.get(notificationId);
@@ -141,9 +141,43 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             }
             try {
                 action.sendReply(context, message);
-                if(hasRemoved == false && noti.app.equals(packageName)) notiDb.NotiDao().insert(noti);
-                if(hasRemoved == false && kakaonoti.app.equals("2")) notiDb.KakaoDao().insert(kakaonoti);
-                if(hasRemoved == false && whatsappnoti.app.equals("3")) notiDb.WhatsappDao().insert(whatsappnoti);
+                if(packageName.contains("messaging") || packageName.contains("messenger")) {
+                    noti.name = name;
+                    noti.text = message;
+                    noti.room = room;
+                    noti.date = formatedNow;
+                    noti.vsDate = formatedNow2;
+                    noti.send = 2;
+                    noti.result = str;
+                    noti.app = packageName;
+                    noti.read = "1";
+
+                    if(hasRemoved == false && noti.app.equals(packageName)) notiDb.NotiDao().insert(noti);
+                } else if(packageName.equals("com.kakao.talk")) {
+                    kakaonoti.name = name;
+                    kakaonoti.text = message;
+                    kakaonoti.room = room;
+                    kakaonoti.date = formatedNow;
+                    kakaonoti.vsDate = formatedNow2;
+                    kakaonoti.send = 2;
+                    kakaonoti.result = str;
+                    kakaonoti.app = "2";
+                    kakaonoti.read = "1";
+
+                    if(hasRemoved == false && kakaonoti.app.equals("2")) notiDb.KakaoDao().insert(kakaonoti);
+                } else if(packageName.equals("com.whatsapp")) {
+                    whatsappnoti.name = name;
+                    whatsappnoti.text = message;
+                    whatsappnoti.room = room;
+                    whatsappnoti.date = formatedNow;
+                    whatsappnoti.vsDate = formatedNow2;
+                    whatsappnoti.send = 2;
+                    whatsappnoti.result = str;
+                    whatsappnoti.app = "3";
+                    whatsappnoti.read = "1";
+
+                    if(hasRemoved == false && whatsappnoti.app.equals("3")) notiDb.WhatsappDao().insert(whatsappnoti);
+                }
 //                 notiDb.NotiDao().insert(noti);
                 result.success(true);
             } catch (PendingIntent.CanceledException e) {
@@ -310,7 +344,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             if(packageName.contains("messaging") || packageName.contains("messenger")) {
                 noti.name = name;
                 noti.text = text;
-                noti.room = room;
+                if(!noti.room.equals("나") || !noti.room.equals("Me")) noti.room = room;
                 noti.date = date;
                 noti.vsDate = vsDate;
                 noti.send = 1;
