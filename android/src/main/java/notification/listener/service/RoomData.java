@@ -11,9 +11,12 @@ public class RoomData {
 
     @ColumnInfo(name = "room")
     public String room;
-    
+
     @ColumnInfo(name = "app")
     public String app;
+
+    @ColumnInfo(name = "vsDate")
+    public String vsDate;
 
 //    public RoomData(String room) {
 //        this.room = room;

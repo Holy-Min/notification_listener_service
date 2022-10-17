@@ -356,9 +356,22 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             nl.setRunAppTrue();
             result.success(true);
 
-        }else if (call.method.equals("deleteChat")) {
+        }else if (call.method.equals("deleteMessage")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             notiDb.NotiDao().delete();
+            notiDb.RoomDataDao().roomDelete();
+            result.success(true);
+
+        }else if (call.method.equals("deleteKakao")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            notiDb.KakaoDao().delete();
+            notiDb.KakaoRoomDataDao().roomDelete();
+            result.success(true);
+
+        }else if (call.method.equals("deleteWhatsapp")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            notiDb.WhatsappDao().delete();
+            notiDb.WhatsappRoomDataDao().roomDelete();
             result.success(true);
 
         }else if (call.method.equals("messageRoomDelete")) {

@@ -56,7 +56,7 @@ public class NotificationListener extends NotificationListenerService {
     @RequiresApi(api = VERSION_CODES.KITKAT)
     @Override
     public void onNotificationRemoved(StatusBarNotification sbn) {
-//         System.out.println("알림 제거 발생");
+        System.out.println("알림 제거 발생");
         handleNotification(sbn, true);
     }
 
@@ -72,7 +72,7 @@ public class NotificationListener extends NotificationListenerService {
 
 //         }
 
-//         System.out.println("기본 메시지앱 확인" + defaultSMS);
+//        System.out.println("기본 메시지앱 확인" + defaultSMS);
 
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -142,18 +142,21 @@ public class NotificationListener extends NotificationListenerService {
                             RoomData roomData = new RoomData();
                             roomData.room = room;
                             roomData.app = packageName;
+                            roomData.vsDate = formatedNow2;
                             if(isRemoved == false) notiDb.RoomDataDao().insert(roomData);
                         }
                     } else if(packageName.equals("com.kakao.talk") && (!title.equals("카카오톡") || !title.equals("KakaoTalk"))) {
                         if(kakaoroomnid == 0) {
                             KakaoRoomData kakaoroomData = new KakaoRoomData();
                             kakaoroomData.room = room;
+                            kakaoroomData.vsDate = formatedNow2;
                             if(isRemoved == false) notiDb.KakaoRoomDataDao().insert(kakaoroomData);
                         }
                     } else if(packageName.equals("com.whatsapp")) {
                         if(whatsapproomnid == 0) {
                             WhatsappRoomData whatsapproomData = new WhatsappRoomData();
                             whatsapproomData.room = room;
+                            whatsapproomData.vsDate = formatedNow2;
                             if(isRemoved == false) notiDb.WhatsappRoomDataDao().insert(whatsapproomData);
                         }
                     }

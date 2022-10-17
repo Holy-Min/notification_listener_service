@@ -12,6 +12,9 @@ public class WhatsappRoomData {
     @ColumnInfo(name = "room")
     public String room;
 
+    @ColumnInfo(name = "vsDate")
+    public String vsDate;
+
 //    public RoomData(String room) {
 //        this.room = room;
 //    }
