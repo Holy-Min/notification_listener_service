@@ -275,4 +275,8 @@ class NotificationListenerService {
   static Future WhatsappRoomDelete(String room) async {
     await methodeChannel.invokeMethod('WhatsappRoomDelete', {"room" : room});
   }
+  
+  static Future runVacuum() async {
+    await methodeChannel.invokeMethod('runVacuum');
+  }
 }
