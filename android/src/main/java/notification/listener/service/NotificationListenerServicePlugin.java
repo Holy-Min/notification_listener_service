@@ -12,9 +12,7 @@ import android.util.Log;
 import java.util.List;
 import com.google.gson.Gson;
 import android.provider.Telephony;
-// import androidx.sqlite.db.*;
-// import androidx.room.RoomSQLiteQuery;
-// import androidx.sqlite.db.SimpleSQLiteQuery;
+import androidx.sqlite.db.SimpleSQLiteQuery;
 
 import androidx.annotation.NonNull;
 
@@ -536,8 +534,8 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
 
         }else if (call.method.equals("runVacuum")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-//             notiDb.NotiDao().vacuum(SimpleSQLiteQuery("VACUUM"));
-            notiDb.NotiDao().vacuum();
+            notiDb.NotiDao().vacuum(new SimpleSQLiteQuery("VACUUM"));
+//             notiDb.NotiDao().vacuum();
             result.success(true);
 
         }else {
