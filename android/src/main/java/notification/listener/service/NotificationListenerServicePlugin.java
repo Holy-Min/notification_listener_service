@@ -13,7 +13,8 @@ import java.util.List;
 import com.google.gson.Gson;
 import android.provider.Telephony;
 // import androidx.sqlite.db.*;
-import androidx.room.RoomSQLiteQuery;
+// import androidx.room.RoomSQLiteQuery;
+import androidx.sqlite.db.SimpleSQLiteQuery;
 
 import androidx.annotation.NonNull;
 
