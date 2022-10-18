@@ -5,8 +5,8 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Delete;
 import androidx.room.RawQuery;
-// import androidx.sqlite.db.SupportSQLiteQuery;
-import androidx.room.RoomSQLiteQuery;
+import androidx.sqlite.db.SupportSQLiteQuery;
+// import androidx.room.RoomSQLiteQuery;
 
 import java.util.List;
 
