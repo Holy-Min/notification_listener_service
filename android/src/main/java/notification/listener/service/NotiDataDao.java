@@ -4,6 +4,8 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Delete;
+import androidx.room.RawQuery;
+import androidx.sqlite.db.SupportSQLiteQuery;
 
 import java.util.List;
 
@@ -59,7 +61,7 @@ public interface NotiDataDao {
 //     void vacuum();
     
     @RawQuery
-    int vacuum(SupportSQLiteQuery supportSQLiteQuery);
+    void vacuum(SupportSQLiteQuery supportSQLiteQuery);
 
 //    public class NotiData {
 //        public String name;
