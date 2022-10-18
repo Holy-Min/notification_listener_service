@@ -55,8 +55,11 @@ public interface NotiDataDao {
     @Query("update NotiData set read = '1' where room = :room and read = '2'")
     void read(String room);
     
-    @Query("vacuum")
-    void vacuum();
+//     @Query("vacuum")
+//     void vacuum();
+    
+    @RawQuery
+    int vacuum(SupportSQLiteQuery supportSQLiteQuery);
 
 //    public class NotiData {
 //        public String name;
