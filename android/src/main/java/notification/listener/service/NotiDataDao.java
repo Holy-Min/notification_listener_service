@@ -56,7 +56,7 @@ public interface NotiDataDao {
     void read(String room);
     
     @Query("vacuum")
-    void vacuum;
+    void vacuum();
 
 //    public class NotiData {
 //        public String name;
