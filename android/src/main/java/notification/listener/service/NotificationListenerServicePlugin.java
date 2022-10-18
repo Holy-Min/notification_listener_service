@@ -533,7 +533,8 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
 
         }else if (call.method.equals("runVacuum")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-            notiDb.NotiDao().vacuum();
+            notiDb.NotiDao().vacuum(SimpleSQLiteQuery("VACUUM"));
+//             notiDb.NotiDao().vacuum();
             result.success(true);
 
         }else {
