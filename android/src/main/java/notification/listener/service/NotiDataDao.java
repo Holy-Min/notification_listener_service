@@ -6,7 +6,6 @@ import androidx.room.Query;
 import androidx.room.Delete;
 import androidx.room.RawQuery;
 import androidx.sqlite.db.SupportSQLiteQuery;
-// import androidx.room.RoomSQLiteQuery;
 
 import java.util.List;
 
@@ -58,16 +57,9 @@ public interface NotiDataDao {
     @Query("update NotiData set read = '1' where room = :room and read = '2'")
     void read(String room);
     
-//     @Query("vacuum")
-//     void vacuum();
     
     @RawQuery
-    int vacuum() {
-        SimpleSQLiteQuery query = new SimpleSQLiteQuery("vacuum");
-        return vacuum(query);
-    };
-//     @RawQuery
-//     int vacuum(SupportSQLiteQuery supportSQLiteQuery);
+    int vacuum(SupportSQLiteQuery supportSQLiteQuery);
 
 //    public class NotiData {
 //        public String name;
