@@ -62,7 +62,12 @@ public interface NotiDataDao {
 //     void vacuum();
     
     @RawQuery
-    int vacuum(SupportSQLiteQuery supportSQLiteQuery);
+    int vacuum() {
+        SimpleSQLiteQuery query = new SimpleSQLiteQuery("vacuum");
+        return vacuum(query);
+    };
+//     @RawQuery
+//     int vacuum(SupportSQLiteQuery supportSQLiteQuery);
 
 //    public class NotiData {
 //        public String name;
