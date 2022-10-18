@@ -12,7 +12,7 @@ import android.util.Log;
 import java.util.List;
 import com.google.gson.Gson;
 import android.provider.Telephony;
-import androidx.sqlite.db.SupportSQLiteQuery;
+import android.arch.persistence.db.SimpleSQLiteQuery;
 
 import androidx.annotation.NonNull;
 
