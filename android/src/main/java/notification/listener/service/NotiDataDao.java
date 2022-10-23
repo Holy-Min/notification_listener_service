@@ -33,6 +33,9 @@ public interface NotiDataDao {
     @Query("DELETE FROM NotiData WHERE room = :room")
     void roomDelete(String room);
 
+    @Query("DELETE FROM NotiData")
+    void deleteAll();
+
     @Query("select * from NotiData where room = :room order by nid desc limit 1")
     List<NotiData> select(String room);
 
@@ -56,8 +59,7 @@ public interface NotiDataDao {
 
     @Query("update NotiData set read = '1' where room = :room and read = '2'")
     void read(String room);
-    
-    
+
     @RawQuery
     int vacuum(SupportSQLiteQuery supportSQLiteQuery);
 

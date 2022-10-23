@@ -21,6 +21,9 @@ public interface RoomDataDao {
     @Query("DELETE FROM RoomData WHERE room = :room")
     void delete(String room);
 
+    @Query("DELETE FROM RoomData")
+    void deleteAll();
+
     @Query("DELETE FROM RoomData WHERE date(vsDate) < date('now', '-3 days')")
     void roomDelete();
 
