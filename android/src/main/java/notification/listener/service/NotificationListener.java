@@ -17,7 +17,6 @@ import android.service.notification.StatusBarNotification;
 import android.widget.Toast;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import android.provider.Telephony;
 
 import androidx.annotation.RequiresApi;
 
@@ -33,7 +32,7 @@ public class NotificationListener extends NotificationListenerService {
 
     NotiDatabase notiDb;
     private Context context;
-    private String defaultSMS = "";
+//    private String defaultSMS = "";
 
     public static boolean runApp = false;
     private final NotiData noti = new NotiData();
@@ -109,8 +108,10 @@ public class NotificationListener extends NotificationListenerService {
                 CharSequence text = extras.getCharSequence(Notification.EXTRA_TEXT);
                 CharSequence subText = extras.getCharSequence(Notification.EXTRA_SUB_TEXT );
 
-                intent.putExtra(NotificationConstants.NOTIFICATION_TITLE, title == null ? null : title.toString());
-                intent.putExtra(NotificationConstants.NOTIFICATION_CONTENT, text == null ? null : text.toString());
+                intent.putExtra(NotificationConstants.NOTIFICATION_TITLE, title == null ? "Error" : title.toString());
+//                intent.putExtra(NotificationConstants.NOTIFICATION_TITLE, title == null ? null : title.toString());
+                intent.putExtra(NotificationConstants.NOTIFICATION_CONTENT, text == null ? "Error" : text.toString());
+//                intent.putExtra(NotificationConstants.NOTIFICATION_CONTENT, text == null ? null : text.toString());
                 intent.putExtra(NotificationConstants.NOTIFICATION_SUBCONTENT, subText == null ? title.toString() : subText.toString());
                 intent.putExtra(NotificationConstants.IS_REMOVED, isRemoved);
                 intent.putExtra(NotificationConstants.HAS_EXTRAS_PICTURE, extras.containsKey(Notification.EXTRA_PICTURE));
@@ -166,8 +167,9 @@ public class NotificationListener extends NotificationListenerService {
 //                     if(packageName.equals(defaultSMS)) {
                     if(packageName.contains("messaging")) {
 //                    if(packageName.contains("messaging") || packageName.contains("messenger")) {
-//                         System.out.println("name 확인 :" + title);
-//                         noti.name = title.toString();
+//                        System.out.println("name 확인 :" + title);
+//                        noti.name = title.toString();
+
                         noti.name = title.toString();
                         noti.text = text.toString();
                         noti.room = room;
