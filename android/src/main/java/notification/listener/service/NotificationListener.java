@@ -108,9 +108,9 @@ public class NotificationListener extends NotificationListenerService {
                 CharSequence text = extras.getCharSequence(Notification.EXTRA_TEXT);
                 CharSequence subText = extras.getCharSequence(Notification.EXTRA_SUB_TEXT );
 
-                intent.putExtra(NotificationConstants.NOTIFICATION_TITLE, title == null ? "Error" : title.toString());
+                intent.putExtra(NotificationConstants.NOTIFICATION_TITLE, title == null ? "null" : title.toString());
 //                intent.putExtra(NotificationConstants.NOTIFICATION_TITLE, title == null ? null : title.toString());
-                intent.putExtra(NotificationConstants.NOTIFICATION_CONTENT, text == null ? "Error" : text.toString());
+                intent.putExtra(NotificationConstants.NOTIFICATION_CONTENT, text == null ? "null" : text.toString());
 //                intent.putExtra(NotificationConstants.NOTIFICATION_CONTENT, text == null ? null : text.toString());
                 intent.putExtra(NotificationConstants.NOTIFICATION_SUBCONTENT, subText == null ? title.toString() : subText.toString());
                 intent.putExtra(NotificationConstants.IS_REMOVED, isRemoved);
