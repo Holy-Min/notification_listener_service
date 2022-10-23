@@ -11,7 +11,6 @@ import android.provider.Settings;
 import android.util.Log;
 import java.util.List;
 import com.google.gson.Gson;
-import android.provider.Telephony;
 import androidx.sqlite.db.SimpleSQLiteQuery;
 
 import androidx.annotation.NonNull;
@@ -81,11 +80,15 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             final String message = call.argument("message");
             final String name = call.argument("name");
             final String room = call.argument("room");
+//            System.out.println("답장하는 채팅방 : " + room);
 //            final int notificationId = call.argument("notificationId");
             final String tag = call.argument("tag");
+//            System.out.println("답장 태그 : " + tag);
             final String packageName = call.argument("packageName");
+//            System.out.println("답장하는 앱 : " + packageName);
             final String str = "1";
             hasRemoved = call.argument("hasRemoved");
+//            System.out.println("알림 제거 확인 : " + hasRemoved);
 
             LocalDateTime now = LocalDateTime.now();
             String formatedNow = now.format(DateTimeFormatter.ofPattern("a hh:mm"));
@@ -95,41 +98,6 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             NotiData noti = new NotiData();
             KakaoData kakaonoti = new KakaoData();
             WhatsappData whatsappnoti = new WhatsappData();
-
-//             if(packageName.equals(defaultSMS)) {
-//            if(packageName.contains("messaging")) {
-//           if(packageName.contains("messaging") || packageName.contains("messenger")) {
-//                noti.name = name;
-//                noti.text = message;
-//                noti.room = room;
-//                noti.date = formatedNow;
-//                noti.vsDate = formatedNow2;
-//                noti.send = 2;
-//                noti.result = str;
-//                noti.app = packageName;
-//                noti.read = "1";
-//            } else if(packageName.equals("com.kakao.talk")) {
-//                kakaonoti.name = name;
-//                kakaonoti.text = message;
-//                kakaonoti.room = room;
-//                kakaonoti.date = formatedNow;
-//                kakaonoti.vsDate = formatedNow2;
-//                kakaonoti.send = 2;
-//                kakaonoti.result = str;
-//                kakaonoti.app = "2";
-//                kakaonoti.read = "1";
-//            } else if(packageName.equals("com.whatsapp")) {
-//                whatsappnoti.name = name;
-//                whatsappnoti.text = message;
-//                whatsappnoti.room = room;
-//                whatsappnoti.date = formatedNow;
-//                whatsappnoti.vsDate = formatedNow2;
-//                whatsappnoti.send = 2;
-//                whatsappnoti.result = str;
-//                whatsappnoti.app = "3";
-//                whatsappnoti.read = "1";
-//            }
-
 
 //            final Action action = ActionCache.cachedNotifications.get(notificationId);
             final Action action = ActionCache.cachedNotifications.get(tag);
@@ -535,7 +503,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
         }else if (call.method.equals("runVacuum")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             notiDb.NotiDao().vacuum(new SimpleSQLiteQuery("VACUUM"));
-//             notiDb.NotiDao().vacuum();
+//            notiDb.NotiDao().vacuum();
             result.success(true);
 
         }else {
