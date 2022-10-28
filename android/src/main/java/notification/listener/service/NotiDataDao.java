@@ -63,6 +63,9 @@ public interface NotiDataDao {
     @RawQuery
     int vacuum(SupportSQLiteQuery supportSQLiteQuery);
 
+    @Query("update NotiData set read = '1' where read = '2'")
+    void allRead();
+
 //    public class NotiData {
 //        public String name;
 //        public String text;

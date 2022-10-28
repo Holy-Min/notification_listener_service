@@ -62,6 +62,9 @@ public interface KakaoDataDao {
     @Query("update KakaoData set read = '1' where room = :room and read = '2'")
     void read(String room);
 
+    @Query("update KakaoData set read = '1' where read = '2'")
+    void allRead();
+
 
 //    public class NotiData {
 //        public String name;

@@ -58,6 +58,9 @@ public interface WhatsappDataDao {
     @Query("update WhatsappData set read = '1' where room = :room and read = '2'")
     void read(String room);
 
+    @Query("update WhatsappData set read = '1' where read = '2'")
+    void allRead();
+
 //    public class NotiData {
 //        public String name;
 //        public String text;

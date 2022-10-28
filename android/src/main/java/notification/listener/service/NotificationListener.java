@@ -54,9 +54,9 @@ public class NotificationListener extends NotificationListenerService {
 
     @RequiresApi(api = VERSION_CODES.KITKAT)
     @Override
-    public void onNotificationRemoved(StatusBarNotification sbn) {
+    public void onNotificationRemoved(StatusBarNotification notification) {
         System.out.println("알림 제거 발생");
-        handleNotification(sbn, true);
+        handleNotification(notification, true);
     }
 
     @RequiresApi(api = VERSION_CODES.KITKAT)

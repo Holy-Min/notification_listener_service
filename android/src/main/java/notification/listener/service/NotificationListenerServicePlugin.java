@@ -506,6 +506,24 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
 //            notiDb.NotiDao().vacuum();
             result.success(true);
 
+        }else if (call.method.equals("allReadMessage")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            notiDb.NotiDao().allRead();
+//            notiDb.NotiDao().vacuum();
+            result.success(true);
+
+        }else if (call.method.equals("allReadKakao")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            notiDb.KakaoDao().allRead();
+//            notiDb.NotiDao().vacuum();
+            result.success(true);
+
+        }else if (call.method.equals("allReadWhatsapp")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            notiDb.WhatsappDao().allRead();
+//            notiDb.NotiDao().vacuum();
+            result.success(true);
+
         }else {
             result.notImplemented();
         }
