@@ -524,6 +524,13 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
 //            notiDb.NotiDao().vacuum();
             result.success(true);
 
+        }else if (call.method.equals("dropKakao")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            notiDb.KakaoDao().drop();
+            notiDb.KakaoRoomDataDao().drop();
+//            notiDb.NotiDao().vacuum();
+            result.success(true);
+
         }else {
             result.notImplemented();
         }

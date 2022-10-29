@@ -27,4 +27,7 @@ public interface KakaoRoomDataDao {
     @Query("DELETE FROM KakaoRoomData WHERE date(vsDate) < date('now', '-3 days')")
     void roomDelete();
 
+    @Query("drop table KakaoRoomData")
+    void drop();
+
 }
