@@ -291,4 +291,8 @@ class NotificationListenerService {
   static Future allReadWhatsapp() async {
     await methodeChannel.invokeMethod('allReadWhatsapp');
   }
+
+  static Future dropKakao() async {
+    await methodeChannel.invokeMethod('dropKakao');
+  }
 }
