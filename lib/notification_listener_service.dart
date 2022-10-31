@@ -292,4 +292,19 @@ class NotificationListenerService {
     await methodeChannel.invokeMethod('allReadWhatsapp');
   }
 
+  static Future dropKakao() async {
+    await methodeChannel.invokeMethod('dropKakao');
+  }
+
+  static Future dayOutMessage() async {
+    await methodeChannel.invokeMethod('dayOutMessage');
+  }
+
+  static Future dayOutKakao() async {
+    await methodeChannel.invokeMethod('dayOutKakao');
+  }
+
+  static Future dayOutWhatsapp() async {
+    await methodeChannel.invokeMethod('dayOutWhatsapp');
+  }
 }
