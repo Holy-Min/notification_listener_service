@@ -65,9 +65,6 @@ public interface KakaoDataDao {
     @Query("update KakaoData set read = '1' where read = '2'")
     void allRead();
 
-    @Query("drop table KakaoData")
-    void drop();
-
 
 //    public class NotiData {
 //        public String name;
