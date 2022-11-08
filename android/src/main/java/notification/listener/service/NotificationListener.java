@@ -112,12 +112,12 @@ public class NotificationListener extends NotificationListenerService {
                 intent.putExtra(NotificationConstants.NOTIFICATION_TITLE, title == null ? null : title.toString());
 //                intent.putExtra(NotificationConstants.NOTIFICATION_CONTENT, text == null ? "null" : text.toString());
                 intent.putExtra(NotificationConstants.NOTIFICATION_CONTENT, text == null ? null : text.toString());
-                intent.putExtra(NotificationConstants.NOTIFICATION_SUBCONTENT, subText == null ? title.toString() : subText.toString());
+                intent.putExtra(NotificationConstants.NOTIFICATION_SUBCONTENT, subText == null && title != null ? title.toString() : subText.toString());
                 intent.putExtra(NotificationConstants.IS_REMOVED, isRemoved);
                 intent.putExtra(NotificationConstants.HAS_EXTRAS_PICTURE, extras.containsKey(Notification.EXTRA_PICTURE));
 
-                System.out.println("제거됨 확인 :" + isRemoved);
-                System.out.println("앱 실행 여부 확인" + runApp);
+//                 System.out.println("제거됨 확인 :" + isRemoved);
+//                 System.out.println("앱 실행 여부 확인" + runApp);
 
                 String room = "";
                 if(subText != null) {
