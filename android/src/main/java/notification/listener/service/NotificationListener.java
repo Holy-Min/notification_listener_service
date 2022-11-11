@@ -192,7 +192,7 @@ public class NotificationListener extends NotificationListenerService {
                         kakaonoti.result = "yet";
                         kakaonoti.app = "2";
                         kakaonoti.read = "2";
-                        kakaonoti.url = "yet"
+                        kakaonoti.url = "yet";
 //                         if(runApp == false)  notiDb.KakaoDao().insert(kakaonoti);
                         if(runApp == false && isRemoved == false)  notiDb.KakaoDao().insert(kakaonoti);
                     } else if(packageName.equals("com.whatsapp")) {
