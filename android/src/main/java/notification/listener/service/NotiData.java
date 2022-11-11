@@ -36,4 +36,7 @@ public class NotiData {
     @ColumnInfo(name = "read")
     public String read;
 
+    @ColumnInfo(name = "url")
+    public String url;
+
 }

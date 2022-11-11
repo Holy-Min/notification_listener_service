@@ -116,8 +116,8 @@ public class NotificationListener extends NotificationListenerService {
                 intent.putExtra(NotificationConstants.IS_REMOVED, isRemoved);
                 intent.putExtra(NotificationConstants.HAS_EXTRAS_PICTURE, extras.containsKey(Notification.EXTRA_PICTURE));
 
-//                 System.out.println("제거됨 확인 :" + isRemoved);
-//                 System.out.println("앱 실행 여부 확인" + runApp);
+//                System.out.println("제거됨 확인 :" + isRemoved);
+//                System.out.println("앱 실행 여부 확인" + runApp);
 
                 String room = "";
                 if(subText != null) {
@@ -179,6 +179,7 @@ public class NotificationListener extends NotificationListenerService {
                         noti.result = "yet";
                         noti.app = packageName;
                         noti.read = "2";
+                        noti.url = "yet";
 //                         if(runApp == false) notiDb.NotiDao().insert(noti);
                         if(runApp == false && isRemoved == false) notiDb.NotiDao().insert(noti);
                     } else if(packageName.equals("com.kakao.talk") && (!title.equals("카카오톡") || !title.equals("KakaoTalk"))) {
@@ -191,6 +192,7 @@ public class NotificationListener extends NotificationListenerService {
                         kakaonoti.result = "yet";
                         kakaonoti.app = "2";
                         kakaonoti.read = "2";
+                        kakaonoti.url = "yet"
 //                         if(runApp == false)  notiDb.KakaoDao().insert(kakaonoti);
                         if(runApp == false && isRemoved == false)  notiDb.KakaoDao().insert(kakaonoti);
                     } else if(packageName.equals("com.whatsapp")) {
@@ -203,6 +205,7 @@ public class NotificationListener extends NotificationListenerService {
                         whatsappnoti.result = "yet";
                         whatsappnoti.app = "3";
                         whatsappnoti.read = "2";
+                        whatsappnoti.url = "yet";
 //                         if(runApp == false) notiDb.WhatsappDao().insert(whatsappnoti);
                         if(runApp == false && isRemoved == false) notiDb.WhatsappDao().insert(whatsappnoti);
                     }

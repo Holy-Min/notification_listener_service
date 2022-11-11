@@ -36,4 +36,7 @@ public class KakaoData {
     @ColumnInfo(name = "read")
     public String read;
 
+    @ColumnInfo(name = "url")
+    public String url;
+
 }

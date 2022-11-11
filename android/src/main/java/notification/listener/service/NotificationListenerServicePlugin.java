@@ -80,15 +80,12 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             final String message = call.argument("message");
             final String name = call.argument("name");
             final String room = call.argument("room");
-//            System.out.println("답장하는 채팅방 : " + room);
 //            final int notificationId = call.argument("notificationId");
             final String tag = call.argument("tag");
-//            System.out.println("답장 태그 : " + tag);
             final String packageName = call.argument("packageName");
-//            System.out.println("답장하는 앱 : " + packageName);
             final String str = "1";
             hasRemoved = call.argument("hasRemoved");
-//            System.out.println("알림 제거 확인 : " + hasRemoved);
+            final String url = "N";
 
             LocalDateTime now = LocalDateTime.now();
             String formatedNow = now.format(DateTimeFormatter.ofPattern("a hh:mm"));
@@ -116,6 +113,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                     noti.result = str;
                     noti.app = packageName;
                     noti.read = "1";
+                    noti.url = url;
 
                     if(hasRemoved == false && noti.app.equals(packageName)) notiDb.NotiDao().insert(noti);
                 } else if(packageName.equals("com.kakao.talk")) {
@@ -128,6 +126,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                     kakaonoti.result = str;
                     kakaonoti.app = "2";
                     kakaonoti.read = "1";
+                    kakaonoti.url = url;
 
                     if(hasRemoved == false && kakaonoti.app.equals("2")) notiDb.KakaoDao().insert(kakaonoti);
                 } else if(packageName.equals("com.whatsapp")) {
@@ -140,6 +139,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                     whatsappnoti.result = str;
                     whatsappnoti.app = "3";
                     whatsappnoti.read = "1";
+                    whatsappnoti.url = url;
 
                     if(hasRemoved == false && whatsappnoti.app.equals("3")) notiDb.WhatsappDao().insert(whatsappnoti);
                 }
@@ -299,6 +299,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             String packageName = call.argument("packageName");
             String str = call.argument("result");
             String read = call.argument("read");
+            String url = call.argument("url");
 
 
             NotiData noti = new NotiData();
@@ -316,6 +317,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 noti.result = str;
                 noti.app = packageName;
                 noti.read = "2";
+                noti.url = url;
 
                 notiDb.NotiDao().insert(noti);
             } else if(packageName.equals("com.kakao.talk")) {
@@ -328,6 +330,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 kakaonoti.result = str;
                 kakaonoti.app = "2";
                 kakaonoti.read = "2";
+                kakaonoti.url = url;
 
                 notiDb.KakaoDao().insert(kakaonoti);
             } else if(packageName.equals("com.whatsapp")) {
@@ -340,6 +343,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 whatsappnoti.result = str;
                 whatsappnoti.app = "3";
                 whatsappnoti.read = "2";
+                whatsappnoti.url = url;
 
                 notiDb.WhatsappDao().insert(whatsappnoti);
             }
@@ -540,6 +544,24 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             notiDb.WhatsappDao().delete();
             notiDb.WhatsappRoomDataDao().roomDelete();
+            result.success(true);
+
+        }else if (call.method.equals("updateMessageUrl")) {
+            String url = call.argument("url");
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            notiDb.NotiDao().updateUrl(url);
+            result.success(true);
+
+        }else if (call.method.equals("updateKakaoUrl")) {
+            String url = call.argument("url");
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            notiDb.KakaoDao().updateUrl(url);
+            result.success(true);
+
+        }else if (call.method.equals("updateWhatsappUrl")) {
+            String url = call.argument("url");
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            notiDb.WhatsappDao().updateUrl(url);
             result.success(true);
 
         }else {

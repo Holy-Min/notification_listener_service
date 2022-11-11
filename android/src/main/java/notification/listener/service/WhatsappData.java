@@ -36,4 +36,7 @@ public class WhatsappData {
     @ColumnInfo(name = "read")
     public String read;
 
+    @ColumnInfo(name = "url")
+    public String url;
+
 }
