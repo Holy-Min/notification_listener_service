@@ -142,6 +142,18 @@ class NotificationListenerService {
     await methodeChannel.invokeMethod('updateWhatsapp', {"result" : result});
   }
 
+  static Future updateMessageUrl(String url) async {
+    await methodeChannel.invokeMethod('updateMessageUrl', {"url" : url});
+  }
+
+  static Future updateKakaoUrl(String url) async {
+    await methodeChannel.invokeMethod('updateKakaoUrl', {"url" : url});
+  }
+
+  static Future updateWhatsappUrl(String url) async {
+    await methodeChannel.invokeMethod('updateWhatsappUrl', {"url" : url});
+  }
+
   static Future countMessage(String roomName) async {
     final content = await methodeChannel.invokeMethod('countMessage', {"room" : roomName});
     return content;
@@ -227,7 +239,7 @@ class NotificationListenerService {
     return content;
   }
 
-  static Future dataInsert(String name, String text, String room, String date, String vsDate, String packageName, String result, String read) async {
+  static Future dataInsert(String name, String text, String room, String date, String vsDate, String packageName, String result, String read, String url) async {
     final content = await methodeChannel.invokeMethod('dataInsert',
         {"name" : name,
           "text" : text,
@@ -236,7 +248,8 @@ class NotificationListenerService {
           "vsDate" : vsDate,
           "packageName" : packageName,
           "result" : result,
-          "read" : read
+          "read" : read,
+          "url" : url,
         });
     // final kakao = content.toString();
     return content;
