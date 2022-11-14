@@ -112,7 +112,8 @@ public class NotificationListener extends NotificationListenerService {
                 intent.putExtra(NotificationConstants.NOTIFICATION_TITLE, title == null ? null : title.toString());
 //                intent.putExtra(NotificationConstants.NOTIFICATION_CONTENT, text == null ? "null" : text.toString());
                 intent.putExtra(NotificationConstants.NOTIFICATION_CONTENT, text == null ? null : text.toString());
-                intent.putExtra(NotificationConstants.NOTIFICATION_SUBCONTENT, subText == null && title != null ? title.toString() : subText.toString());
+                intent.putExtra(NotificationConstants.NOTIFICATION_SUBCONTENT, subText == null ? null : subText.toString());
+//                intent.putExtra(NotificationConstants.NOTIFICATION_SUBCONTENT, subText == null && title != null ? title.toString() : subText.toString());
                 intent.putExtra(NotificationConstants.IS_REMOVED, isRemoved);
                 intent.putExtra(NotificationConstants.HAS_EXTRAS_PICTURE, extras.containsKey(Notification.EXTRA_PICTURE));
 
@@ -122,8 +123,7 @@ public class NotificationListener extends NotificationListenerService {
                 String room = "";
                 if(subText != null) {
                     room = subText.toString();
-                }
-                else {
+                }else if(title != null) {
                     room = title.toString();
                 }
                 LocalDateTime now = LocalDateTime.now();
