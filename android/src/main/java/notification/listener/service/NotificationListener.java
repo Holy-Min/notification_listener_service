@@ -112,7 +112,8 @@ public class NotificationListener extends NotificationListenerService {
                 intent.putExtra(NotificationConstants.NOTIFICATION_TITLE, title == null ? null : title.toString());
 //                intent.putExtra(NotificationConstants.NOTIFICATION_CONTENT, text == null ? "null" : text.toString());
                 intent.putExtra(NotificationConstants.NOTIFICATION_CONTENT, text == null ? null : text.toString());
-                intent.putExtra(NotificationConstants.NOTIFICATION_SUBCONTENT, subText == null ? title.toString() : subText.toString());
+//                 intent.putExtra(NotificationConstants.NOTIFICATION_SUBCONTENT, subText == null ? title.toString() : subText.toString());
+                intent.putExtra(NotificationConstants.NOTIFICATION_SUBCONTENT, subText == null ? (title == null ? "Send" : title.toString()) : subText.toString());
 //                intent.putExtra(NotificationConstants.NOTIFICATION_SUBCONTENT, subText == null && title != null ? title.toString() : subText.toString());
                 intent.putExtra(NotificationConstants.IS_REMOVED, isRemoved);
                 intent.putExtra(NotificationConstants.HAS_EXTRAS_PICTURE, extras.containsKey(Notification.EXTRA_PICTURE));
