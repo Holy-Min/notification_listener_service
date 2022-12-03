@@ -53,7 +53,7 @@ public interface KakaoDataDao {
     @Query("select count(*) from KakaoData")
     int total();
 
-    @Query("select count(*) from KakaoData where result = '2'")
+    @Query("select count(*) from KakaoData where result in ('2', '4', '8', '9')")
     int resultCount();
 
     @Query("select text from KakaoData where room = :room order by nid desc limit 1")
