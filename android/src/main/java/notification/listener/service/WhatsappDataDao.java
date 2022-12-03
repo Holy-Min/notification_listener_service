@@ -49,7 +49,7 @@ public interface WhatsappDataDao {
     @Query("select count(*) from WhatsappData")
     int total();
 
-    @Query("select count(*) from WhatsappData where result = '2'")
+    @Query("select count(*) from WhatsappData where result in ('2', '4', '8', '9')")
     int resultCount();
 
     @Query("select text from WhatsappData where room = :room order by nid desc limit 1")
