@@ -51,7 +51,7 @@ public interface NotiDataDao {
     @Query("select count(*) from NotiData")
     int total();
 
-    @Query("select count(*) from NotiData where result = '2'")
+    @Query("select count(*) from NotiData where result in ('2', '4', '8', '9')")
     int resultCount();
 
     @Query("select text from NotiData where room = :room order by nid desc limit 1")
