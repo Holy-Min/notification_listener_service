@@ -125,7 +125,11 @@ public class NotificationListener extends NotificationListenerService {
                 if(subText != null) {
                     room = subText.toString();
                 } else  {
-                    room = title.toString();
+                    if(title != null) {
+                        room = title.toString();
+                    } else {
+                        room = "UnKnown";
+                    }
                 }
                 LocalDateTime now = LocalDateTime.now();
                 String formatedNow = now.format(DateTimeFormatter.ofPattern("a hh:mm"));
