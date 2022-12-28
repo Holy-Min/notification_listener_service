@@ -27,11 +27,14 @@ public interface NotiDataDao {
     @Query("DELETE FROM NotiData WHERE date(vsDate) < date('now', '-3 days')")
     void delete();
 
-    @Query("update NotiData set result = :result where nid = (select nid from (select * from NotiData where result = 'yet' limit 1))")
-    void update(String result);
+    @Query("update NotiData set result = :result, url = :url where nid = (select nid from (select * from NotiData where url = 'yet' and result = 'yet' limit 1))")
+    void update(String result, String url);
 
-    @Query("update NotiData set url = :url where nid = (select nid from (select * from NotiData where url = 'yet' limit 1))")
-    void updateUrl(String url);
+//    @Query("update NotiData set result = :result where nid = (select nid from (select * from NotiData where result = 'yet' limit 1))")
+//    void update(String result);
+//
+//    @Query("update NotiData set url = :url where nid = (select nid from (select * from NotiData where url = 'yet' limit 1))")
+//    void updateUrl(String url);
 
     @Query("DELETE FROM NotiData WHERE room = :room")
     void roomDelete(String room);

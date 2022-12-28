@@ -25,11 +25,14 @@ public interface WhatsappDataDao {
     @Query("DELETE FROM WhatsappData WHERE date(vsDate) < date('now', '-3 days')")
     void delete();
 
-    @Query("update WhatsappData set result = :result where nid = (select nid from (select * from WhatsappData where result = 'yet' limit 1))")
-    void update(String result);
+    @Query("update WhatsappData set result = :result, url = :url where nid = (select nid from (select * from WhatsappData where url = 'yet' and result = 'yet' limit 1))")
+    void update(String result, String url);
 
-    @Query("update WhatsappData set url = :url where nid = (select nid from (select * from WhatsappData where url = 'yet' limit 1))")
-    void updateUrl(String url);
+//    @Query("update WhatsappData set result = :result where nid = (select nid from (select * from WhatsappData where result = 'yet' limit 1))")
+//    void update(String result);
+//
+//    @Query("update WhatsappData set url = :url where nid = (select nid from (select * from WhatsappData where url = 'yet' limit 1))")
+//    void updateUrl(String url);
 
     @Query("DELETE FROM WhatsappData WHERE room = :room")
     void roomDelete(String room);

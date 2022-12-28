@@ -24,7 +24,7 @@ public interface WhatsappRoomDataDao {
     @Query("DELETE FROM WhatsappRoomData")
     void deleteAll();
 
-    @Query("DELETE FROM WhatsappRoomData WHERE date(vsDate) < date('now', '-3 days')")
+    @Query("delete from WhatsappRoomData where (select count(*) from WhatsappData) = 0")
     void roomDelete();
 
 }

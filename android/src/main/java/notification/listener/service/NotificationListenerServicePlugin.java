@@ -271,20 +271,23 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
 
         }else if (call.method.equals("updateMessage")) {
             String str = call.argument("result");
+            String url = call.argument("url");
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-            notiDb.NotiDao().update(str);
+            notiDb.NotiDao().update(str, url);
             result.success(true);
 
         }else if (call.method.equals("updateKakao")) {
             String str = call.argument("result");
+            String url = call.argument("url");
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-            notiDb.KakaoDao().update(str);
+            notiDb.KakaoDao().update(str, url);
             result.success(true);
 
         }else if (call.method.equals("updateWhatsapp")) {
             String str = call.argument("result");
+            String url = call.argument("url");
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-            notiDb.WhatsappDao().update(str);
+            notiDb.WhatsappDao().update(str, url);
             result.success(true);
 
         }else if (call.method.equals("dataInsert")) {
@@ -546,23 +549,23 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             notiDb.WhatsappRoomDataDao().roomDelete();
             result.success(true);
 
-        }else if (call.method.equals("updateMessageUrl")) {
-            String url = call.argument("url");
-            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-            notiDb.NotiDao().updateUrl(url);
-            result.success(true);
-
-        }else if (call.method.equals("updateKakaoUrl")) {
-            String url = call.argument("url");
-            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-            notiDb.KakaoDao().updateUrl(url);
-            result.success(true);
-
-        }else if (call.method.equals("updateWhatsappUrl")) {
-            String url = call.argument("url");
-            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-            notiDb.WhatsappDao().updateUrl(url);
-            result.success(true);
+//        }else if (call.method.equals("updateMessageUrl")) {
+//            String url = call.argument("url");
+//            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+//            notiDb.NotiDao().updateUrl(url);
+//            result.success(true);
+//
+//        }else if (call.method.equals("updateKakaoUrl")) {
+//            String url = call.argument("url");
+//            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+//            notiDb.KakaoDao().updateUrl(url);
+//            result.success(true);
+//
+//        }else if (call.method.equals("updateWhatsappUrl")) {
+//            String url = call.argument("url");
+//            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+//            notiDb.WhatsappDao().updateUrl(url);
+//            result.success(true);
 
         }else {
             result.notImplemented();
