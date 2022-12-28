@@ -130,29 +130,29 @@ class NotificationListenerService {
     return content;
   }
 
-  static Future updateMessage(String result) async {
-    await methodeChannel.invokeMethod('updateMessage', {"result" : result});
+  static Future updateMessage(String result, String url) async {
+    await methodeChannel.invokeMethod('updateMessage', {"result" : result, "url" : url});
   }
 
-  static Future updateKakao(String result) async {
-    await methodeChannel.invokeMethod('updateKakao', {"result" : result});
+  static Future updateKakao(String result, String url) async {
+    await methodeChannel.invokeMethod('updateKakao', {"result" : result, "url" : url});
   }
 
-  static Future updateWhatsapp(String result) async {
-    await methodeChannel.invokeMethod('updateWhatsapp', {"result" : result});
+  static Future updateWhatsapp(String result, String url) async {
+    await methodeChannel.invokeMethod('updateWhatsapp', {"result" : result, "url" : url});
   }
 
-  static Future updateMessageUrl(String url) async {
-    await methodeChannel.invokeMethod('updateMessageUrl', {"url" : url});
-  }
-
-  static Future updateKakaoUrl(String url) async {
-    await methodeChannel.invokeMethod('updateKakaoUrl', {"url" : url});
-  }
-
-  static Future updateWhatsappUrl(String url) async {
-    await methodeChannel.invokeMethod('updateWhatsappUrl', {"url" : url});
-  }
+  // static Future updateMessageUrl(String url) async {
+  //   await methodeChannel.invokeMethod('updateMessageUrl', {"url" : url});
+  // }
+  //
+  // static Future updateKakaoUrl(String url) async {
+  //   await methodeChannel.invokeMethod('updateKakaoUrl', {"url" : url});
+  // }
+  //
+  // static Future updateWhatsappUrl(String url) async {
+  //   await methodeChannel.invokeMethod('updateWhatsappUrl', {"url" : url});
+  // }
 
   static Future countMessage(String roomName) async {
     final content = await methodeChannel.invokeMethod('countMessage', {"room" : roomName});
