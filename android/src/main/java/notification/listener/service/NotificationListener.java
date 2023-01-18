@@ -83,7 +83,11 @@ public class NotificationListener extends NotificationListenerService {
         if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.contains("messaging") || packageName.contains("messenger")) {
 //            System.out.println("앱 실행 여부 : " + runApp);
             Bundle extras = notification.getNotification().extras;
-            byte[] drawable = getSmallIcon(packageName);
+//            try{
+//                byte[] drawable = getSmallIcon(packageName);
+//            } catch (Exception e) {
+//                System.out.println("에러 확인" + e);
+//            }
 //             System.out.println("번들 확인 :" + extras);
 
             Action action = NotificationUtils.getQuickReplyAction(notification.getNotification(), packageName);
@@ -101,7 +105,11 @@ public class NotificationListener extends NotificationListenerService {
                 cachedNotifications.put(notification.getTag(), action);
             }
 
-            intent.putExtra(NotificationConstants.NOTIFICATIONS_ICON, drawable);
+//            try{
+//                intent.putExtra(NotificationConstants.NOTIFICATIONS_ICON, drawable);
+//            } catch (Exception e) {
+//                System.out.println("에러 확인2" + e);
+//            }
 
             if (extras != null) {
                 CharSequence title = extras.getCharSequence(Notification.EXTRA_TITLE);
@@ -236,17 +244,17 @@ public class NotificationListener extends NotificationListenerService {
     }
 
 
-    public byte[] getSmallIcon(String packageName) {
-        try {
-            PackageManager manager = getBaseContext().getPackageManager();
-            Drawable icon = manager.getApplicationIcon(packageName);
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            getBitmapFromDrawable(icon).compress(Bitmap.CompressFormat.PNG, 100, stream);
-            return stream.toByteArray();
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
+//    public byte[] getSmallIcon(String packageName) {
+//        try {
+//            PackageManager manager = getBaseContext().getPackageManager();
+//            Drawable icon = manager.getApplicationIcon(packageName);
+//            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+//            getBitmapFromDrawable(icon).compress(Bitmap.CompressFormat.PNG, 100, stream);
+//            return stream.toByteArray();
+//        } catch (PackageManager.NameNotFoundException e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
 
 }
