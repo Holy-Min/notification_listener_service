@@ -24,7 +24,10 @@ public interface KakaoRoomDataDao {
     @Query("DELETE FROM KakaoRoomData")
     void deleteAll();
 
-    @Query("delete from KakaoRoomData where (select count(*) from KakaoData) = 0")
-    void roomDelete();
+    @Query("delete from KakaoRoomData where (select count(*) from KakaoData where room = :room and room = :room) = 0")
+    void roomDelete(String room);
+
+    @Query("SELECT room FROM KakaoRoomData")
+    List<String> checkRoom();
 
 }

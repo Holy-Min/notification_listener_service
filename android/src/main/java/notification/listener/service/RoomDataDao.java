@@ -24,7 +24,10 @@ public interface RoomDataDao {
     @Query("DELETE FROM RoomData")
     void deleteAll();
 
-    @Query("delete from roomdata where (select count(*) from NotiData) = 0")
-    void roomDelete();
+    @Query("delete from roomdata where (select count(*) from NotiData where room = :room) = 0 and room = :room")
+    void roomDelete(String room);
+
+    @Query("SELECT room FROM roomData")
+    List<String> checkRoom();
 
 }

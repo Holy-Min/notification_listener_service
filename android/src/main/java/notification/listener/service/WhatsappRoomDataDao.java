@@ -24,7 +24,10 @@ public interface WhatsappRoomDataDao {
     @Query("DELETE FROM WhatsappRoomData")
     void deleteAll();
 
-    @Query("delete from WhatsappRoomData where (select count(*) from WhatsappData) = 0")
-    void roomDelete();
+    @Query("delete from WhatsappRoomData where (select count(*) from WhatsappData where room = :room and room = :room) = 0")
+    void roomDelete(String room);
+
+    @Query("SELECT room FROM WhatsappRoomData")
+    List<String> checkRoom();
 
 }

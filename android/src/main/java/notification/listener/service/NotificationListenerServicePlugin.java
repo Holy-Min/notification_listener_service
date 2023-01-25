@@ -548,17 +548,28 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
 
         }else if (call.method.equals("dayOutMessageRoom")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-            notiDb.RoomDataDao().roomDelete();
+            List<String> list = notiDb.RoomDataDao().checkRoom();
+            System.out.println("채팅방 리스트 확인 : " + list);
+            for(int i = 0; i < list.length; i++) {
+                System.out.println("채팅방 확인 : " + list[i]);
+                notiDb.RoomDataDao().roomDelete(list[i]);
+            }
             result.success(true);
 
         }else if (call.method.equals("dayOutKakaoRoom")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-            notiDb.KakaoRoomDataDao().roomDelete();
+            List<String> list = notiDb.KakaoRoomDataDao().checkRoom();
+            for(int i = 0; i < list.length; i++) {
+                notiDb.KakaoRoomDataDao().roomDelete(list[i]);
+            }
             result.success(true);
 
         }else if (call.method.equals("dayOutWhatsappRoom")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-            notiDb.WhatsappRoomDataDao().roomDelete();
+            List<String> list = notiDb.WhatsappRoomDataDao().checkRoom();
+            for(int i = 0; i < list.length; i++) {
+                notiDb.WhatsappRoomDataDao().roomDelete(list[i]);
+            }
             result.success(true);
 
         }else {
