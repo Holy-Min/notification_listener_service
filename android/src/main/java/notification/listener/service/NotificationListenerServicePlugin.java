@@ -9,7 +9,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.provider.Settings;
 import android.util.Log;
-import java.util.List;
+import java.util.*;
 import com.google.gson.Gson;
 import androidx.sqlite.db.SimpleSQLiteQuery;
 
@@ -548,27 +548,25 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
 
         }else if (call.method.equals("dayOutMessageRoom")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-            List<String> list = notiDb.RoomDataDao().checkRoom();
-            System.out.println("채팅방 리스트 확인 : " + list);
-            for(int i = 0; i < list.length; i++) {
-                System.out.println("채팅방 확인 : " + list[i]);
-                notiDb.RoomDataDao().roomDelete(list[i]);
+            List<String> roomList = notiDb.RoomDataDao().checkRoom();
+            for(int i = 0; i < roomList.size(); i++) {
+                notiDb.RoomDataDao().roomDelete(roomList.get(i));
             }
             result.success(true);
 
         }else if (call.method.equals("dayOutKakaoRoom")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-            List<String> list = notiDb.KakaoRoomDataDao().checkRoom();
-            for(int i = 0; i < list.length; i++) {
-                notiDb.KakaoRoomDataDao().roomDelete(list[i]);
+            List<String> roomList = notiDb.KakaoRoomDataDao().checkRoom();
+            for(int i = 0; i < roomList.size(); i++) {
+                notiDb.KakaoRoomDataDao().roomDelete(roomList.get(i));
             }
             result.success(true);
 
         }else if (call.method.equals("dayOutWhatsappRoom")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-            List<String> list = notiDb.WhatsappRoomDataDao().checkRoom();
-            for(int i = 0; i < list.length; i++) {
-                notiDb.WhatsappRoomDataDao().roomDelete(list[i]);
+            List<String> roomList = notiDb.WhatsappRoomDataDao().checkRoom();
+            for(int i = 0; i < roomList.size(); i++) {
+                notiDb.WhatsappRoomDataDao().roomDelete(roomList.get(i));
             }
             result.success(true);
 
