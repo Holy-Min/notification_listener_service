@@ -534,38 +534,32 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
         }else if (call.method.equals("dayOutMessage")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             notiDb.NotiDao().delete();
-            notiDb.RoomDataDao().roomDelete();
             result.success(true);
 
         }else if (call.method.equals("dayOutKakao")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             notiDb.KakaoDao().delete();
-            notiDb.KakaoRoomDataDao().roomDelete();
             result.success(true);
 
         }else if (call.method.equals("dayOutWhatsapp")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             notiDb.WhatsappDao().delete();
-            notiDb.WhatsappRoomDataDao().roomDelete();
             result.success(true);
 
-//        }else if (call.method.equals("updateMessageUrl")) {
-//            String url = call.argument("url");
-//            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-//            notiDb.NotiDao().updateUrl(url);
-//            result.success(true);
-//
-//        }else if (call.method.equals("updateKakaoUrl")) {
-//            String url = call.argument("url");
-//            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-//            notiDb.KakaoDao().updateUrl(url);
-//            result.success(true);
-//
-//        }else if (call.method.equals("updateWhatsappUrl")) {
-//            String url = call.argument("url");
-//            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-//            notiDb.WhatsappDao().updateUrl(url);
-//            result.success(true);
+        }else if (call.method.equals("dayOutMessageRoom")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            notiDb.RoomDataDao().roomDelete();
+            result.success(true);
+
+        }else if (call.method.equals("dayOutKakaoRoom")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            notiDb.KakaoRoomDataDao().roomDelete();
+            result.success(true);
+
+        }else if (call.method.equals("dayOutWhatsappRoom")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            notiDb.WhatsappRoomDataDao().roomDelete();
+            result.success(true);
 
         }else {
             result.notImplemented();
