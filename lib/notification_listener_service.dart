@@ -320,4 +320,16 @@ class NotificationListenerService {
   static Future dayOutWhatsapp() async {
     await methodeChannel.invokeMethod('dayOutWhatsapp');
   }
+
+  static Future dayOutMessageRoom() async {
+    await methodeChannel.invokeMethod('dayOutMessageRoom');
+  }
+
+  static Future dayOutKakaoRoom() async {
+    await methodeChannel.invokeMethod('dayOutKakaoRoom');
+  }
+
+  static Future dayOutWhatsappRoom() async {
+    await methodeChannel.invokeMethod('dayOutWhatsappRoom');
+  }
 }
