@@ -24,7 +24,7 @@ public interface NotiDataDao {
     @Insert
     void insert(NotiData noti);
 
-    @Query("DELETE FROM NotiData WHERE date(vsDate) < date('now', '-3 days')")
+    @Query("DELETE FROM NotiData WHERE date(vsDate) < date('now', '-3 days') AND room != "예시"")
     void delete();
 
     @Query("update NotiData set result = :result, url = :url where nid = (select nid from (select * from NotiData where url = 'yet' and result = 'yet' limit 1))")
