@@ -570,6 +570,15 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             }
             result.success(true);
 
+        }else if (call.method.equals("examRoomInsert")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            RoomData roomData = new RoomData();
+            roomData.room = "예시";
+            roomData.app = "pillsang";
+            roomData.vsDate = "2999-01-01";
+            notiDb.RoomDataDao().insert(roomData);
+            result.success(true);
+
         }else {
             result.notImplemented();
         }
