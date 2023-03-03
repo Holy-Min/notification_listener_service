@@ -333,7 +333,7 @@ class NotificationListenerService {
     await methodeChannel.invokeMethod('dayOutWhatsappRoom');
   }
 
-  static Future examRoomInsert() async {
-    await methodeChannel.invokeMethod('examRoomInsert');
+  static Future examRoomInsert(String app) async {
+    await methodeChannel.invokeMethod('examRoomInsert', {"app" : app});
   }
 }
