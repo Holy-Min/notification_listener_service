@@ -364,7 +364,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
         }else if (call.method.equals("setTrue")) {
             NotificationListener nl = new NotificationListener();
             nl.setRunAppTrue();
-            result.success(false);
+            result.success(true);
 
         }else if (call.method.equals("deleteMessage")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
