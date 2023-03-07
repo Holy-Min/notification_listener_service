@@ -41,11 +41,9 @@ public class NotificationListener extends NotificationListenerService {
 
     public void setRunAppFalse() {
         runApp = false;
-        return runApp;
     }
     public void setRunAppTrue() {
         runApp = true;
-        return runApp;
     }
 
     @RequiresApi(api = VERSION_CODES.KITKAT)
