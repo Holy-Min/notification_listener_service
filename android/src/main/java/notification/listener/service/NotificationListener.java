@@ -127,7 +127,7 @@ public class NotificationListener extends NotificationListenerService {
                 intent.putExtra(NotificationConstants.HAS_EXTRAS_PICTURE, extras.containsKey(Notification.EXTRA_PICTURE));
 
 //                System.out.println("제거됨 확인 :" + isRemoved);
-//                System.out.println("앱 실행 여부 확인" + runApp);
+               System.out.println("앱 실행 여부 확인" + runApp);
 
                 String room = "";
                 if(subText != null) {
