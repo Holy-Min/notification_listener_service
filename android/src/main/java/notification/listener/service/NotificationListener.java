@@ -229,10 +229,11 @@ public class NotificationListener extends NotificationListenerService {
                         whatsappnoti.url = "yet";
 //                         if(runApp == false) notiDb.WhatsappDao().insert(whatsappnoti);
 //                         notiDb.WhatsappDao().insert(whatsappnoti);
-                        if(isRemoved == false) {
+//                         if(isRemoved == false) notiDb.WhatsappDao().insert(whatsappnoti);
+                        
+                        if(runApp == false && isRemoved == false) {
                             notiDb.WhatsappDao().insert(whatsappnoti);
                         }
-//                         if(runApp == false && isRemoved == false) notiDb.WhatsappDao().insert(whatsappnoti);
                     }
 
 //                     System.out.println("노티값 확인 : " + noti.text);
