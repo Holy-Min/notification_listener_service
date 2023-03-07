@@ -257,12 +257,11 @@ class NotificationListenerService {
 
   static Future setRunAppFalse() async {
     await methodeChannel.invokeMethod('setFalse');
-    // final kakao = content.toString();
+    print('함수 실행 끝');
   }
 
   static Future setRunAppTrue() async {
     await methodeChannel.invokeMethod('setTrue');
-    // final kakao = content.toString();
   }
 
   static Future deleteMessage() async {
