@@ -257,7 +257,6 @@ class NotificationListenerService {
 
   static Future setRunAppFalse() async {
     await methodeChannel.invokeMethod('setFalse');
-    print('함수 실행 끝');
   }
 
   static Future setRunAppTrue() async {
