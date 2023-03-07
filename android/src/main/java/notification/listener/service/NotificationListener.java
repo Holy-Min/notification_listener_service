@@ -194,7 +194,8 @@ public class NotificationListener extends NotificationListenerService {
                         noti.read = "2";
                         noti.url = "yet";
 //                         if(runApp == false) notiDb.NotiDao().insert(noti);
-                        notiDb.NotiDao().insert(noti);
+//                         notiDb.NotiDao().insert(noti);
+                        if(isRemoved == false) notiDb.NotiDao().insert(noti);
 //                         if(runApp == false && isRemoved == false) notiDb.NotiDao().insert(noti);
                     } else if(packageName.equals("com.kakao.talk") && (!title.equals("카카오톡") || !title.equals("KakaoTalk"))) {
                         kakaonoti.name = title.toString();
@@ -208,7 +209,8 @@ public class NotificationListener extends NotificationListenerService {
                         kakaonoti.read = "2";
                         kakaonoti.url = "yet";
 //                         if(runApp == false)  notiDb.KakaoDao().insert(kakaonoti);
-                        notiDb.KakaoDao().insert(kakaonoti);
+//                         notiDb.KakaoDao().insert(kakaonoti);
+                        if(isRemoved == false) notiDb.KakaoDao().insert(kakaonoti);
 //                         if(runApp == false && isRemoved == false)  notiDb.KakaoDao().insert(kakaonoti);
                     } else if(packageName.equals("com.whatsapp")) {
                         whatsappnoti.name = title.toString();
@@ -222,7 +224,8 @@ public class NotificationListener extends NotificationListenerService {
                         whatsappnoti.read = "2";
                         whatsappnoti.url = "yet";
 //                         if(runApp == false) notiDb.WhatsappDao().insert(whatsappnoti);
-                        notiDb.WhatsappDao().insert(whatsappnoti);
+//                         notiDb.WhatsappDao().insert(whatsappnoti);
+                        if(isRemoved == false) notiDb.WhatsappDao().insert(whatsappnoti);
 //                         if(runApp == false && isRemoved == false) notiDb.WhatsappDao().insert(whatsappnoti);
                     }
 
