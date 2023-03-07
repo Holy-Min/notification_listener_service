@@ -193,8 +193,8 @@ public class NotificationListener extends NotificationListenerService {
                         noti.app = packageName;
                         noti.read = "2";
                         noti.url = "yet";
-                        if(runApp == false) notiDb.NotiDao().insert(noti);
-//                         if(runApp == false && isRemoved == false) notiDb.NotiDao().insert(noti);
+//                         if(runApp == false) notiDb.NotiDao().insert(noti);
+                        if(runApp == false && isRemoved == false) notiDb.NotiDao().insert(noti);
                     } else if(packageName.equals("com.kakao.talk") && (!title.equals("카카오톡") || !title.equals("KakaoTalk"))) {
                         kakaonoti.name = title.toString();
                         kakaonoti.text = text.toString();
