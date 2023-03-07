@@ -359,11 +359,13 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
         }else if (call.method.equals("setFalse")) {
             NotificationListener nl = new NotificationListener();
             nl.setRunAppFalse();
+            System.out.println("앱 실행 변수 확인" + nl.runApp);
             result.success(true);
 
         }else if (call.method.equals("setTrue")) {
             NotificationListener nl = new NotificationListener();
             nl.setRunAppTrue();
+            System.out.println("앱 실행 변수 확인" + nl.runApp);
             result.success(true);
 
         }else if (call.method.equals("deleteMessage")) {
