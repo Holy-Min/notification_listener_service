@@ -40,10 +40,10 @@ public class NotificationListener extends NotificationListenerService {
     private final WhatsappData whatsappnoti = new WhatsappData();
 
     public void setRunAppFalse() {
-        runApp = false;
+        return runApp = false;
     }
     public void setRunAppTrue() {
-        runApp = true;
+        return runApp = true;
     }
 
     @RequiresApi(api = VERSION_CODES.KITKAT)
