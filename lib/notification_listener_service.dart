@@ -334,4 +334,16 @@ class NotificationListenerService {
   static Future examRoomInsert(String app) async {
     await methodeChannel.invokeMethod('examRoomInsert', {"app" : app});
   }
+
+  static Future updateMessageRoom(String room) async {
+    await methodeChannel.invokeMethod('updateMessageRoom', {"room" : room});
+  }
+
+  static Future updateKakaoRoom(String room) async {
+    await methodeChannel.invokeMethod('updateKakaoRoom', {"room" : room});
+  }
+
+  static Future updateWhatsappRoom(String room) async {
+    await methodeChannel.invokeMethod('updateWhatsappRoom', {"room" : room});
+  }
 }
