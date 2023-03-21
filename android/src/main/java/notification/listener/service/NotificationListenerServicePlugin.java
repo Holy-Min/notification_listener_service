@@ -580,6 +580,24 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             notiDb.RoomDataDao().insert(roomData);
             result.success(true);
 
+        }else if (call.method.equals("updateMessageRoom")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            String room = call.argument("room");
+            notiDb.RoomDataDao().update(room);
+            result.success(true);
+
+        }else if (call.method.equals("updateKakaoRoom")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            String room = call.argument("room");
+            notiDb.RoomDataDao().update(room);
+            result.success(true);
+
+        }else if (call.method.equals("updateWhatsappRoom")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            String room = call.argument("room");
+            notiDb.RoomDataDao().update(room);
+            result.success(true);
+
         }else {
             result.notImplemented();
         }

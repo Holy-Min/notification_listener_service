@@ -15,6 +15,9 @@ public class KakaoRoomData {
     @ColumnInfo(name = "vsDate")
     public String vsDate;
 
+    @ColumnInfo(name = "isSafe")
+    public int isSafe;
+
 //    public RoomData(String room) {
 //        this.room = room;
 //    }

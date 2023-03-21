@@ -30,4 +30,7 @@ public interface KakaoRoomDataDao {
     @Query("SELECT room FROM KakaoRoomData")
     List<String> checkRoom();
 
+    @Query("update KakaoRoomData set isSafe = 2 where room = :room")
+    void update(String room);
+
 }

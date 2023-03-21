@@ -30,4 +30,7 @@ public interface RoomDataDao {
     @Query("SELECT room FROM roomData")
     List<String> checkRoom();
 
+    @Query("update RoomData set isSafe = 2 where room = :room")
+    void update(String room);
+
 }

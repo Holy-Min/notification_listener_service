@@ -55,7 +55,7 @@ public class NotificationListener extends NotificationListenerService {
     @RequiresApi(api = VERSION_CODES.KITKAT)
     @Override
     public void onNotificationRemoved(StatusBarNotification notification) {
-        System.out.println("알림 제거 발생");
+//        System.out.println("알림 제거 발생");
         handleNotification(notification, true);
     }
 
@@ -63,7 +63,7 @@ public class NotificationListener extends NotificationListenerService {
     private void handleNotification(StatusBarNotification notification, boolean isRemoved) {
         String packageName = notification.getPackageName();
         String tag = notification.getTag();
-        System.out.println("앱 확인" + packageName);
+//        System.out.println("앱 확인" + packageName);
 //         try {
 //             return defaultSMS = Telephony.Sms.getDefaultSmsPackage(context).toString();
 //         } catch (Exception e) {
@@ -157,6 +157,7 @@ public class NotificationListener extends NotificationListenerService {
                             roomData.room = room;
                             roomData.app = packageName;
                             roomData.vsDate = formatedNow2;
+                            roomData.isSafe = 1;
                             if(isRemoved == false) notiDb.RoomDataDao().insert(roomData);
                         }
                     } else if(packageName.equals("com.kakao.talk") && (!title.equals("카카오톡") || !title.equals("KakaoTalk"))) {
@@ -164,6 +165,7 @@ public class NotificationListener extends NotificationListenerService {
                             KakaoRoomData kakaoroomData = new KakaoRoomData();
                             kakaoroomData.room = room;
                             kakaoroomData.vsDate = formatedNow2;
+                            kakaoroomData.isSafe = 1;
                             if(isRemoved == false) notiDb.KakaoRoomDataDao().insert(kakaoroomData);
                         }
                     } else if(packageName.equals("com.whatsapp")) {
@@ -171,6 +173,7 @@ public class NotificationListener extends NotificationListenerService {
                             WhatsappRoomData whatsapproomData = new WhatsappRoomData();
                             whatsapproomData.room = room;
                             whatsapproomData.vsDate = formatedNow2;
+                            whatsapproomData.isSafe = 1;
                             if(isRemoved == false) notiDb.WhatsappRoomDataDao().insert(whatsapproomData);
                         }
                     }
