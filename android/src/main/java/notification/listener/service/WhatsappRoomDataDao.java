@@ -30,5 +30,8 @@ public interface WhatsappRoomDataDao {
 
     @Query("SELECT room FROM WhatsappRoomData")
     List<String> checkRoom();
+    
+    @Query("update WhatsappRoomData set isSafe = 2 where room = :room")
+    void update(String room);
 
 }
