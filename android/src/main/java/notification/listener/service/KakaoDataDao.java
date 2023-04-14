@@ -49,6 +49,9 @@ public interface KakaoDataDao {
 
     @Query("SELECT * FROM KakaoData WHERE result = 'yet'")
     List<KakaoData> undetectedSelect();
+    
+    @Query("SELECT * FROM KakaoData WHERE result = 'yet' order by nid desc limit 1")
+    List<NotiData> lastOneSelect();
 
     @Query("select count(*) from KakaoData where room = :room and read = '2'")
     int roomCount(String room);
