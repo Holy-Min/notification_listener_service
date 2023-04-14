@@ -127,7 +127,7 @@ public class NotificationListener extends NotificationListenerService {
                 intent.putExtra(NotificationConstants.HAS_EXTRAS_PICTURE, extras.containsKey(Notification.EXTRA_PICTURE));
 
 //                System.out.println("제거됨 확인 :" + isRemoved);
-               System.out.println("앱 실행 여부 확인" + runApp);
+//                System.out.println("앱 실행 여부 확인" + runApp);
 
                 String room = "";
                 if(subText != null) {
@@ -198,10 +198,10 @@ public class NotificationListener extends NotificationListenerService {
                         noti.url = "yet";
 //                         if(runApp == false) notiDb.NotiDao().insert(noti);
 //                         notiDb.NotiDao().insert(noti);
-//                         if(isRemoved == false) notiDb.NotiDao().insert(noti);
-                        if(runApp == false && isRemoved == false) { 
-                            notiDb.NotiDao().insert(noti);
-                        }
+                        if(isRemoved == false) notiDb.NotiDao().insert(noti);
+//                         if(runApp == false && isRemoved == false) { 
+//                             notiDb.NotiDao().insert(noti);
+//                         }
                     } else if(packageName.equals("com.kakao.talk") && (!title.equals("카카오톡") || !title.equals("KakaoTalk"))) {
                         kakaonoti.name = title.toString();
                         kakaonoti.text = text.toString();
@@ -215,10 +215,10 @@ public class NotificationListener extends NotificationListenerService {
                         kakaonoti.url = "yet";
 //                         if(runApp == false)  notiDb.KakaoDao().insert(kakaonoti);
 //                         notiDb.KakaoDao().insert(kakaonoti);
-//                         if(isRemoved == false) notiDb.KakaoDao().insert(kakaonoti);
-                        if(runApp == false && isRemoved == false) { 
-                            notiDb.KakaoDao().insert(kakaonoti);
-                        }
+                        if(isRemoved == false) notiDb.KakaoDao().insert(kakaonoti);
+//                         if(runApp == false && isRemoved == false) { 
+//                             notiDb.KakaoDao().insert(kakaonoti);
+//                         }
                     } else if(packageName.equals("com.whatsapp")) {
                         whatsappnoti.name = title.toString();
                         whatsappnoti.text = text.toString();
@@ -232,11 +232,11 @@ public class NotificationListener extends NotificationListenerService {
                         whatsappnoti.url = "yet";
 //                         if(runApp == false) notiDb.WhatsappDao().insert(whatsappnoti);
 //                         notiDb.WhatsappDao().insert(whatsappnoti);
-//                         if(isRemoved == false) notiDb.WhatsappDao().insert(whatsappnoti);
+                        if(isRemoved == false) notiDb.WhatsappDao().insert(whatsappnoti);
                         
-                        if(runApp == false && isRemoved == false) {
-                            notiDb.WhatsappDao().insert(whatsappnoti);
-                        }
+//                         if(runApp == false && isRemoved == false) {
+//                             notiDb.WhatsappDao().insert(whatsappnoti);
+//                         }
                     }
 
 //                     System.out.println("노티값 확인 : " + noti.text);
