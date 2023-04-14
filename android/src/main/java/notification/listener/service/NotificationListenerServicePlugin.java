@@ -600,6 +600,27 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             notiDb.RoomDataDao().update(room);
             result.success(true);
 
+        }else if (call.method.equals("detectLastMessage")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            List<NotiData> noti = notiDb.NotiDao().lastOneSelect();
+            Gson gson = new Gson();
+            String jsonString = gson.toJson(noti);
+            result.success(jsonString);
+
+        }else if (call.method.equals("detectLastKakao")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            List<NotiData> noti = notiDb.KakaoDao().lastOneSelect();
+            Gson gson = new Gson();
+            String jsonString = gson.toJson(noti);
+            result.success(jsonString);
+
+        }else if (call.method.equals("detectLastWhatsapp")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            List<NotiData> noti = notiDb.WhatsappDao().lastOneSelect();
+            Gson gson = new Gson();
+            String jsonString = gson.toJson(noti);
+            result.success(jsonString);
+
         }else {
             result.notImplemented();
         }
