@@ -346,4 +346,16 @@ class NotificationListenerService {
   static Future updateWhatsappRoom(String room) async {
     await methodeChannel.invokeMethod('updateWhatsappRoom', {"room" : room});
   }
+  
+  static Future detectLastMessage() async {
+    await methodeChannel.invokeMethod('detectLastMessage');
+  }
+  
+  static Future detectLastKakao() async {
+    await methodeChannel.invokeMethod('detectLastKakao');
+  }
+  
+  static Future detectLastWhatsapp() async {
+    await methodeChannel.invokeMethod('detectLastWhatsapp');
+  }
 }
