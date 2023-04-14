@@ -609,14 +609,14 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
 
         }else if (call.method.equals("detectLastKakao")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-            List<NotiData> noti = notiDb.KakaoDao().lastOneSelect();
+            List<KakaoData> noti = notiDb.KakaoDao().lastOneSelect();
             Gson gson = new Gson();
             String jsonString = gson.toJson(noti);
             result.success(jsonString);
 
         }else if (call.method.equals("detectLastWhatsapp")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-            List<NotiData> noti = notiDb.WhatsappDao().lastOneSelect();
+            List<WhatsappData> noti = notiDb.WhatsappDao().lastOneSelect();
             Gson gson = new Gson();
             String jsonString = gson.toJson(noti);
             result.success(jsonString);
