@@ -45,6 +45,9 @@ public interface WhatsappDataDao {
 
     @Query("SELECT * FROM WhatsappData WHERE result = 'yet'")
     List<WhatsappData> undetectedSelect();
+    
+    @Query("SELECT * FROM WhatsappData WHERE result = 'yet' order by nid desc limit 1")
+    List<WhatsappData> lastOneSelect();
 
     @Query("select count(*) from WhatsappData where room = :room and read = '2'")
     int roomCount(String room);
