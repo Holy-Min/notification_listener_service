@@ -198,7 +198,9 @@ public class NotificationListener extends NotificationListenerService {
                         noti.url = "yet";
 //                         if(runApp == false) notiDb.NotiDao().insert(noti);
 //                         notiDb.NotiDao().insert(noti);
+                       
                         if(isRemoved == false) notiDb.NotiDao().insert(noti);
+                         System.out.println("인서트 순서 확인");
 //                         if(runApp == false && isRemoved == false) { 
 //                             notiDb.NotiDao().insert(noti);
 //                         }
