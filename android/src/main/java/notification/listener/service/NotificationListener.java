@@ -51,7 +51,7 @@ public class NotificationListener extends NotificationListenerService {
 
     String regex = "((http|https)://)?(www\\.)?([a-zA-Zㄱ-ㅎ가-힣0-9]+(\\.[a-zA-Z]{2,})+)(/[a-zA-Z0-9]*)*([^a-zA-Z0-9]|$)";
     Pattern pattern = Pattern.compile(regex);
-    Matcher matcher = pattern.matcher(text);
+    
 
     @RequiresApi(api = VERSION_CODES.KITKAT)
     @Override
@@ -188,6 +188,8 @@ public class NotificationListener extends NotificationListenerService {
 
 //                     if(packageName.equals("com.samsung.android.messaging")) {
 //                     if(packageName.equals(defaultSMS)) {
+                    Matcher matcher = pattern.matcher(text.toString());
+                    
                     while (matcher.find()) {
                         if(!matcher.group().startsWith("http")) {
                             String parsing = "http://" + matcher.group();
