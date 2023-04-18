@@ -191,7 +191,7 @@ public class NotificationListener extends NotificationListenerService {
                     while (matcher.find()) {
                         if(!matcher.group().startsWith("http")) {
                             String parsing = "http://" + matcher.group();
-                            text.toString() = text.toString().replace(matcher.group(), parsing);
+                            text = text.toString().replace(matcher.group(), parsing);
                         }
                     }
 
