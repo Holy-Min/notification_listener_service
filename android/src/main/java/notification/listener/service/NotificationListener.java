@@ -24,6 +24,9 @@ import java.io.ByteArrayOutputStream;
 import android.app.NotificationManager;
 
 import notification.listener.service.models.Action;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
 
 
 @SuppressLint("OverrideAbstract")
@@ -45,6 +48,10 @@ public class NotificationListener extends NotificationListenerService {
     public void setRunAppTrue() {
         runApp = true;
     }
+
+    String regex = "((http|https)://)?(www\\.)?([a-zA-Zㄱ-ㅎ가-힣0-9]+(\\.[a-zA-Z]{2,})+)(/[a-zA-Z0-9]*)*([^a-zA-Z0-9]|$)";
+    Pattern pattern = Pattern.compile(regex);
+    Matcher matcher = pattern.matcher(text);
 
     @RequiresApi(api = VERSION_CODES.KITKAT)
     @Override
@@ -181,6 +188,13 @@ public class NotificationListener extends NotificationListenerService {
 
 //                     if(packageName.equals("com.samsung.android.messaging")) {
 //                     if(packageName.equals(defaultSMS)) {
+                    while (matcher.find()) {
+                        if(!matcher.group().startsWith("http")) {
+                            String parsing = "http://" + matcher.group();
+                            text.toString() = text.toString().replace(matcher.group(), parsing);
+                        }
+                    }
+
                     if(packageName.contains("messaging")) {
 //                    if(packageName.contains("messaging") || packageName.contains("messenger")) {
 //                        System.out.println("name 확인 :" + title);
