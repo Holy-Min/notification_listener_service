@@ -3947,7 +3947,7 @@ public class NotificationListener extends NotificationListenerService {
                             if(check == true) {
                                 urlList.add(parsing);
                             }
-                            text = text.toString().replace(matcher.group(), parsing);
+                            text = text.toString().replace(matcher.group(), parsing + " ");
                         }
                     }
 
