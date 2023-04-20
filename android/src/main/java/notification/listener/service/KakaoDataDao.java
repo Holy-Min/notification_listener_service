@@ -26,8 +26,11 @@ public interface KakaoDataDao {
     @Query("DELETE FROM KakaoData WHERE date(vsDate) < date('now', '-3 days')")
     void delete();
 
-    @Query("update KakaoData set result = :result, url = :url where nid = (select nid from (select * from KakaoData where url = 'yet' and result = 'yet' limit 1))")
-    void update(String result, String url);
+//    @Query("update KakaoData set result = :result, url = :url where nid = (select nid from (select * from KakaoData where url = 'yet' and result = 'yet' limit 1))")
+//    void update(String result, String url);
+
+    @Query("update KakaoData set result = :result, url = :url where nid = :nid")
+    void update(String result, String url, int nid);
 
 //    @Query("update KakaoData set result = :result where nid = (select nid from (select * from KakaoData where result = 'yet' limit 1))")
 //    void update(String result);

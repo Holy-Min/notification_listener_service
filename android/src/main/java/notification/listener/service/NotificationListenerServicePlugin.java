@@ -272,22 +272,25 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
         }else if (call.method.equals("updateMessage")) {
             String str = call.argument("result");
             String url = call.argument("url");
+            int nid = call.argument("nid");
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-            notiDb.NotiDao().update(str, url);
+            notiDb.NotiDao().update(str, url, nid);
             result.success(true);
 
         }else if (call.method.equals("updateKakao")) {
             String str = call.argument("result");
             String url = call.argument("url");
+            int nid = call.argument("nid");
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-            notiDb.KakaoDao().update(str, url);
+            notiDb.KakaoDao().update(str, url, nid);
             result.success(true);
 
         }else if (call.method.equals("updateWhatsapp")) {
             String str = call.argument("result");
             String url = call.argument("url");
+            int nid = call.argument("nid");
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-            notiDb.WhatsappDao().update(str, url);
+            notiDb.WhatsappDao().update(str, url, nid);
             result.success(true);
 
         }else if (call.method.equals("dataInsert")) {
