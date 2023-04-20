@@ -348,14 +348,17 @@ class NotificationListenerService {
   }
   
   static Future detectLastMessage() async {
-    await methodeChannel.invokeMethod('detectLastMessage');
+    fianl content = await methodeChannel.invokeMethod('detectLastMessage');
+    return content;
   }
   
   static Future detectLastKakao() async {
-    await methodeChannel.invokeMethod('detectLastKakao');
+    final content = await methodeChannel.invokeMethod('detectLastKakao');
+    return content;
   }
   
   static Future detectLastWhatsapp() async {
-    await methodeChannel.invokeMethod('detectLastWhatsapp');
+    final content = await methodeChannel.invokeMethod('detectLastWhatsapp');
+    return content;
   }
 }
