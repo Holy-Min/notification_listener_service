@@ -348,7 +348,7 @@ class NotificationListenerService {
   }
   
   static Future detectLastMessage() async {
-    fianl content = await methodeChannel.invokeMethod('detectLastMessage');
+    final content = await methodeChannel.invokeMethod('detectLastMessage');
     return content;
   }
   
