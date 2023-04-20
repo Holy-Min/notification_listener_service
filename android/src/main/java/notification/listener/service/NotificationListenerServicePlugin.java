@@ -606,10 +606,8 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
         }else if (call.method.equals("detectLastMessage")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             List<NotiData> noti = notiDb.NotiDao().lastOneSelect();
-            System.out.println("로컬 DB 확인 : " + noti);
             Gson gson = new Gson();
             String jsonString = gson.toJson(noti);
-            System.out.println("로컬 DB 변환 : " + jsonString);
             result.success(jsonString);
 
         }else if (call.method.equals("detectLastKakao")) {
