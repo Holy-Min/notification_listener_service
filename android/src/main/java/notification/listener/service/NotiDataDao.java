@@ -51,7 +51,7 @@ public interface NotiDataDao {
     @Query("SELECT * FROM NotiData WHERE result = 'yet'")
     List<NotiData> undetectedSelect();
     
-    @Query("SELECT * FROM NotiData WHERE result = 'yet' order by nid desc limit 1")
+    @Query("SELECT * FROM NotiData order by nid desc limit 1")
     List<NotiData> lastOneSelect();
 
     @Query("select count(*) from NotiData where room = :room and read = '2'")
