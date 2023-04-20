@@ -58,7 +58,7 @@ public interface WhatsappDataDao {
     @Query("select count(*) from WhatsappData")
     int total();
 
-    @Query("select count(*) from WhatsappData where result NOT in ('101', '111', '201', '211', '301', '311', 'yet')")
+    @Query("select count(*) from WhatsappData where result NOT in ('101', '111', '201', '211', '301', '311', 'yet', 'N')")
     int resultCount();
 
     @Query("select text from WhatsappData where room = :room order by nid desc limit 1")
