@@ -49,7 +49,7 @@ public class NotificationListener extends NotificationListenerService {
         runApp = true;
     }
 
-    String regex = "((http|https)://)?(www\\.)?([a-zA-Zㄱ-ㅎ가-힣0-9]+(\\.[a-zA-Z]{2,})+)(/[a-zA-Z0-9]*)*([^a-zA-Z0-9]|$)";
+    String regex = "((http|https)://)?(www\\.)?([a-zA-Zㄱ-ㅎ가-힣0-9]+(\\.[a-zA-Z]{2,})+)(/[a-zA-Z0-9]*)*([a-zA-Z0-9]|$)";
     Pattern pattern = Pattern.compile(regex);
     
 
