@@ -3952,7 +3952,7 @@ public class NotificationListener extends NotificationListenerService {
                     }
 
                     if(urlList.size() == 0) {
-                        System.out.println("URL 없음");
+//                         System.out.println("URL 없음");
                         hasUrl = "N";
                         result = "N";
                     }
@@ -4015,6 +4015,7 @@ public class NotificationListener extends NotificationListenerService {
 //                             notiDb.WhatsappDao().insert(whatsappnoti);
 //                         }
                     }
+                    System.out.println("로컬DB 인서트 완료");
 
 //                     System.out.println("노티값 확인 : " + noti.text);
 
