@@ -28,8 +28,8 @@ public interface WhatsappDataDao {
 //    @Query("update WhatsappData set result = :result, url = :url where nid = (select nid from (select * from WhatsappData where url = 'yet' and result = 'yet' limit 1))")
 //    void update(String result, String url);
 
-    @Query("update WhatsappData set result = :result, url = :url where nid = :nid")
-    void update(String result, String url, int nid);
+    @Query("update WhatsappData set result = :result, url = :url, text = :text where nid = :nid")
+    void update(String result, String url, int nid, String text);
 
 //    @Query("update WhatsappData set result = :result where nid = (select nid from (select * from WhatsappData where result = 'yet' limit 1))")
 //    void update(String result);
