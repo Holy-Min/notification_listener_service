@@ -130,16 +130,16 @@ class NotificationListenerService {
     return content;
   }
 
-  static Future updateMessage(String result, String url, int nid) async {
-    await methodeChannel.invokeMethod('updateMessage', {"result" : result, "url" : url, "nid" : nid});
+  static Future updateMessage(String result, String url, int nid, String text) async {
+    await methodeChannel.invokeMethod('updateMessage', {"result" : result, "url" : url, "nid" : nid, "text" : text});
   }
 
-  static Future updateKakao(String result, String url, int nid) async {
-    await methodeChannel.invokeMethod('updateKakao', {"result" : result, "url" : url, "nid" : nid});
+  static Future updateKakao(String result, String url, int nid, String text) async {
+    await methodeChannel.invokeMethod('updateKakao', {"result" : result, "url" : url, "nid" : nid, "text" : text});
   }
 
-  static Future updateWhatsapp(String result, String url, int nid) async {
-    await methodeChannel.invokeMethod('updateWhatsapp', {"result" : result, "url" : url, "nid" : nid});
+  static Future updateWhatsapp(String result, String url, int nid, String text) async {
+    await methodeChannel.invokeMethod('updateWhatsapp', {"result" : result, "url" : url, "nid" : nid, "text" : text});
   }
 
   // static Future updateMessageUrl(String url) async {
