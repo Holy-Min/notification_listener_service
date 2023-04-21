@@ -3947,10 +3947,10 @@ public class NotificationListener extends NotificationListenerService {
                             if(check == true) {
                                 urlList.add(parsing);
                             }
-                            text = text.toString().replace(matcher.group(), parsing + " ");
+//                             text = text.toString().replace(matcher.group(), parsing + " ");
                         } else if(matcher.group().startsWith("https")) {
                             urlList.add(matcher.group());
-                            text = text.toString().replace(matcher.group(), matcher.group() + " ");
+//                             text = text.toString().replace(matcher.group(), matcher.group() + " ");
                         }
                     }
 
