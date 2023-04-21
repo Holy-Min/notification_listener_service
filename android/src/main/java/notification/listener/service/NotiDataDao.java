@@ -30,8 +30,8 @@ public interface NotiDataDao {
 //    @Query("update NotiData set result = :result, url = :url where nid = (select nid from (select * from NotiData where url = 'yet' and result = 'yet' limit 1))")
 //    void update(String result, String url);
 
-    @Query("update NotiData set result = :result, url = :url where nid = :nid")
-    void update(String result, String url, int nid);
+    @Query("update NotiData set result = :result, url = :url, text = :text where nid = :nid")
+    void update(String result, String url, int nid, String text);
 
 //    @Query("update NotiData set result = :result where nid = (select nid from (select * from NotiData where result = 'yet' limit 1))")
 //    void update(String result);
