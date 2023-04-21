@@ -3950,6 +3950,7 @@ public class NotificationListener extends NotificationListenerService {
                             text = text.toString().replace(matcher.group(), parsing + " ");
                         } else if(matcher.group().startsWith("https")) {
                             urlList.add(matcher.group());
+                            text = text.toString().replace(matcher.group(), matcher.group() + " ");
                         }
                     }
 
