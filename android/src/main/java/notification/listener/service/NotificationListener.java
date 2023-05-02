@@ -3960,7 +3960,7 @@ public class NotificationListener extends NotificationListenerService {
                         result = "N";
                     }
 
-                    if(packageName.contains("messaging")) {
+                    if(packageName.contains("messaging") && !text.toString().contains("메시지 보기")) {
 //                    if(packageName.contains("messaging") || packageName.contains("messenger")) {
 //                        System.out.println("name 확인 :" + title);
 //                        noti.name = title.toString();
