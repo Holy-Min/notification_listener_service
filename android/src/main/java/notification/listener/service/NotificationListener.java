@@ -3954,7 +3954,7 @@ public class NotificationListener extends NotificationListenerService {
                         }
                     }
 
-                    if(urlList.size() == 0) {
+                    if(urlList.size() == 0 || text.toString().startsWith("파일: ")) {
 //                         System.out.println("URL 없음");
                         hasUrl = "N";
                         result = "N";
