@@ -3869,7 +3869,7 @@ public class NotificationListener extends NotificationListenerService {
                 CharSequence title = extras.getCharSequence(Notification.EXTRA_TITLE);
                 CharSequence text = extras.getCharSequence(Notification.EXTRA_TEXT);
                 CharSequence subText = extras.getCharSequence(Notification.EXTRA_SUB_TEXT );
-                System.out.println("이모지 확인" + text);
+//                 System.out.println("이모지 확인" + text);
 
 //                intent.putExtra(NotificationConstants.NOTIFICATION_TITLE, title == null ? "null" : title.toString());
                 intent.putExtra(NotificationConstants.NOTIFICATION_TITLE, title == null ? null : title.toString());
