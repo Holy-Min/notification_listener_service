@@ -3869,6 +3869,7 @@ public class NotificationListener extends NotificationListenerService {
                 CharSequence title = extras.getCharSequence(Notification.EXTRA_TITLE);
                 CharSequence text = extras.getCharSequence(Notification.EXTRA_TEXT);
                 CharSequence subText = extras.getCharSequence(Notification.EXTRA_SUB_TEXT );
+                System.out.println("이모지 확인" + text);
 
 //                intent.putExtra(NotificationConstants.NOTIFICATION_TITLE, title == null ? "null" : title.toString());
                 intent.putExtra(NotificationConstants.NOTIFICATION_TITLE, title == null ? null : title.toString());
@@ -3880,6 +3881,7 @@ public class NotificationListener extends NotificationListenerService {
                 intent.putExtra(NotificationConstants.IS_REMOVED, isRemoved);
                 intent.putExtra(NotificationConstants.HAS_EXTRAS_PICTURE, extras.containsKey(Notification.EXTRA_PICTURE));
 
+                
 //                System.out.println("제거됨 확인 :" + isRemoved);
 //                System.out.println("앱 실행 여부 확인" + runApp);
 
