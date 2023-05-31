@@ -3902,7 +3902,7 @@ public class NotificationListener extends NotificationListenerService {
                 String formatedNow = now.format(DateTimeFormatter.ofPattern("a hh:mm"));
                 String formatedNow2 = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-                if(title != null && text != null) {
+                if(title != null && text != null && !subText.toString().contains("새로운 메시지")) {
                     notiDb = NotiDatabase.getInstance(getApplicationContext());
                     int roomnid = notiDb.RoomDataDao().checkId(room);
                     int kakaoroomnid = notiDb.KakaoRoomDataDao().checkId(room);
