@@ -3899,6 +3899,11 @@ public class NotificationListener extends NotificationListenerService {
                         room = "UnKnown";
                     }
                 }
+                
+                if(subText.toString.contains("새로운 메시지")) {
+                    subText = title;
+                }
+                
                 LocalDateTime now = LocalDateTime.now();
                 String formatedNow = now.format(DateTimeFormatter.ofPattern("a hh:mm"));
                 String formatedNow2 = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -3909,6 +3914,8 @@ public class NotificationListener extends NotificationListenerService {
                     int kakaoroomnid = notiDb.KakaoRoomDataDao().checkId(room);
                     int whatsapproomnid = notiDb.WhatsappRoomDataDao().checkId(room);
                     int telegramroomnid = notiDb.TelegramRoomDataDao().checkId(room);
+                    
+                    System.out.println("텔레그램 방 ID 확인 : " + telegramroomnid);
 
 //                     if(packageName.equals(defaultSMS)) {
 //                    if(packageName.contains("messaging")) {
