@@ -3936,7 +3936,7 @@ public class NotificationListener extends NotificationListenerService {
                             if(isRemoved == false) notiDb.WhatsappRoomDataDao().insert(whatsapproomData);
                         }
                     } else if(packageName.equals("org.telegram.messenger")) {
-                        if(telegram == 0) {
+                        if(telegramnid == 0) {
                             TelegramRoomData telegramroomData = new TelegramRoomData();
                             telegramroomData.room = room;
                             telegramroomData.vsDate = formatedNow2;
