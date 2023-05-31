@@ -3889,7 +3889,7 @@ public class NotificationListener extends NotificationListenerService {
 
                 String room = "";
                 System.out.println("텔레그램 방 제목 확인 : " + subText);
-                if(subText != null) {
+                if(subText != null && !subText.contains('새로운 메시지')) {
                     room = subText.toString();
                 } else  {
                     System.out.println("텔레그램 방 제목 확인2 : " + title);
