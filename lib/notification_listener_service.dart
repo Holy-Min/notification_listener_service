@@ -64,6 +64,12 @@ class NotificationListenerService {
     return content;
   }
 
+  static Future getTelegram() async {
+    final content = await methodeChannel.invokeMethod('getTelegram');
+    // final kakao = content.toString();
+    return content;
+  }
+
   static Future getRoom() async {
     final content = await methodeChannel.invokeMethod('getRoom');
     // final kakao = content.toString();
@@ -78,6 +84,12 @@ class NotificationListenerService {
 
   static Future getWhatsappRoom() async {
     final content = await methodeChannel.invokeMethod('getWhatsappRoom');
+    // final kakao = content.toString();
+    return content;
+  }
+
+  static Future getTelegramRoom() async {
+    final content = await methodeChannel.invokeMethod('getTelegramRoom');
     // final kakao = content.toString();
     return content;
   }
@@ -100,6 +112,12 @@ class NotificationListenerService {
     return content;
   }
 
+  static Future getTelegramInfo(String roomName) async {
+    final content = await methodeChannel.invokeMethod('getTelegramInfo', { "roomName" : roomName});
+    // final kakao = content.toString();
+    return content;
+  }
+
   static Future selectMessage(String roomName) async {
     final content = await methodeChannel.invokeMethod('selectMessage', {"roomName" : roomName});
     return content;
@@ -112,6 +130,11 @@ class NotificationListenerService {
 
   static Future selectWhatsapp(String roomName) async {
     final content = await methodeChannel.invokeMethod('selectWhatsapp', {"roomName" : roomName});
+    return content;
+  }
+
+  static Future selectTelegram(String roomName) async {
+    final content = await methodeChannel.invokeMethod('selectTelegram', {"roomName" : roomName});
     return content;
   }
 
@@ -130,6 +153,11 @@ class NotificationListenerService {
     return content;
   }
 
+  static Future detectTelegram() async {
+    final content = await methodeChannel.invokeMethod('detectTelegram');
+    return content;
+  }
+
   static Future updateMessage(String result, String url, int nid, String text) async {
     await methodeChannel.invokeMethod('updateMessage', {"result" : result, "url" : url, "nid" : nid, "text" : text});
   }
@@ -142,17 +170,9 @@ class NotificationListenerService {
     await methodeChannel.invokeMethod('updateWhatsapp', {"result" : result, "url" : url, "nid" : nid, "text" : text});
   }
 
-  // static Future updateMessageUrl(String url) async {
-  //   await methodeChannel.invokeMethod('updateMessageUrl', {"url" : url});
-  // }
-  //
-  // static Future updateKakaoUrl(String url) async {
-  //   await methodeChannel.invokeMethod('updateKakaoUrl', {"url" : url});
-  // }
-  //
-  // static Future updateWhatsappUrl(String url) async {
-  //   await methodeChannel.invokeMethod('updateWhatsappUrl', {"url" : url});
-  // }
+  static Future updateTelegram(String result, String url, int nid, String text) async {
+    await methodeChannel.invokeMethod('updateTelegram', {"result" : result, "url" : url, "nid" : nid, "text" : text});
+  }
 
   static Future countMessage(String roomName) async {
     final content = await methodeChannel.invokeMethod('countMessage', {"room" : roomName});
@@ -169,6 +189,11 @@ class NotificationListenerService {
     return content;
   }
 
+  static Future countTelegram(String roomName) async {
+    final content = await methodeChannel.invokeMethod('countTelegram', {"room" : roomName});
+    return content;
+  }
+
   static Future readMessage(String roomName) async {
     await methodeChannel.invokeMethod('readMessage', {"room" : roomName});
   }
@@ -179,6 +204,10 @@ class NotificationListenerService {
 
   static Future readWhatsapp(String roomName) async {
     await methodeChannel.invokeMethod('readWhatsapp', {"room" : roomName});
+  }
+
+  static Future readTelegram(String roomName) async {
+    await methodeChannel.invokeMethod('readTelegram', {"room" : roomName});
   }
 
   static Future lastMessage(String roomName) async {
@@ -193,6 +222,11 @@ class NotificationListenerService {
 
   static Future lastWhatsapp(String roomName) async {
     final content = await methodeChannel.invokeMethod('lastWhatsapp', {"room" : roomName});
+    return content;
+  }
+
+  static Future lastTelegram(String roomName) async {
+    final content = await methodeChannel.invokeMethod('lastTelegram', {"room" : roomName});
     return content;
   }
 
@@ -211,6 +245,11 @@ class NotificationListenerService {
     return content;
   }
 
+  static Future lastDateTelegram(String roomName) async {
+    final content = await methodeChannel.invokeMethod('lastDateTelegram', {"room" : roomName});
+    return content;
+  }
+
   static Future totalMessage() async {
     final content = await methodeChannel.invokeMethod('totalMessage');
     return content;
@@ -226,16 +265,30 @@ class NotificationListenerService {
     return content;
   }
 
+  static Future totalTelegram() async {
+    final content = await methodeChannel.invokeMethod('totalTelegram');
+    return content;
+  }
+
   static Future resultMessage() async {
     final content = await methodeChannel.invokeMethod('resultMessage');
     return content;
 
-  }static Future resultKakao() async {
+  }
+
+  static Future resultKakao() async {
     final content = await methodeChannel.invokeMethod('resultKakao');
     return content;
 
-  }static Future resultWhatsapp() async {
+  }
+
+  static Future resultWhatsapp() async {
     final content = await methodeChannel.invokeMethod('resultWhatsapp');
+    return content;
+  }
+
+  static Future resultTelegram() async {
+    final content = await methodeChannel.invokeMethod('resultTelegram');
     return content;
   }
 
@@ -251,7 +304,6 @@ class NotificationListenerService {
           "read" : read,
           "url" : url,
         });
-    // final kakao = content.toString();
     return content;
   }
 
@@ -275,6 +327,10 @@ class NotificationListenerService {
     await methodeChannel.invokeMethod('deleteWhatsapp');
   }
 
+  static Future deleteTelegram() async {
+    await methodeChannel.invokeMethod('deleteTelegram');
+  }
+
   static Future messageRoomDelete(String room) async {
     await methodeChannel.invokeMethod('messageRoomDelete', {"room" : room});
   }
@@ -285,6 +341,10 @@ class NotificationListenerService {
 
   static Future WhatsappRoomDelete(String room) async {
     await methodeChannel.invokeMethod('WhatsappRoomDelete', {"room" : room});
+  }
+
+  static Future TelegramRoomDelete(String room) async {
+    await methodeChannel.invokeMethod('TelegramRoomDelete', {"room" : room});
   }
 
   static Future runVacuum() async {
@@ -303,6 +363,10 @@ class NotificationListenerService {
     await methodeChannel.invokeMethod('allReadWhatsapp');
   }
 
+  static Future allReadTelegram() async {
+    await methodeChannel.invokeMethod('allReadTelegram');
+  }
+
   static Future dropKakao() async {
     await methodeChannel.invokeMethod('dropKakao');
   }
@@ -319,6 +383,10 @@ class NotificationListenerService {
     await methodeChannel.invokeMethod('dayOutWhatsapp');
   }
 
+  static Future dayOutTelegram() async {
+    await methodeChannel.invokeMethod('dayOutTelegram');
+  }
+
   static Future dayOutMessageRoom() async {
     await methodeChannel.invokeMethod('dayOutMessageRoom');
   }
@@ -329,6 +397,10 @@ class NotificationListenerService {
 
   static Future dayOutWhatsappRoom() async {
     await methodeChannel.invokeMethod('dayOutWhatsappRoom');
+  }
+
+  static Future dayOutTelegramRoom() async {
+    await methodeChannel.invokeMethod('dayOutTelegramRoom');
   }
 
   static Future examRoomInsert(String app) async {
@@ -346,6 +418,10 @@ class NotificationListenerService {
   static Future updateWhatsappRoom(String room) async {
     await methodeChannel.invokeMethod('updateWhatsappRoom', {"room" : room});
   }
+
+  static Future updateTelegramRoom(String room) async {
+    await methodeChannel.invokeMethod('updateTelegramRoom', {"room" : room});
+  }
   
   static Future detectLastMessage() async {
     final content = await methodeChannel.invokeMethod('detectLastMessage');
@@ -359,6 +435,11 @@ class NotificationListenerService {
   
   static Future detectLastWhatsapp() async {
     final content = await methodeChannel.invokeMethod('detectLastWhatsapp');
+    return content;
+  }
+
+  static Future detectLastTelegram() async {
+    final content = await methodeChannel.invokeMethod('detectLastTelegram');
     return content;
   }
 }
