@@ -3909,11 +3909,11 @@ public class NotificationListener extends NotificationListenerService {
                     int whatsapproomnid = notiDb.WhatsappRoomDataDao().checkId(room);
                     int telegramroomnid = notiDb.TelegramRoomDataDao().checkId(room);
                     
-                    System.out.println("텔레그램 방 ID 확인 : " + telegramroomnid);
+//                     System.out.println("텔레그램 방 ID 확인 : " + telegramroomnid);
 
 //                     if(packageName.equals(defaultSMS)) {
 //                    if(packageName.contains("messaging")) {
-                    if(packageName.contains("messaging") || packageName.contains("messenger")) {
+                    if((packageName.contains("messaging") || packageName.contains("messenger")) && !packageName.equals("org.telegram.messenger")) {
                         if(roomnid == 0) {
                             RoomData roomData = new RoomData();
                             roomData.room = room;
@@ -3940,6 +3940,7 @@ public class NotificationListener extends NotificationListenerService {
                         }
                     } else if(packageName.equals("org.telegram.messenger") && (!title.equals("텔레그램") || !title.equals("Telegram"))) {
                         System.out.println("텔레그램 패키지 확인 : " + packageName);
+                        System.out.println("텔레그램 방 ID 확인 : " + telegramroomnid);
                         if(telegramroomnid == 0) {
                             TelegramRoomData telegramroomData = new TelegramRoomData();
                             telegramroomData.room = room;
