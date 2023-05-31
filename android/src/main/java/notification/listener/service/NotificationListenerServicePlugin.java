@@ -95,6 +95,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             NotiData noti = new NotiData();
             KakaoData kakaonoti = new KakaoData();
             WhatsappData whatsappnoti = new WhatsappData();
+            TelegramData telegramnoti = new TelegramData();
 
 //            final Action action = ActionCache.cachedNotifications.get(notificationId);
             final Action action = ActionCache.cachedNotifications.get(tag);
@@ -142,6 +143,19 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                     whatsappnoti.url = url;
 
                     if(hasRemoved == false && whatsappnoti.app.equals("3")) notiDb.WhatsappDao().insert(whatsappnoti);
+                } else if(packageName.equals("org.telegram.messenger")) {
+                    telegramnoti.name = name;
+                    telegramnoti.text = message;
+                    telegramnoti.room = room;
+                    telegramnoti.date = formatedNow;
+                    telegramnoti.vsDate = formatedNow2;
+                    telegramnoti.send = 2;
+                    telegramnoti.result = str;
+                    telegramnoti.app = "4";
+                    telegramnoti.read = "1";
+                    telegramnoti.url = url;
+
+                    if(hasRemoved == false && telegramnoti.app.equals("4")) notiDb.TelegramDao().insert(telegramnoti);
                 }
 //                 notiDb.NotiDao().insert(noti);
                 result.success(true);
@@ -173,6 +187,13 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             String jsonString = gson.toJson(noti);
             result.success(jsonString);
 
+        } else if (call.method.equals("getTelegram")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            List<TelegramData> noti = notiDb.TelegramDao().getAll();
+            Gson gson = new Gson();
+            String jsonString = gson.toJson(noti);
+            result.success(jsonString);
+
         } else if (call.method.equals("getRoom")) {
 
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
@@ -189,7 +210,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             String jsonString = gson.toJson(noti);
             result.success(jsonString);
 
-        }else if (call.method.equals("getWhatsappRoom")) {
+        } else if (call.method.equals("getWhatsappRoom")) {
 
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             List<WhatsappRoomData> noti = notiDb.WhatsappRoomDataDao().getAll();
@@ -197,7 +218,15 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             String jsonString = gson.toJson(noti);
             result.success(jsonString);
 
-        }else if (call.method.equals("getChatInfo")) {
+        } else if (call.method.equals("getTelegramRoom")) {
+
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            List<TelegramRoomData> noti = notiDb.TelegramRoomDataDao().getAll();
+            Gson gson = new Gson();
+            String jsonString = gson.toJson(noti);
+            result.success(jsonString);
+
+        } else if (call.method.equals("getChatInfo")) {
             String room = call.argument("roomName");
 
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
@@ -206,7 +235,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             String jsonString = gson.toJson(noti);
             result.success(jsonString);
 
-        }else if (call.method.equals("getKakaoInfo")) {
+        } else if (call.method.equals("getKakaoInfo")) {
             String room = call.argument("roomName");
 
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
@@ -215,7 +244,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             String jsonString = gson.toJson(noti);
             result.success(jsonString);
 
-        }else if (call.method.equals("getWhatsappInfo")) {
+        } else if (call.method.equals("getWhatsappInfo")) {
             String room = call.argument("roomName");
 
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
@@ -224,7 +253,16 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             String jsonString = gson.toJson(noti);
             result.success(jsonString);
 
-        }else if (call.method.equals("selectMessage")) {
+        } else if (call.method.equals("getTelegramInfo")) {
+            String room = call.argument("roomName");
+
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            List<TelegramData> noti = notiDb.TelegramDao().getRoom(room);
+            Gson gson = new Gson();
+            String jsonString = gson.toJson(noti);
+            result.success(jsonString);
+
+        } else if (call.method.equals("selectMessage")) {
             String room = call.argument("roomName");
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             List<NotiData> noti = notiDb.NotiDao().select(room);
@@ -232,7 +270,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             String jsonString = gson.toJson(noti);
             result.success(jsonString);
 
-        }else if (call.method.equals("selectKakao")) {
+        } else if (call.method.equals("selectKakao")) {
             String room = call.argument("roomName");
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             List<KakaoData> noti = notiDb.KakaoDao().select(room);
@@ -244,6 +282,14 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             String room = call.argument("roomName");
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             List<WhatsappData> noti = notiDb.WhatsappDao().select(room);
+            Gson gson = new Gson();
+            String jsonString = gson.toJson(noti);
+            result.success(jsonString);
+
+        }else if (call.method.equals("selectTelegram")) {
+            String room = call.argument("roomName");
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            List<TelegramData> noti = notiDb.TelegramDao().select(room);
             Gson gson = new Gson();
             String jsonString = gson.toJson(noti);
             result.success(jsonString);
@@ -265,6 +311,13 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
         }else if (call.method.equals("detectWhatsapp")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             List<WhatsappData> noti = notiDb.WhatsappDao().undetectedSelect();
+            Gson gson = new Gson();
+            String jsonString = gson.toJson(noti);
+            result.success(jsonString);
+
+        }else if (call.method.equals("detectTelegram")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            List<TelegramData> noti = notiDb.TelegramDao().undetectedSelect();
             Gson gson = new Gson();
             String jsonString = gson.toJson(noti);
             result.success(jsonString);
@@ -296,6 +349,15 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             notiDb.WhatsappDao().update(str, url, nid, text);
             result.success(true);
 
+        }else if (call.method.equals("updateTelegram")) {
+            String str = call.argument("result");
+            String url = call.argument("url");
+            int nid = call.argument("nid");
+            String text = call.argument("text");
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            notiDb.TelegramDao().update(str, url, nid, text);
+            result.success(true);
+
         }else if (call.method.equals("dataInsert")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
 //             String defaultSMS = Telephony.Sms.getDefaultSmsPackage(context.getApplicationContext());
@@ -314,6 +376,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             NotiData noti = new NotiData();
             KakaoData kakaonoti = new KakaoData();
             WhatsappData whatsappnoti = new WhatsappData();
+            TelegramData telegramnoti = new TelegramData();
 //             if(packageName.equals(defaultSMS)) {
 //           if(packageName.contains("messaging")) {
             if(packageName.contains("messaging") || packageName.contains("messenger")) {
@@ -355,6 +418,19 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 whatsappnoti.url = url;
 
                 notiDb.WhatsappDao().insert(whatsappnoti);
+            } else if(packageName.equals("org.telegram.messenger")) {
+                telegramnoti.name = name;
+                telegramnoti.text = text;
+                telegramnoti.room = room;
+                telegramnoti.date = date;
+                telegramnoti.vsDate = vsDate;
+                telegramnoti.send = 1;
+                telegramnoti.result = str;
+                telegramnoti.app = "4";
+                telegramnoti.read = "2";
+                telegramnoti.url = url;
+
+                notiDb.TelegramDao().insert(telegramnoti);
             }
 
 //                 if(packageName.equals("com.samsung.android.messaging")) {
@@ -392,6 +468,12 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             notiDb.WhatsappRoomDataDao().deleteAll();
             result.success(true);
 
+        }else if (call.method.equals("deleteTelegram")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            notiDb.TelegramDao().deleteAll();
+            notiDb.TelegramRoomDataDao().deleteAll();
+            result.success(true);
+
         }else if (call.method.equals("messageRoomDelete")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             String room = call.argument("room");
@@ -413,6 +495,13 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             notiDb.WhatsappRoomDataDao().delete(room);
             result.success(true);
 
+        }else if (call.method.equals("TelegramRoomDelete")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            String room = call.argument("room");
+            notiDb.TelegramDao().roomDelete(room);
+            notiDb.TelegramRoomDataDao().delete(room);
+            result.success(true);
+
         }else if (call.method.equals("countMessage")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             String room = call.argument("room");
@@ -429,6 +518,12 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             String room = call.argument("room");
             int count = notiDb.WhatsappDao().roomCount(room);
+            result.success(count);
+
+        }else if (call.method.equals("countTelegram")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            String room = call.argument("room");
+            int count = notiDb.TelegramDao().roomCount(room);
             result.success(count);
 
         }else if (call.method.equals("readMessage")) {
@@ -449,6 +544,12 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             notiDb.WhatsappDao().read(room);
             result.success(true);
 
+        }else if (call.method.equals("readTelegram")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            String room = call.argument("room");
+            notiDb.TelegramDao().read(room);
+            result.success(true);
+
         }else if (call.method.equals("lastMessage")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             String room = call.argument("room");
@@ -465,6 +566,12 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             String room = call.argument("room");
             String text = notiDb.WhatsappDao().lastText(room);
+            result.success(text);
+
+        }else if (call.method.equals("lastTelegram")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            String room = call.argument("room");
+            String text = notiDb.TelegramDao().lastText(room);
             result.success(text);
 
         }else if (call.method.equals("lastDateMessage")) {
@@ -485,6 +592,12 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             String text = notiDb.WhatsappDao().lastDate(room);
             result.success(text);
 
+        }else if (call.method.equals("lastDateTelegram")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            String room = call.argument("room");
+            String text = notiDb.TelegramDao().lastDate(room);
+            result.success(text);
+
         }else if (call.method.equals("totalMessage")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             int text = notiDb.NotiDao().total();
@@ -500,6 +613,11 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             int text = notiDb.WhatsappDao().total();
             result.success(text);
 
+        }else if (call.method.equals("totalTelegram")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            int text = notiDb.TelegramDao().total();
+            result.success(text);
+
         }else if (call.method.equals("resultMessage")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             int text = notiDb.NotiDao().resultCount();
@@ -513,6 +631,11 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
         }else if (call.method.equals("resultWhatsapp")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             int text = notiDb.WhatsappDao().resultCount();
+            result.success(text);
+
+        }else if (call.method.equals("resultTelegram")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            int text = notiDb.TelegramDao().resultCount();
             result.success(text);
 
         }else if (call.method.equals("runVacuum")) {
@@ -539,6 +662,12 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
 //            notiDb.NotiDao().vacuum();
             result.success(true);
 
+        }else if (call.method.equals("allReadTelegram")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            notiDb.TelegramDao().allRead();
+//            notiDb.NotiDao().vacuum();
+            result.success(true);
+
         }else if (call.method.equals("dayOutMessage")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             notiDb.NotiDao().delete();
@@ -552,6 +681,11 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
         }else if (call.method.equals("dayOutWhatsapp")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             notiDb.WhatsappDao().delete();
+            result.success(true);
+
+        }else if (call.method.equals("dayOutTelegram")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            notiDb.TelegramDao().delete();
             result.success(true);
 
         }else if (call.method.equals("dayOutMessageRoom")) {
@@ -578,6 +712,14 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             }
             result.success(true);
 
+        }else if (call.method.equals("dayOutTelegramRoom")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            List<String> roomList = notiDb.TelegramRoomDataDao().checkRoom();
+            for(int i = 0; i < roomList.size(); i++) {
+                notiDb.TelegramRoomDataDao().roomDelete(roomList.get(i));
+            }
+            result.success(true);
+
         }else if (call.method.equals("examRoomInsert")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             final String app = call.argument("app");
@@ -597,13 +739,19 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
         }else if (call.method.equals("updateKakaoRoom")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             String room = call.argument("room");
-            notiDb.RoomDataDao().update(room);
+            notiDb.KakaoRoomDataDao().update(room);
             result.success(true);
 
         }else if (call.method.equals("updateWhatsappRoom")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             String room = call.argument("room");
-            notiDb.RoomDataDao().update(room);
+            notiDb.WhatsappRoomDataDao().update(room);
+            result.success(true);
+
+        }else if (call.method.equals("updateTelegramRoom")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            String room = call.argument("room");
+            notiDb.TelegramRoomDataDao().update(room);
             result.success(true);
 
         }else if (call.method.equals("detectLastMessage")) {
@@ -623,6 +771,13 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
         }else if (call.method.equals("detectLastWhatsapp")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
             List<WhatsappData> noti = notiDb.WhatsappDao().lastOneSelect();
+            Gson gson = new Gson();
+            String jsonString = gson.toJson(noti);
+            result.success(jsonString);
+
+        }else if (call.method.equals("detectLastTelegram")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            List<TelegramData> noti = notiDb.TelegramDao().lastOneSelect();
             Gson gson = new Gson();
             String jsonString = gson.toJson(noti);
             result.success(jsonString);

@@ -44,6 +44,7 @@ public class NotificationListener extends NotificationListenerService {
     private final NotiData noti = new NotiData();
     private final KakaoData kakaonoti = new KakaoData();
     private final WhatsappData whatsappnoti = new WhatsappData();
+    private final TelegramData telegramnoti = new TelegramData();
 
     public void setRunAppFalse() {
         runApp = false;
@@ -3830,11 +3831,12 @@ public class NotificationListener extends NotificationListenerService {
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         StatusBarNotification[] barNotifications = notificationManager.getActiveNotifications();
-       System.out.println("노티피케이션 확인 :" + barNotifications);
+//       System.out.println("노티피케이션 확인 :" + barNotifications);
 //         packageName.equals("com.samsung.android.messaging")
 
 //          if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.equals(defaultSMS)) {
-        if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.contains("messaging") || packageName.contains("messenger")) {
+        if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.contains("messaging") || packageName.contains("messenger"))
+            || packageName.contains("org.telegram.messenger") {
 //            System.out.println("앱 실행 여부 : " + runApp);
             Bundle extras = notification.getNotification().extras;
 //            try{
@@ -3842,7 +3844,7 @@ public class NotificationListener extends NotificationListenerService {
 //            } catch (Exception e) {
 //                System.out.println("에러 확인" + e);
 //            }
-            System.out.println("번들 확인 :" + extras);
+//            System.out.println("번들 확인 :" + extras);
 
             Action action = NotificationUtils.getQuickReplyAction(notification.getNotification(), packageName);
 
@@ -3904,6 +3906,7 @@ public class NotificationListener extends NotificationListenerService {
                     int roomnid = notiDb.RoomDataDao().checkId(room);
                     int kakaoroomnid = notiDb.KakaoRoomDataDao().checkId(room);
                     int whatsapproomnid = notiDb.WhatsappRoomDataDao().checkId(room);
+                    int telegramroomnid = notiDb.TelegramRoomDataDao().checkId(room);
 
 //                     if(packageName.equals(defaultSMS)) {
 //                    if(packageName.contains("messaging")) {
@@ -3931,6 +3934,14 @@ public class NotificationListener extends NotificationListenerService {
                             whatsapproomData.vsDate = formatedNow2;
                             whatsapproomData.isSafe = 1;
                             if(isRemoved == false) notiDb.WhatsappRoomDataDao().insert(whatsapproomData);
+                        }
+                    } else if(packageName.equals("org.telegram.messenger")) {
+                        if(telegram == 0) {
+                            TelegramRoomData telegramroomData = new TelegramRoomData();
+                            telegramroomData.room = room;
+                            telegramroomData.vsDate = formatedNow2;
+                            telegramroomData.isSafe = 1;
+                            if(isRemoved == false) notiDb.TelegramRoomDataDao().insert(telegramroomData);
                         }
                     }
 //                    NotiData noti = new NotiData();
@@ -4019,6 +4030,18 @@ public class NotificationListener extends NotificationListenerService {
 //                         if(runApp == false && isRemoved == false) {
 //                             notiDb.WhatsappDao().insert(whatsappnoti);
 //                         }
+                    } else if(packageName.equals("org.telegram.messenger")) {
+                        telegramnoti.name = title.toString();
+                        telegramnoti.text = text.toString();
+                        telegramnoti.room = room;
+                        telegramnoti.date = formatedNow;
+                        telegramnoti.vsDate = formatedNow2;
+                        telegramnoti.send = 1;
+                        telegramnoti.result = result;
+                        telegramnoti.app = "4";
+                        telegramnoti.read = "2";
+                        telegramnoti.url = hasUrl;
+                        if(isRemoved == false) notiDb.TelegramDao().insert(telegramnoti);
                     }
 //                     System.out.println("로컬DB 인서트 완료");
 
@@ -4048,6 +4071,10 @@ public class NotificationListener extends NotificationListenerService {
             str = str.substring(8, str.length());
         } else if(str.startsWith("http://")) {
             str = str.substring(7, str.length());
+        }
+
+        if(str.contains("www.")) {
+            str = str.substring(4, str.length());
         }
 
         if (str.contains("/")) {

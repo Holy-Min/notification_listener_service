@@ -16,16 +16,18 @@ public abstract class NotiDatabase extends RoomDatabase {
     public abstract NotiDataDao NotiDao();
     public abstract KakaoDataDao KakaoDao();
     public abstract WhatsappDataDao WhatsappDao();
+    public abstract TelegramDataDao TelegramDao();
     public abstract RoomDataDao RoomDataDao();
     public abstract KakaoRoomDataDao KakaoRoomDataDao();
     public abstract WhatsappRoomDataDao WhatsappRoomDataDao();
+    public abstract TelegramDataDao TelegramRoomDataDao();
 
     private static NotiDatabase database;
 
     public static synchronized NotiDatabase getInstance(Context context){
         if (database == null)
         {
-            database = Room.databaseBuilder(context.getApplicationContext(), NotiDatabase.class, "local02.db")
+            database = Room.databaseBuilder(context.getApplicationContext(), NotiDatabase.class, "local03.db")
 //                    .addMigrations(MIGRATION_1_2)
                     .allowMainThreadQueries()
                     .build();
