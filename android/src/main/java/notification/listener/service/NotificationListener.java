@@ -3888,9 +3888,11 @@ public class NotificationListener extends NotificationListenerService {
 //                System.out.println("앱 실행 여부 확인" + runApp);
 
                 String room = "";
+                System.out.println("텔레그램 방 제목 확인 : " + subText);
                 if(subText != null) {
                     room = subText.toString();
                 } else  {
+                    System.out.println("텔레그램 방 제목 확인2 : " + title);
                     if(title != null) {
                         room = title.toString();
                     } else {
