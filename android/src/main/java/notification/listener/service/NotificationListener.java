@@ -3937,7 +3937,7 @@ public class NotificationListener extends NotificationListenerService {
                             whatsapproomData.isSafe = 1;
                             if(isRemoved == false) notiDb.WhatsappRoomDataDao().insert(whatsapproomData);
                         }
-                    } else if(packageName.equals("org.telegram.messenger") && (!title.equals("텔레그램") || !title.equals("Telegram")) {
+                    } else if(packageName.equals("org.telegram.messenger") && (!title.equals("텔레그램") || !title.equals("Telegram"))) {
                         if(telegramroomnid == 0) {
                             TelegramRoomData telegramroomData = new TelegramRoomData();
                             telegramroomData.room = room;
@@ -4032,7 +4032,7 @@ public class NotificationListener extends NotificationListenerService {
 //                         if(runApp == false && isRemoved == false) {
 //                             notiDb.WhatsappDao().insert(whatsappnoti);
 //                         }
-                    } else if(packageName.equals("org.telegram.messenger") && (!title.equals("텔레그램") || !title.equals("Telegram")) {
+                    } else if(packageName.equals("org.telegram.messenger") && (!title.equals("텔레그램") || !title.equals("Telegram"))) {
                         telegramnoti.name = title.toString();
                         telegramnoti.text = text.toString();
                         telegramnoti.room = room;
