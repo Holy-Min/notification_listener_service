@@ -3900,7 +3900,7 @@ public class NotificationListener extends NotificationListenerService {
                     }
                 }
                 
-                if(subText.toString.contains("새로운 메시지")) {
+                if(subText.toString().contains("새로운 메시지")) {
                     subText = title;
                 }
                 
