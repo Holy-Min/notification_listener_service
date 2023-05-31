@@ -3888,20 +3888,14 @@ public class NotificationListener extends NotificationListenerService {
 //                System.out.println("앱 실행 여부 확인" + runApp);
 
                 String room = "";
-                System.out.println("텔레그램 방 제목 확인 : " + subText);
                 if(subText != null && !subText.toString().contains("새로운 메시지")) {
                     room = subText.toString();
                 } else  {
-                    System.out.println("텔레그램 방 제목 확인2 : " + title);
                     if(title != null) {
                         room = title.toString();
                     } else {
                         room = "UnKnown";
                     }
-                }
-                
-                if(subText.toString().contains("새로운 메시지")) {
-                    subText = title;
                 }
                 
                 LocalDateTime now = LocalDateTime.now();
@@ -3945,6 +3939,7 @@ public class NotificationListener extends NotificationListenerService {
                             if(isRemoved == false) notiDb.WhatsappRoomDataDao().insert(whatsapproomData);
                         }
                     } else if(packageName.equals("org.telegram.messenger") && (!title.equals("텔레그램") || !title.equals("Telegram"))) {
+                        System.out.println("텔레그램 패키지 확인 : " + packageName);
                         if(telegramroomnid == 0) {
                             TelegramRoomData telegramroomData = new TelegramRoomData();
                             telegramroomData.room = room;
