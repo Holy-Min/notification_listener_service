@@ -3877,8 +3877,8 @@ public class NotificationListener extends NotificationListenerService {
 //                 System.out.println("서브텍스트 확인 : " + subText);
                 if(packageName == "org.telegram.messenger") {
                     if(title.toString().contains(":")) {
-                        subText.toString() = title.toString().substring(0, title.toString().indexOf(":"));
-                        title.toString() = title.toString().substring(title.toString().indexOf(":") + 1, title.toString().length());
+                        subText = title.toString().substring(0, title.toString().indexOf(":"));
+                        title = title.toString().substring(title.toString().indexOf(":") + 1, title.toString().length());
                     }
                 }
                 
