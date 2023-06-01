@@ -3902,7 +3902,7 @@ public class NotificationListener extends NotificationListenerService {
                 
                 String room = "";
 //                 if(subText != null && !subText.toString().contains("새로운 메시지")) {
-                if(subText != null && packageName != "org.telegram.messenger") {
+                if(subText != null) {
                     room = subText.toString();
                 } else {
                     if(title != null) {
