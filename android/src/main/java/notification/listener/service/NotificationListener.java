@@ -3874,9 +3874,9 @@ public class NotificationListener extends NotificationListenerService {
                 CharSequence title = extras.getCharSequence(Notification.EXTRA_TITLE);
                 CharSequence text = extras.getCharSequence(Notification.EXTRA_TEXT);
                 CharSequence subText = extras.getCharSequence(Notification.EXTRA_SUB_TEXT );
-                CharSequence bigText = extras.getCharSequence(Notification.EXTRA_BIG_TEXT );
-                CharSequence infoText = extras.getCharSequence(Notification.EXTRA_INFO_TEXT );
-                CharSequence summaryText = extras.getCharSequence(Notification.EXTRA_SUMMARY_TEXT );
+//                 CharSequence bigText = extras.getCharSequence(Notification.EXTRA_BIG_TEXT );
+//                 CharSequence infoText = extras.getCharSequence(Notification.EXTRA_INFO_TEXT );
+//                 CharSequence summaryText = extras.getCharSequence(Notification.EXTRA_SUMMARY_TEXT );
 //                 System.out.println("이모지 확인" + text);
 //                 System.out.println("타이틀 확인 : " + title);
 //                 System.out.println("텍스트 확인 : " + text);
@@ -3886,9 +3886,9 @@ public class NotificationListener extends NotificationListenerService {
                         subText = title.toString().substring(0, title.toString().indexOf(":"));
                         title = title.toString().substring(title.toString().indexOf(":") + 2, title.toString().length());
                     }
-                    System.out.println("빅텍스트 확인 : " + bigText);
-                    System.out.println("인포텍스트 확인 : " + infoText);
-                    System.out.println("서머리텍스트 확인 : " + summaryText);
+//                     System.out.println("빅텍스트 확인 : " + bigText);
+//                     System.out.println("인포텍스트 확인 : " + infoText);
+//                     System.out.println("서머리텍스트 확인 : " + summaryText);
                     
                 }
                 
