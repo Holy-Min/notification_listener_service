@@ -3827,6 +3827,9 @@ public class NotificationListener extends NotificationListenerService {
 //         }
 
 //        System.out.println("기본 메시지앱 확인" + defaultSMS);
+        if(packageName.equals("org.telegram.messenger")) {
+            System.out.println("노티 확인 : " + notification);
+        }
 
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -3955,7 +3958,7 @@ public class NotificationListener extends NotificationListenerService {
                         }
                     } else if(packageName.equals("org.telegram.messenger") && (!title.equals("텔레그램") || !title.equals("Telegram"))) {
                         if(telegramroomnid == 0) {
-                            System.out.println("타이틀 확인 : " + title);
+//                             System.out.println("타이틀 확인 : " + title);
                             TelegramRoomData telegramroomData = new TelegramRoomData();
                             telegramroomData.room = room;
                             telegramroomData.vsDate = formatedNow2;
@@ -4050,7 +4053,7 @@ public class NotificationListener extends NotificationListenerService {
 //                             notiDb.WhatsappDao().insert(whatsappnoti);
 //                         }
                     } else if(packageName.equals("org.telegram.messenger") && (!title.equals("텔레그램") || !title.equals("Telegram"))) {
-                        System.out.println("타이틀 확인 : " + title);
+//                         System.out.println("타이틀 확인 : " + title);
                         telegramnoti.name = title.toString();
                         telegramnoti.text = text.toString();
                         telegramnoti.room = room;
