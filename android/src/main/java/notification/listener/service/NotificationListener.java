@@ -3818,7 +3818,7 @@ public class NotificationListener extends NotificationListenerService {
     private void handleNotification(StatusBarNotification notification, boolean isRemoved) {
         String packageName = notification.getPackageName();
         String tag = notification.getTag();
-       System.out.println("앱 확인" + packageName);
+//        System.out.println("앱 확인" + packageName);
 //         try {
 //             return defaultSMS = Telephony.Sms.getDefaultSmsPackage(context).toString();
 //         } catch (Exception e) {
@@ -3831,7 +3831,7 @@ public class NotificationListener extends NotificationListenerService {
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         StatusBarNotification[] barNotifications = notificationManager.getActiveNotifications();
-//       System.out.println("노티피케이션 확인 :" + barNotifications);
+      System.out.println("노티피케이션 확인 :" + barNotifications);
 //         packageName.equals("com.samsung.android.messaging")
 
 //          if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.equals(defaultSMS)) {
@@ -3844,7 +3844,7 @@ public class NotificationListener extends NotificationListenerService {
 //            } catch (Exception e) {
 //                System.out.println("에러 확인" + e);
 //            }
-//            System.out.println("번들 확인 :" + extras);
+           System.out.println("번들 확인 :" + extras);
 
             Action action = NotificationUtils.getQuickReplyAction(notification.getNotification(), packageName);
 
