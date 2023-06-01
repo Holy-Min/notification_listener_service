@@ -3831,7 +3831,7 @@ public class NotificationListener extends NotificationListenerService {
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         StatusBarNotification[] barNotifications = notificationManager.getActiveNotifications();
-      System.out.println("노티피케이션 확인 :" + barNotifications);
+//       System.out.println("노티피케이션 확인 :" + barNotifications);
 //         packageName.equals("com.samsung.android.messaging")
 
 //          if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.equals(defaultSMS)) {
@@ -3844,7 +3844,7 @@ public class NotificationListener extends NotificationListenerService {
 //            } catch (Exception e) {
 //                System.out.println("에러 확인" + e);
 //            }
-           System.out.println("번들 확인 :" + extras);
+//            System.out.println("번들 확인 :" + extras);
 
             Action action = NotificationUtils.getQuickReplyAction(notification.getNotification(), packageName);
 
@@ -3872,6 +3872,16 @@ public class NotificationListener extends NotificationListenerService {
                 CharSequence text = extras.getCharSequence(Notification.EXTRA_TEXT);
                 CharSequence subText = extras.getCharSequence(Notification.EXTRA_SUB_TEXT );
 //                 System.out.println("이모지 확인" + text);
+//                 System.out.println("타이틀 확인 : " + title);
+//                 System.out.println("텍스트 확인 : " + text);
+//                 System.out.println("서브텍스트 확인 : " + subText);
+                if(packageName == "org.telegram.messenger") {
+                    if(title.toString().contains(":")) {
+                        subText.toString() = title.toString().substring(0, title.toString().indexOf(":"));
+                        title.toString() = title.toString().substring(title.toString().indexOf(":") + 1, title.toString().length());
+                    }
+                }
+                
                 System.out.println("타이틀 확인 : " + title);
                 System.out.println("텍스트 확인 : " + text);
                 System.out.println("서브텍스트 확인 : " + subText);
@@ -3889,12 +3899,12 @@ public class NotificationListener extends NotificationListenerService {
                 
 //                System.out.println("제거됨 확인 :" + isRemoved);
 //                System.out.println("앱 실행 여부 확인" + runApp);
-
+                
                 String room = "";
 //                 if(subText != null && !subText.toString().contains("새로운 메시지")) {
                 if(subText != null && packageName != "org.telegram.messenger") {
                     room = subText.toString();
-                } else if(packageName == "org.telegram.messenger"){ 
+                } else if(packageName == "org.telegram.messenger") { 
                     
                 } else {
                     if(title != null) {
