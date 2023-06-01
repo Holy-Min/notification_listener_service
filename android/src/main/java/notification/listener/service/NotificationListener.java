@@ -3882,9 +3882,9 @@ public class NotificationListener extends NotificationListenerService {
                     }
                 }
                 
-                System.out.println("타이틀 확인 : " + title);
-                System.out.println("텍스트 확인 : " + text);
-                System.out.println("서브텍스트 확인 : " + subText);
+//                 System.out.println("타이틀 확인 : " + title);
+//                 System.out.println("텍스트 확인 : " + text);
+//                 System.out.println("서브텍스트 확인 : " + subText);
 
 //                intent.putExtra(NotificationConstants.NOTIFICATION_TITLE, title == null ? "null" : title.toString());
                 intent.putExtra(NotificationConstants.NOTIFICATION_TITLE, title == null ? null : title.toString());
