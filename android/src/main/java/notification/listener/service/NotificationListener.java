@@ -3875,10 +3875,8 @@ public class NotificationListener extends NotificationListenerService {
 //                 System.out.println("타이틀 확인 : " + title);
 //                 System.out.println("텍스트 확인 : " + text);
 //                 System.out.println("서브텍스트 확인 : " + subText);
-                if(packageName == "org.telegram.messenger") {
-                    System.out.println("패키지 확인");
+                if(packageName.equals("org.telegram.messenger")) {
                     if(title.toString().contains(":")) {
-                        System.out.println("공개채널 확인");
                         subText = title.toString().substring(0, title.toString().indexOf(":"));
                         title = title.toString().substring(title.toString().indexOf(":") + 2, title.toString().length());
                     }
