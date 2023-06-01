@@ -3836,7 +3836,7 @@ public class NotificationListener extends NotificationListenerService {
 
 //          if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.equals(defaultSMS)) {
         if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.contains("messaging") || packageName.contains("messenger")
-                || packageName.contains("org.telegram.messenger")) {
+                || packageName.equals("org.telegram.messenger")) {
 //            System.out.println("앱 실행 여부 : " + runApp);
             Bundle extras = notification.getNotification().extras;
 //            try{
@@ -3872,6 +3872,9 @@ public class NotificationListener extends NotificationListenerService {
                 CharSequence text = extras.getCharSequence(Notification.EXTRA_TEXT);
                 CharSequence subText = extras.getCharSequence(Notification.EXTRA_SUB_TEXT );
 //                 System.out.println("이모지 확인" + text);
+                System.out.println("타이틀 확인 : " + title);
+                System.out.println("텍스트 확인 : " + text);
+                System.out.println("서브텍스트 확인 : " + subText);
 
 //                intent.putExtra(NotificationConstants.NOTIFICATION_TITLE, title == null ? "null" : title.toString());
                 intent.putExtra(NotificationConstants.NOTIFICATION_TITLE, title == null ? null : title.toString());
@@ -3891,7 +3894,9 @@ public class NotificationListener extends NotificationListenerService {
 //                 if(subText != null && !subText.toString().contains("새로운 메시지")) {
                 if(subText != null && packageName != "org.telegram.messenger") {
                     room = subText.toString();
-                } else  {
+                } else if(packageName == "org.telegram.messenger"){ 
+                    
+                } else {
                     if(title != null) {
                         room = title.toString();
                     } else {
@@ -3941,8 +3946,6 @@ public class NotificationListener extends NotificationListenerService {
                             if(isRemoved == false) notiDb.WhatsappRoomDataDao().insert(whatsapproomData);
                         }
                     } else if(packageName.equals("org.telegram.messenger") && (!title.equals("텔레그램") || !title.equals("Telegram"))) {
-                        System.out.println("텔레그램 패키지 확인 : " + packageName);
-                        System.out.println("텔레그램 방 ID 확인 : " + telegramroomnid);
                         if(telegramroomnid == 0) {
                             TelegramRoomData telegramroomData = new TelegramRoomData();
                             telegramroomData.room = room;
