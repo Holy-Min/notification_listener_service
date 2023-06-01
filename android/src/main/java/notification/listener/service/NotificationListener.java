@@ -3889,7 +3889,7 @@ public class NotificationListener extends NotificationListenerService {
                     System.out.println("빅텍스트 확인 : " + bigText);
                     System.out.println("인포텍스트 확인 : " + infoText);
                     System.out.println("서머리텍스트 확인 : " + summaryText);
-                    }
+                    
                 }
                 
 //                 System.out.println("타이틀 확인 : " + title);
