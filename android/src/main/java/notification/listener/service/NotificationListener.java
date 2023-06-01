@@ -3955,6 +3955,7 @@ public class NotificationListener extends NotificationListenerService {
                         }
                     } else if(packageName.equals("org.telegram.messenger") && (!title.equals("텔레그램") || !title.equals("Telegram"))) {
                         if(telegramroomnid == 0) {
+                            System.out.println("타이틀 확인 : " + title);
                             TelegramRoomData telegramroomData = new TelegramRoomData();
                             telegramroomData.room = room;
                             telegramroomData.vsDate = formatedNow2;
@@ -4049,6 +4050,7 @@ public class NotificationListener extends NotificationListenerService {
 //                             notiDb.WhatsappDao().insert(whatsappnoti);
 //                         }
                     } else if(packageName.equals("org.telegram.messenger") && (!title.equals("텔레그램") || !title.equals("Telegram"))) {
+                        System.out.println("타이틀 확인 : " + title);
                         telegramnoti.name = title.toString();
                         telegramnoti.text = text.toString();
                         telegramnoti.room = room;
