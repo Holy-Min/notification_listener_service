@@ -3839,7 +3839,7 @@ public class NotificationListener extends NotificationListenerService {
 
 //          if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.equals(defaultSMS)) {
         if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.contains("messaging") || packageName.contains("messenger")
-                || packageName.equals("org.telegram.messenger")) {
+                || packageName.equals("org.telegram.messenger") || packageName.equals("com.facebook.orca") || packageName.equals("com.instagram.android")) {
 //            System.out.println("앱 실행 여부 : " + runApp);
             Bundle extras = notification.getNotification().extras;
 //            try{
@@ -3877,10 +3877,9 @@ public class NotificationListener extends NotificationListenerService {
 //                 CharSequence bigText = extras.getCharSequence(Notification.EXTRA_BIG_TEXT );
 //                 CharSequence infoText = extras.getCharSequence(Notification.EXTRA_INFO_TEXT );
 //                 CharSequence summaryText = extras.getCharSequence(Notification.EXTRA_SUMMARY_TEXT );
-//                 System.out.println("이모지 확인" + text);
-//                 System.out.println("타이틀 확인 : " + title);
-//                 System.out.println("텍스트 확인 : " + text);
-//                 System.out.println("서브텍스트 확인 : " + subText);
+                System.out.println("타이틀 확인 : " + title);
+                System.out.println("텍스트 확인 : " + text);
+                System.out.println("서브텍스트 확인 : " + subText);
                 if(packageName.equals("org.telegram.messenger")) {
                     if(title.toString().contains(":")) {
                         subText = title.toString().substring(0, title.toString().indexOf(":"));
