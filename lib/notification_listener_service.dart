@@ -442,4 +442,13 @@ class NotificationListenerService {
     final content = await methodeChannel.invokeMethod('detectLastTelegram');
     return content;
   }
+
+  static Future changeMessageList() async {
+    await methodeChannel.invokeMethod('changeMessageList');
+  }
+
+  static Future countMessageList() async {
+    final count = await methodeChannel.invokeMethod('countMessageList');
+    return count;
+  }
 }
