@@ -10,13 +10,15 @@ import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 
-@Database(entities = {NotiData.class, KakaoData.class, WhatsappData.class, TelegramData.class, RoomData.class, KakaoRoomData.class, WhatsappRoomData.class, TelegramRoomData.class},
+@Database(entities = {NotiData.class, KakaoData.class, WhatsappData.class, TelegramData.class, RoomData.class, KakaoRoomData.class,
+        WhatsappRoomData.class, TelegramRoomData.class, MessageListData.class,},
         version = 1, exportSchema = false)
 public abstract class NotiDatabase extends RoomDatabase {
     public abstract NotiDataDao NotiDao();
     public abstract KakaoDataDao KakaoDao();
     public abstract WhatsappDataDao WhatsappDao();
     public abstract TelegramDataDao TelegramDao();
+    public abstract MessageListDataDao MessageListDao();
     public abstract RoomDataDao RoomDataDao();
     public abstract KakaoRoomDataDao KakaoRoomDataDao();
     public abstract WhatsappRoomDataDao WhatsappRoomDataDao();
