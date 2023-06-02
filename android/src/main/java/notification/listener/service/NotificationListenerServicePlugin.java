@@ -782,9 +782,56 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             String jsonString = gson.toJson(noti);
             result.success(jsonString);
 
+        }else if(call.method.equals("changeMessageList")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            final List<String> message = call.argument("message");
+            System.out.println("변경된 리스트 확인 : " + message);
+            List<MessageListData> mList = notiDb.MessageListDao().getAll();
+            System.out.println("기존 리스트 확인 : " + mList);
+
+            MessageListData noti = new MessageListData();
+            ArrayList<String> resultList = compageAndDel(message, mList);
+            // DB에 없던, 새롭게 추가될 데이터
+            for (int i = 0; i < resultList.size(); i++) {
+                System.out.println("Inst " + resultList.get(i));
+                if(resultList.get(i) != null) {
+                    noti.name = resultList.get(i);
+                    notiDb.MessageListDao().insert(noti);
+                }
+            }
+
+            //기존 DB에 있었지만 삭제된 데이터
+            ArrayList<String> resultList2 = compageAndDel(mList, message);
+            for (int i = 0; i < resultList2.size(); i++) {
+                System.out.println("Del " + resultList2.get(i));
+                if(resultList2.get(i) != null) {
+                    notiDb.MessageListDao().delete(resultList2.get(i));
+                }
+            }
+
+//            MessageListData noti = new MessageListData();
+//            noti.name = message;
+//            notiDb.MessageListDao().insert(noti);
+        }else if (call.method.equals("countMessageList")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            int count = notiDb.MessageListDao().countList();
+            result.success(count);
+
         }else {
             result.notImplemented();
         }
+    }
+
+    private static ArrayList<String> compageAndDel(ArrayList<String> target, ArrayList<String> source) {
+        ArrayList<String> tmpArr = new ArrayList<>();
+        tmpArr.addAll(target);
+        for (String item : source) {
+            if (target.contains(item) == true) {
+                //일치하는 아이템을 지움
+                tmpArr.remove(item);
+            }
+        }
+        return tmpArr;
     }
 
     @Override
