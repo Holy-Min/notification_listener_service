@@ -14,7 +14,7 @@ public interface MessageListDataDao {
     List<MessageListData> getAll();
 
     @Query("SELECT count(*) FROM MessageListData")
-    void countList();
+    int countList();
 
     @Insert
     void insert(MessageListData noti);
