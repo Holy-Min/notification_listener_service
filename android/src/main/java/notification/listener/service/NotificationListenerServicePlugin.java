@@ -784,9 +784,9 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
 
         }else if(call.method.equals("changeMessageList")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-            final List<String> message = call.argument("message");
+            final ArrayList<String> message = call.argument("message");
             System.out.println("변경된 리스트 확인 : " + message);
-            List<MessageListData> mList = notiDb.MessageListDao().getAll();
+            ArrayList<String> mList = notiDb.MessageListDao().getAll();
             System.out.println("기존 리스트 확인 : " + mList);
 
             MessageListData noti = new MessageListData();
