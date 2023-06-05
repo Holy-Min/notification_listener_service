@@ -3836,10 +3836,12 @@ public class NotificationListener extends NotificationListenerService {
         StatusBarNotification[] barNotifications = notificationManager.getActiveNotifications();
 //       System.out.println("노티피케이션 확인 :" + barNotifications);
 //         packageName.equals("com.samsung.android.messaging")
+        List<String> m1 = notiDb.MessageListDao().getAll();
 
 //          if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.equals(defaultSMS)) {
-        if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.contains("messaging") || packageName.contains("messenger")
-                || packageName.equals("org.telegram.messenger") || packageName.equals("com.facebook.orca") || packageName.equals("com.instagram.android")) {
+//         if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.contains("messaging") || packageName.contains("messenger")
+//                 || packageName.equals("org.telegram.messenger") || packageName.equals("com.facebook.orca") || packageName.equals("com.instagram.android")) {
+        if(m1.contains("com.kakao.talk") || m1.contains("com.whatsapp") || m1.contains("com.samsung.android.messaging") || m1.contains("com.google.android.apps.messaging")) {
 //            System.out.println("앱 실행 여부 : " + runApp);
             Bundle extras = notification.getNotification().extras;
 //            try{
@@ -3877,9 +3879,9 @@ public class NotificationListener extends NotificationListenerService {
 //                 CharSequence bigText = extras.getCharSequence(Notification.EXTRA_BIG_TEXT );
 //                 CharSequence infoText = extras.getCharSequence(Notification.EXTRA_INFO_TEXT );
 //                 CharSequence summaryText = extras.getCharSequence(Notification.EXTRA_SUMMARY_TEXT );
-                System.out.println("타이틀 확인 : " + title);
-                System.out.println("텍스트 확인 : " + text);
-                System.out.println("서브텍스트 확인 : " + subText);
+//                 System.out.println("타이틀 확인 : " + title);
+//                 System.out.println("텍스트 확인 : " + text);
+//                 System.out.println("서브텍스트 확인 : " + subText);
                 if(packageName.equals("org.telegram.messenger")) {
                     if(title.toString().contains(":")) {
                         subText = title.toString().substring(0, title.toString().indexOf(":"));
