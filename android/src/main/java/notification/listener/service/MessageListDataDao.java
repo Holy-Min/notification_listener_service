@@ -10,8 +10,8 @@ import java.util.List;
 
 @Dao
 public interface MessageListDataDao {
-    @Query("SELECT * FROM MessageListData")
-    List<MessageListData> getAll();
+    @Query("SELECT name FROM MessageListData")
+    List<String> getAll();
 
     @Query("SELECT count(*) FROM MessageListData")
     int countList();
