@@ -789,6 +789,10 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             List<MessageListData> mList = notiDb.MessageListDao().getAll();
 //             ArrayList<String> message2 = mList.toString();
             System.out.println("기존 리스트 확인 : " + mList);
+            
+            List mList2 = notiDb.MessageListDao().getAll();
+            System.out.println("기존 리스트 확인2 : " + mList2);
+            
             MessageListData noti = new MessageListData();
             
             if(message == null) {
