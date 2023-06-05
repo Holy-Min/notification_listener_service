@@ -11,7 +11,7 @@ import java.util.List;
 @Dao
 public interface MessageListDataDao {
     @Query("SELECT name FROM MessageListData")
-    List<String> getAll();
+    ArrayList<String> getAll();
 
     @Query("SELECT count(*) FROM MessageListData")
     int countList();
