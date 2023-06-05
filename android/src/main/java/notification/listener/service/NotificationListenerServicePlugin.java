@@ -833,6 +833,11 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             int count = notiDb.MessageListDao().countList();
             result.success(count);
 
+        }else if (call.method.equals("getMessageList")) {
+            notiDb = NotiDatabase.getInstance(context.getApplicationContext());
+            List<String> m1 = notiDb.MessageListDao().getAll();
+            result.success(m1);
+
         }else {
             result.notImplemented();
         }
