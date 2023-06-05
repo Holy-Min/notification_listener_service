@@ -451,4 +451,9 @@ class NotificationListenerService {
     final count = await methodeChannel.invokeMethod('countMessageList');
     return count;
   }
+  
+  static Future getMessageList() async {
+    final content = await methodeChannel.invokeMethod('getMessageList');
+    return content;
+  }
 }
