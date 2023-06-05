@@ -795,7 +795,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             
             MessageListData noti = new MessageListData();
             
-            if(mList.size() == 0) {
+            if(m1.size() == 0) {
                 for(int i = 0; i < message.size(); i++) {
                     noti.name = message.get(i);
                     notiDb.MessageListDao().insert(noti);
