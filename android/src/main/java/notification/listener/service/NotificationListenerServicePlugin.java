@@ -784,14 +784,13 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
 
         }else if(call.method.equals("changeMessageList")) {
             notiDb = NotiDatabase.getInstance(context.getApplicationContext());
-            final ArrayList<String> message = call.argument("message");
+            ArrayList<String> message = call.argument("message");
             System.out.println("변경된 리스트 확인 : " + message);
-            List<MessageListData> mList = notiDb.MessageListDao().getAll();
+//             List<MessageListData> mList = notiDb.MessageListDao().getAll();
+            ArrayList<String> mList = notiDb.MessageListDao().getAll();
 //             ArrayList<String> message2 = mList.toString();
             System.out.println("기존 리스트 확인 : " + mList);
             
-            List mList2 = notiDb.MessageListDao().getAll();
-            System.out.println("기존 리스트 확인2 : " + mList2);
             
             MessageListData noti = new MessageListData();
             
@@ -800,26 +799,28 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                     noti.name = message.get(i);
                     notiDb.MessageListDao().insert(noti);
                 }
+            } else {
+                ArrayList<String> resultList = compageAndDel(message, message2);
+                // DB에 없던, 새롭게 추가될 데이터
+                for (int i = 0; i < resultList.size(); i++) {
+                    System.out.println("Inst " + resultList.get(i));
+                    if(resultList.get(i) != null) {
+                        noti.name = resultList.get(i);
+                        notiDb.MessageListDao().insert(noti);
+                    }
+                }
+
+                //기존 DB에 있었지만 삭제된 데이터
+                ArrayList<String> resultList2 = compageAndDel(message2, message);
+                for (int i = 0; i < resultList2.size(); i++) {
+                    System.out.println("Del " + resultList2.get(i));
+                    if(resultList2.get(i) != null) {
+                        notiDb.MessageListDao().delete(resultList2.get(i));
+                    }
+                }
             }
 //             MessageListData noti = new MessageListData();
-//             ArrayList<String> resultList = compageAndDel(message, message2);
-//             // DB에 없던, 새롭게 추가될 데이터
-//             for (int i = 0; i < resultList.size(); i++) {
-//                 System.out.println("Inst " + resultList.get(i));
-//                 if(resultList.get(i) != null) {
-//                     noti.name = resultList.get(i);
-//                     notiDb.MessageListDao().insert(noti);
-//                 }
-//             }
-
-//             //기존 DB에 있었지만 삭제된 데이터
-//             ArrayList<String> resultList2 = compageAndDel(message2, message);
-//             for (int i = 0; i < resultList2.size(); i++) {
-//                 System.out.println("Del " + resultList2.get(i));
-//                 if(resultList2.get(i) != null) {
-//                     notiDb.MessageListDao().delete(resultList2.get(i));
-//                 }
-//             }
+            
 
 //            MessageListData noti = new MessageListData();
 //            noti.name = message;
