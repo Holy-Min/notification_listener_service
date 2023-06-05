@@ -443,8 +443,8 @@ class NotificationListenerService {
     return content;
   }
 
-  static Future changeMessageList() async {
-    await methodeChannel.invokeMethod('changeMessageList');
+  static Future changeMessageList(List message) async {
+    await methodeChannel.invokeMethod('changeMessageList', {"message" : message});
   }
 
   static Future countMessageList() async {
