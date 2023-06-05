@@ -793,7 +793,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
             
             if(message == null) {
                 for(int i = 0; i < message.size(); i++) {
-                    noti.name = message[i];
+                    noti.name = message.get(i);
                     notiDb.MessageListDao().insert(noti);
                 }
             }
