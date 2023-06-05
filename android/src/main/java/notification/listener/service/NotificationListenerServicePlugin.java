@@ -800,6 +800,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                     noti.name = message.get(i);
                     notiDb.MessageListDao().insert(noti);
                 }
+                result.success(true);
             } else {
                 ArrayList<String> resultList = compageAndDel(message, m2);
                 // DB에 없던, 새롭게 추가될 데이터
@@ -819,6 +820,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                         notiDb.MessageListDao().delete(resultList2.get(i));
                     }
                 }
+                result.success(true);
             }
 //             MessageListData noti = new MessageListData();
             
