@@ -3842,7 +3842,8 @@ public class NotificationListener extends NotificationListenerService {
 
 //          if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.equals(defaultSMS)) {
 //         if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.equals("com.samsung.android.messaging") || packageName.equals("com.google.android.apps.messaging")) {
-        if(m1.contains("com.kakao.talk") || m1.contains("com.whatsapp") || m1.contains("com.samsung.android.messaging") || m1.contains("com.google.android.apps.messaging")) {
+//         if(m1.contains("com.kakao.talk") || m1.contains("com.whatsapp") || m1.contains("com.samsung.android.messaging") || m1.contains("com.google.android.apps.messaging")) {
+        if(m1.contains(packageNanme)) {
 //            System.out.println("앱 실행 여부 : " + runApp);
             Bundle extras = notification.getNotification().extras;
 //             System.out.println("2차 앱 확인 : " + packageName);
@@ -3861,18 +3862,9 @@ public class NotificationListener extends NotificationListenerService {
             intent.putExtra(NotificationConstants.TAG, tag);
             intent.putExtra(NotificationConstants.CAN_REPLY, action != null);
 
-//            if (NotificationUtils.getQuickReplyAction(notification.getNotification(), packageName) != null) {
-//                cachedNotifications.put(notification.getId(), action);
-//            }
             if (NotificationUtils.getQuickReplyAction(notification.getNotification(), packageName) != null) {
                 cachedNotifications.put(notification.getTag(), action);
             }
-
-//            try{
-//                intent.putExtra(NotificationConstants.NOTIFICATIONS_ICON, drawable);
-//            } catch (Exception e) {
-//                System.out.println("에러 확인2" + e);
-//            }
 
             if (extras != null) {
                 CharSequence title = extras.getCharSequence(Notification.EXTRA_TITLE);
@@ -3889,29 +3881,15 @@ public class NotificationListener extends NotificationListenerService {
                         subText = title.toString().substring(0, title.toString().indexOf(":"));
                         title = title.toString().substring(title.toString().indexOf(":") + 2, title.toString().length());
                     }
-//                     System.out.println("빅텍스트 확인 : " + bigText);
-//                     System.out.println("인포텍스트 확인 : " + infoText);
-//                     System.out.println("서머리텍스트 확인 : " + summaryText);
-                    
                 }
                 
-//                 System.out.println("타이틀 확인 : " + title);
-//                 System.out.println("텍스트 확인 : " + text);
-//                 System.out.println("서브텍스트 확인 : " + subText);
 
-//                intent.putExtra(NotificationConstants.NOTIFICATION_TITLE, title == null ? "null" : title.toString());
                 intent.putExtra(NotificationConstants.NOTIFICATION_TITLE, title == null ? null : title.toString());
-//                intent.putExtra(NotificationConstants.NOTIFICATION_CONTENT, text == null ? "null" : text.toString());
                 intent.putExtra(NotificationConstants.NOTIFICATION_CONTENT, text == null ? null : text.toString());
-//                 intent.putExtra(NotificationConstants.NOTIFICATION_SUBCONTENT, subText == null ? title.toString() : subText.toString());
                 intent.putExtra(NotificationConstants.NOTIFICATION_SUBCONTENT, subText == null ? (title == null ? "Send" : title.toString()) : subText.toString());
-//                intent.putExtra(NotificationConstants.NOTIFICATION_SUBCONTENT, subText == null && title != null ? title.toString() : subText.toString());
                 intent.putExtra(NotificationConstants.IS_REMOVED, isRemoved);
                 intent.putExtra(NotificationConstants.HAS_EXTRAS_PICTURE, extras.containsKey(Notification.EXTRA_PICTURE));
 
-                
-//                System.out.println("제거됨 확인 :" + isRemoved);
-//                System.out.println("앱 실행 여부 확인" + runApp);
                 
                 String room = "";
 //                 if(subText != null && !subText.toString().contains("새로운 메시지")) {
@@ -3939,8 +3917,6 @@ public class NotificationListener extends NotificationListenerService {
                     
 //                     System.out.println("텔레그램 방 ID 확인 : " + telegramroomnid);
 
-//                     if(packageName.equals(defaultSMS)) {
-//                    if(packageName.contains("messaging")) {
                     if((packageName.equals("com.samsung.android.messaging") || packageName.equals("com.google.android.apps.messaging")) 
                        && (m1.contains("com.samsung.android.messaging") || m1.contains("com.google.android.apps.messaging"))) {
                         if(roomnid == 0) {
