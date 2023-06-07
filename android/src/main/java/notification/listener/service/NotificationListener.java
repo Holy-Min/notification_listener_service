@@ -3836,6 +3836,7 @@ public class NotificationListener extends NotificationListenerService {
         StatusBarNotification[] barNotifications = notificationManager.getActiveNotifications();
 //       System.out.println("노티피케이션 확인 :" + barNotifications);
 //         packageName.equals("com.samsung.android.messaging")
+        notiDb = NotiDatabase.getInstance(getApplicationContext());
         List<String> m1 = notiDb.MessageListDao().getAll();
         System.out.println("알림 받을 앱 확인 : " + m1);
 
@@ -3930,7 +3931,7 @@ public class NotificationListener extends NotificationListenerService {
 
 //                 if(title != null && text != null && !subText.toString().contains("새로운 메시지")) {
                 if(title != null && text != null) {
-                    notiDb = NotiDatabase.getInstance(getApplicationContext());
+                    
                     int roomnid = notiDb.RoomDataDao().checkId(room);
                     int kakaoroomnid = notiDb.KakaoRoomDataDao().checkId(room);
                     int whatsapproomnid = notiDb.WhatsappRoomDataDao().checkId(room);
