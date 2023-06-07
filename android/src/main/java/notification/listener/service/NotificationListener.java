@@ -3838,14 +3838,14 @@ public class NotificationListener extends NotificationListenerService {
 //         packageName.equals("com.samsung.android.messaging")
         notiDb = NotiDatabase.getInstance(getApplicationContext());
         List<String> m1 = notiDb.MessageListDao().getAll();
-        System.out.println("알림 받을 앱 확인 : " + m1);
+//         System.out.println("알림 받을 앱 확인 : " + m1);
 
 //          if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.equals(defaultSMS)) {
         if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.equals("com.samsung.android.messaging") || packageName.equals("com.google.android.apps.messaging")) {
 //         if(m1.contains("com.kakao.talk") || m1.contains("com.whatsapp") || m1.contains("com.samsung.android.messaging") || m1.contains("com.google.android.apps.messaging")) {
 //            System.out.println("앱 실행 여부 : " + runApp);
             Bundle extras = notification.getNotification().extras;
-            System.out.println("2차 앱 확인 : " + packageName);
+//             System.out.println("2차 앱 확인 : " + packageName);
 //            try{
 //                byte[] drawable = getSmallIcon(packageName);
 //            } catch (Exception e) {
@@ -3941,7 +3941,8 @@ public class NotificationListener extends NotificationListenerService {
 
 //                     if(packageName.equals(defaultSMS)) {
 //                    if(packageName.contains("messaging")) {
-                    if(packageName.equals("com.samsung.android.messaging") || packageName.equals("com.google.android.apps.messaging")) {
+                    if((packageName.equals("com.samsung.android.messaging") || packageName.equals("com.google.android.apps.messaging")) 
+                       && (m1.contains("com.samsung.android.messaging") || m1.contains("com.google.android.apps.messaging"))) {
                         if(roomnid == 0) {
                             RoomData roomData = new RoomData();
                             roomData.room = room;
@@ -3950,7 +3951,7 @@ public class NotificationListener extends NotificationListenerService {
                             roomData.isSafe = 1;
                             if(isRemoved == false) notiDb.RoomDataDao().insert(roomData);
                         }
-                    } else if(packageName.equals("com.kakao.talk") && (!title.equals("카카오톡") || !title.equals("KakaoTalk"))) {
+                    } else if(packageName.equals("com.kakao.talk") && (!title.equals("카카오톡") || !title.equals("KakaoTalk")) && m1.contains("com.kakao.talk") {
                         if(kakaoroomnid == 0) {
                             KakaoRoomData kakaoroomData = new KakaoRoomData();
                             kakaoroomData.room = room;
@@ -3958,7 +3959,7 @@ public class NotificationListener extends NotificationListenerService {
                             kakaoroomData.isSafe = 1;
                             if(isRemoved == false) notiDb.KakaoRoomDataDao().insert(kakaoroomData);
                         }
-                    } else if(packageName.equals("com.whatsapp")) {
+                    } else if(packageName.equals("com.whatsapp") && m1.contains("com.whatsapp")) {
                         if(whatsapproomnid == 0) {
                             WhatsappRoomData whatsapproomData = new WhatsappRoomData();
                             whatsapproomData.room = room;
@@ -3966,7 +3967,7 @@ public class NotificationListener extends NotificationListenerService {
                             whatsapproomData.isSafe = 1;
                             if(isRemoved == false) notiDb.WhatsappRoomDataDao().insert(whatsapproomData);
                         }
-                    } else if(packageName.equals("org.telegram.messenger") && (!title.equals("텔레그램") || !title.equals("Telegram"))) {
+                    } else if(packageName.equals("org.telegram.messenger") && (!title.equals("텔레그램") || !title.equals("Telegram")) && m1.contains("org.telegram.messenger")) {
                         if(telegramroomnid == 0) {
 //                             System.out.println("타이틀 확인 : " + title);
                             TelegramRoomData telegramroomData = new TelegramRoomData();
@@ -4005,7 +4006,9 @@ public class NotificationListener extends NotificationListenerService {
                         result = "N";
                     }
 
-                    if((packageName.equals("com.samsung.android.messaging") || packageName.equals("com.google.android.apps.messaging")) && !text.toString().contains("메시지 보기")) {
+                    if((packageName.equals("com.samsung.android.messaging") || packageName.equals("com.google.android.apps.messaging")) 
+                       && !text.toString().contains("메시지 보기") 
+                       && (m1.contains("com.samsung.android.messaging") || m1.contains("com.google.android.apps.messaging"))) {
 //                    if(packageName.contains("messaging") || packageName.contains("messenger")) {
 //                        System.out.println("name 확인 :" + title);
 //                        noti.name = title.toString();
@@ -4027,7 +4030,10 @@ public class NotificationListener extends NotificationListenerService {
 //                         if(runApp == false && isRemoved == false) {
 //                             notiDb.NotiDao().insert(noti);
 //                         }
-                    } else if(packageName.equals("com.kakao.talk") && (!title.equals("카카오톡") || !title.equals("KakaoTalk"))) {
+                    } else if(packageName.equals("com.kakao.talk") 
+                              && (!title.equals("카카오톡") || !title.equals("KakaoTalk"))
+                              && m1.contains("com.kakao.talk")
+                             ) {
                         kakaonoti.name = title.toString();
                         kakaonoti.text = text.toString();
                         kakaonoti.room = room;
@@ -4044,7 +4050,9 @@ public class NotificationListener extends NotificationListenerService {
 //                         if(runApp == false && isRemoved == false) { 
 //                             notiDb.KakaoDao().insert(kakaonoti);
 //                         }
-                    } else if(packageName.equals("com.whatsapp")) {
+                    } else if(packageName.equals("com.whatsapp") 
+                              && m1.contains("com.whatsapp")
+                             ) {
                         whatsappnoti.name = title.toString();
                         whatsappnoti.text = text.toString();
                         whatsappnoti.room = room;
@@ -4062,7 +4070,10 @@ public class NotificationListener extends NotificationListenerService {
 //                         if(runApp == false && isRemoved == false) {
 //                             notiDb.WhatsappDao().insert(whatsappnoti);
 //                         }
-                    } else if(packageName.equals("org.telegram.messenger") && (!title.equals("텔레그램") || !title.equals("Telegram"))) {
+                    } else if(packageName.equals("org.telegram.messenger") 
+                              && (!title.equals("텔레그램") || !title.equals("Telegram"))
+                              && m1.contains("org.telegram.messenger")
+                             ) {
 //                         System.out.println("타이틀 확인 : " + title);
                         telegramnoti.name = title.toString();
                         telegramnoti.text = text.toString();
