@@ -3838,7 +3838,7 @@ public class NotificationListener extends NotificationListenerService {
 //         packageName.equals("com.samsung.android.messaging")
         notiDb = NotiDatabase.getInstance(getApplicationContext());
         List<String> m1 = notiDb.MessageListDao().getAll();
-//         System.out.println("알림 받을 앱 확인 : " + m1);
+        System.out.println("알림 받을 앱 확인 : " + m1);
 
 //          if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.equals(defaultSMS)) {
 //         if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.equals("com.samsung.android.messaging") || packageName.equals("com.google.android.apps.messaging")) {
