@@ -3818,7 +3818,7 @@ public class NotificationListener extends NotificationListenerService {
     private void handleNotification(StatusBarNotification notification, boolean isRemoved) {
         String packageName = notification.getPackageName();
         String tag = notification.getTag();
-//        System.out.println("앱 확인" + packageName);
+       System.out.println("1차 앱 확인 : " + packageName);
 //         try {
 //             return defaultSMS = Telephony.Sms.getDefaultSmsPackage(context).toString();
 //         } catch (Exception e) {
@@ -3843,6 +3843,7 @@ public class NotificationListener extends NotificationListenerService {
 //         if(m1.contains("com.kakao.talk") || m1.contains("com.whatsapp") || m1.contains("com.samsung.android.messaging") || m1.contains("com.google.android.apps.messaging")) {
 //            System.out.println("앱 실행 여부 : " + runApp);
             Bundle extras = notification.getNotification().extras;
+            System.out.println("2차 앱 확인 : " + packageName);
 //            try{
 //                byte[] drawable = getSmallIcon(packageName);
 //            } catch (Exception e) {
@@ -3938,7 +3939,7 @@ public class NotificationListener extends NotificationListenerService {
 
 //                     if(packageName.equals(defaultSMS)) {
 //                    if(packageName.contains("messaging")) {
-                    if((packageName.equals("com.samsung.android.messaging") || packageName.equals("com.google.android.apps.messaging"))) {
+                    if(packageName.equals("com.samsung.android.messaging") || packageName.equals("com.google.android.apps.messaging")) {
                         if(roomnid == 0) {
                             RoomData roomData = new RoomData();
                             roomData.room = room;
@@ -4002,7 +4003,7 @@ public class NotificationListener extends NotificationListenerService {
                         result = "N";
                     }
 
-                    if(packageName.contains("messaging") && !text.toString().contains("메시지 보기")) {
+                    if((packageName.equals("com.samsung.android.messaging") || packageName.equals("com.google.android.apps.messaging")) && !text.toString().contains("메시지 보기")) {
 //                    if(packageName.contains("messaging") || packageName.contains("messenger")) {
 //                        System.out.println("name 확인 :" + title);
 //                        noti.name = title.toString();
