@@ -3836,7 +3836,8 @@ public class NotificationListener extends NotificationListenerService {
         StatusBarNotification[] barNotifications = notificationManager.getActiveNotifications();
 //       System.out.println("노티피케이션 확인 :" + barNotifications);
 //         packageName.equals("com.samsung.android.messaging")
-//         List<String> m1 = notiDb.MessageListDao().getAll();
+        List<String> m1 = notiDb.MessageListDao().getAll();
+        System.out.println("알림 받을 앱 확인 : " + m1);
 
 //          if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.equals(defaultSMS)) {
         if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.equals("com.samsung.android.messaging") || packageName.equals("com.google.android.apps.messaging")) {
