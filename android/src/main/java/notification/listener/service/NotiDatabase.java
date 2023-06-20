@@ -25,11 +25,11 @@ public abstract class NotiDatabase extends RoomDatabase {
     public abstract KakaoRoomDataDao KakaoRoomDataDao();
     public abstract WhatsappRoomDataDao WhatsappRoomDataDao();
     public abstract TelegramRoomDataDao TelegramRoomDataDao();
-    public abstract LineDataDao LineDataDao();
+    public abstract LineDataDao LineDao();
     public abstract LineRoomDataDao LineRoomDataDao();
-    public abstract InstagramDataDao InstagramDataDao();
+    public abstract InstagramDataDao InstagramDao();
     public abstract InstagramDataDao InstagramRoomDataDao();
-    public abstract FacebookDataDao FacebookDataDao();
+    public abstract FacebookDataDao FacebookDao();
     public abstract FacebookDataDao FacebookRoomDataDao();
 
     private static NotiDatabase database;
