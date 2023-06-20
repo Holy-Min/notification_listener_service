@@ -3888,8 +3888,8 @@ public class NotificationListener extends NotificationListenerService {
                 }
 
                 if(packageName.equals("com.instagram.android")) {
-                    if(text.toString().startsWith(title.toString + ":")) {
-                        text = text.toString().substring(text.toString().indexOf(title.toString + ":") + 2, title.toString().length());
+                    if(text.toString().startsWith(title.toString() + ":")) {
+                        text = text.toString().substring(text.toString().indexOf(title.toString() + ":") + 2, title.toString().length());
                     }
                 }
                 
