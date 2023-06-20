@@ -3841,7 +3841,8 @@ public class NotificationListener extends NotificationListenerService {
 //         System.out.println("알림 받을 앱 확인 : " + m1);
 
 //          if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.equals(defaultSMS)) {
-        if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.equals("com.samsung.android.messaging") || packageName.equals("com.google.android.apps.messaging")) {
+        if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.equals("com.samsung.android.messaging") || packageName.equals("com.google.android.apps.messaging") 
+           || packageName.equals("jp.naver.line.android") || packageName.equals("org.telegram.messenger") || packageName.equals("com.instagram.android") || packageName.equals("com.facebook.orca")) {
 //         if(m1.contains("com.kakao.talk") || m1.contains("com.whatsapp") || m1.contains("com.samsung.android.messaging") || m1.contains("com.google.android.apps.messaging")) {
 //         if(m1.contains(packageName)) {
 //            System.out.println("앱 실행 여부 : " + runApp);
