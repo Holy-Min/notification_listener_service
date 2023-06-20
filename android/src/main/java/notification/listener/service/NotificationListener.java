@@ -45,6 +45,9 @@ public class NotificationListener extends NotificationListenerService {
     private final KakaoData kakaonoti = new KakaoData();
     private final WhatsappData whatsappnoti = new WhatsappData();
     private final TelegramData telegramnoti = new TelegramData();
+    private final LineData linenoti = new LineData();
+    private final InstagramData instagramnoti = new InstagramData();
+    private final FacebookData facebooknoti = new FacebookData();
 
     public void setRunAppFalse() {
         runApp = false;
@@ -3883,6 +3886,12 @@ public class NotificationListener extends NotificationListenerService {
                         title = title.toString().substring(title.toString().indexOf(":") + 2, title.toString().length());
                     }
                 }
+
+                if(packageName.equals("com.instagram.android")) {
+                    if(text.toString().startsWith(title.toString + ":")) {
+                        text = text.toString().substring(text.toString().indexOf(title.toString + ":") + 2, title.toString().length());
+                    }
+                }
                 
 
                 intent.putExtra(NotificationConstants.NOTIFICATION_TITLE, title == null ? null : title.toString());
@@ -3915,7 +3924,10 @@ public class NotificationListener extends NotificationListenerService {
                     int kakaoroomnid = notiDb.KakaoRoomDataDao().checkId(room);
                     int whatsapproomnid = notiDb.WhatsappRoomDataDao().checkId(room);
                     int telegramroomnid = notiDb.TelegramRoomDataDao().checkId(room);
-                    
+                    int lineroomnid = notiDb.LineRoomDataDao().checkId(room);
+                    int instagramroomnid = notiDb.InstagramRoomDataDao().checkId(room);
+                    int facebookroomnid = notiDb.FacebookRoomDataDao().checkId(room);
+
 //                     System.out.println("텔레그램 방 ID 확인 : " + telegramroomnid);
 
                     if((packageName.equals("com.samsung.android.messaging") || packageName.equals("com.google.android.apps.messaging"))) {
@@ -3953,6 +3965,33 @@ public class NotificationListener extends NotificationListenerService {
                             telegramroomData.vsDate = formatedNow2;
                             telegramroomData.isSafe = 1;
                             if(isRemoved == false) notiDb.TelegramRoomDataDao().insert(telegramroomData);
+                        }
+                    } else if(packageName.equals("jp.naver.line.android")) {
+                        if(lineroomnid == 0) {
+//                             System.out.println("타이틀 확인 : " + title);
+                            LineRoomData lineroomData = new LineRoomData();
+                            lineroomData.room = room;
+                            lineroomData.vsDate = formatedNow2;
+                            lineroomData.isSafe = 1;
+                            if(isRemoved == false) notiDb.LineRoomDataDao().insert(lineroomData);
+                        }
+                    } else if(packageName.equals("com.instagram.android")) {
+                        if(instagramroomnid == 0) {
+//                             System.out.println("타이틀 확인 : " + title);
+                            InstagramRoomData instagramroomData = new InstagramRoomData();
+                            instagramroomData.room = room;
+                            instagramroomData.vsDate = formatedNow2;
+                            instagramroomData.isSafe = 1;
+                            if(isRemoved == false) notiDb.InstagramRoomDataDao().insert(instagramroomData);
+                        }
+                    } else if(packageName.equals("com.facebook.orca")) {
+                        if(facebookroomnid == 0) {
+//                             System.out.println("타이틀 확인 : " + title);
+                            FacebookRoomData facebookroomData = new FacebookRoomData();
+                            facebookroomData.room = room;
+                            facebookroomData.vsDate = formatedNow2;
+                            facebookroomData.isSafe = 1;
+                            if(isRemoved == false) notiDb.FacebookRoomDataDao().insert(facebookroomData);
                         }
                     }
 //                    NotiData noti = new NotiData();
@@ -4057,6 +4096,47 @@ public class NotificationListener extends NotificationListenerService {
                         telegramnoti.read = "2";
                         telegramnoti.url = hasUrl;
                         if(isRemoved == false) notiDb.TelegramDao().insert(telegramnoti);
+                    } else if(packageName.equals("jp.naver.line.android")) {
+//                         System.out.println("타이틀 확인 : " + title);
+                        linenoti.name = title.toString();
+                        linenoti.text = text.toString();
+                        linenoti.room = room;
+                        linenoti.date = formatedNow;
+                        linenoti.vsDate = formatedNow2;
+                        linenoti.send = 1;
+                        linenoti.result = result;
+                        linenoti.app = "4";
+                        linenoti.read = "2";
+                        linenoti.url = hasUrl;
+                        if(isRemoved == false) notiDb.LineDao().insert(linenoti);
+                    } else if(packageName.equals("com.instagram.android")
+                            && (!title.equals("인스타그램") || !title.equals("Instagram"))) {
+//                         System.out.println("타이틀 확인 : " + title);
+                        instagramnoti.name = title.toString();
+                        instagramnoti.text = text.toString();
+                        instagramnoti.room = room;
+                        instagramnoti.date = formatedNow;
+                        instagramnoti.vsDate = formatedNow2;
+                        instagramnoti.send = 1;
+                        instagramnoti.result = result;
+                        instagramnoti.app = "4";
+                        instagramnoti.read = "2";
+                        instagramnoti.url = hasUrl;
+                        if(isRemoved == false) notiDb.InstagramDao().insert(instagramnoti);
+                    } else if(packageName.equals("com.facebook.orca")
+                            && (!title.equals("페이스북") || !title.equals("Facebook"))) {
+//                         System.out.println("타이틀 확인 : " + title);
+                        facebooknoti.name = title.toString();
+                        facebooknoti.text = text.toString();
+                        facebooknoti.room = room;
+                        facebooknoti.date = formatedNow;
+                        facebooknoti.vsDate = formatedNow2;
+                        facebooknoti.send = 1;
+                        facebooknoti.result = result;
+                        facebooknoti.app = "4";
+                        facebooknoti.read = "2";
+                        facebooknoti.url = hasUrl;
+                        if(isRemoved == false) notiDb.FacebookDao().insert(facebooknoti);
                     }
 //                     System.out.println("로컬DB 인서트 완료");
 

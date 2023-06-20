@@ -11,7 +11,9 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 
 @Database(entities = {NotiData.class, KakaoData.class, WhatsappData.class, TelegramData.class, RoomData.class, KakaoRoomData.class,
-        WhatsappRoomData.class, TelegramRoomData.class, MessageListData.class,},
+        WhatsappRoomData.class, TelegramRoomData.class, MessageListData.class, LineData.class, LineRoomData.class, InstagramData.class, InstagramRoomData.class,
+        FacebookData.class, FacebookRoomData.class
+},
         version = 1, exportSchema = false)
 public abstract class NotiDatabase extends RoomDatabase {
     public abstract NotiDataDao NotiDao();
@@ -23,13 +25,19 @@ public abstract class NotiDatabase extends RoomDatabase {
     public abstract KakaoRoomDataDao KakaoRoomDataDao();
     public abstract WhatsappRoomDataDao WhatsappRoomDataDao();
     public abstract TelegramRoomDataDao TelegramRoomDataDao();
+    public abstract LineDataDao LineDataDao();
+    public abstract LineRoomDataDao LineRoomDataDao();
+    public abstract InstagramDataDao InstagramDataDao();
+    public abstract InstagramDataDao InstagramRoomDataDao();
+    public abstract FacebookDataDao FacebookDataDao();
+    public abstract FacebookDataDao FacebookRoomDataDao();
 
     private static NotiDatabase database;
 
     public static synchronized NotiDatabase getInstance(Context context){
         if (database == null)
         {
-            database = Room.databaseBuilder(context.getApplicationContext(), NotiDatabase.class, "local04.db")
+            database = Room.databaseBuilder(context.getApplicationContext(), NotiDatabase.class, "local05.db")
 //                    .addMigrations(MIGRATION_1_2)
                     .allowMainThreadQueries()
                     .build();
