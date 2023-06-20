@@ -3889,7 +3889,9 @@ public class NotificationListener extends NotificationListenerService {
 
                 if(packageName.equals("com.instagram.android")) {
                     if(text.toString().startsWith(title.toString() + ":")) {
-                        text = text.toString().substring(text.toString().indexOf(title.toString() + ":") + 2, title.toString().length());
+                        System.out.println("파싱 전 : " + text);
+                        text = text.toString().substring(text.toString().indexOf(title.toString() + ":") + 2, text.toString().length());
+                        System.out.println("파싱 후 : " + text);
                     }
                 }
                 
