@@ -633,7 +633,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 linenoti.read = "2";
                 linenoti.url = url;
 
-                notiDb.TelegramDao().insert(linenoti);
+                notiDb.LineDao().insert(linenoti);
             } else if(packageName.equals("com.instagram.android")) {
                 instagramnoti.name = name;
                 instagramnoti.text = text;
@@ -646,7 +646,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 instagramnoti.read = "2";
                 instagramnoti.url = url;
 
-                notiDb.TelegramDao().insert(instagramnoti);
+                notiDb.InstagramDao().insert(instagramnoti);
             } else if(packageName.equals("com.facebook.orca")) {
                 facebooknoti.name = name;
                 facebooknoti.text = text;
@@ -659,7 +659,7 @@ public class NotificationListenerServicePlugin implements FlutterPlugin, Activit
                 facebooknoti.read = "2";
                 facebooknoti.url = url;
 
-                notiDb.TelegramDao().insert(facebooknoti);
+                notiDb.FacebookDao().insert(facebooknoti);
             }
 
 //                 if(packageName.equals("com.samsung.android.messaging")) {
