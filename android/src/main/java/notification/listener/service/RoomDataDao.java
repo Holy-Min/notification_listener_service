@@ -34,4 +34,7 @@ public interface RoomDataDao {
     @Query("update RoomData set isSafe = 2 where room = :room")
     void update(String room);
 
+//    @Query("update RoomData set nid = (select count(*) from RoomData) where room = :room")
+//    void updateList(String room);
+
 }

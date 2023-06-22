@@ -9,6 +9,9 @@ public class InstagramRoomData {
     @PrimaryKey(autoGenerate = true)
     public int nid;
 
+    @ColumnInfo(name = "cnt", autoGenerate = true)
+    public int cnt;
+
     @ColumnInfo(name = "room")
     public String room;
 
