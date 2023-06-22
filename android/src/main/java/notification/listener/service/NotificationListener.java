@@ -3932,74 +3932,121 @@ public class NotificationListener extends NotificationListenerService {
 
 //                     System.out.println("텔레그램 방 ID 확인 : " + telegramroomnid);
 
+
                     if((packageName.equals("com.samsung.android.messaging") || packageName.equals("com.google.android.apps.messaging"))) {
-                        if(roomnid == 0) {
-                            RoomData roomData = new RoomData();
-                            roomData.room = room;
-                            roomData.app = packageName;
-                            roomData.vsDate = formatedNow2;
-                            roomData.isSafe = 1;
-                            if(isRemoved == false) notiDb.RoomDataDao().insert(roomData);
+
+                        RoomData roomData = new RoomData();
+                        roomData.room = room;
+                        roomData.app = packageName;
+                        roomData.vsDate = formatedNow2;
+                        roomData.isSafe = 1;
+
+                        if(isRemoved == false) {
+                            if(roomnid == 0) {
+                                notiDb.RoomDataDao().insert(roomData);
+                            } else {
+                                notiDb.RoomDataDao().delete(room);
+                                notiDb.RoomDataDao().insert(roomData);
+
+                            }
                         }
-                    } else if(packageName.equals("com.kakao.talk") 
+                    } else if(packageName.equals("com.kakao.talk")
                               && (!title.equals("카카오톡") || !title.equals("KakaoTalk"))) {
-                        if(kakaoroomnid == 0) {
-                            KakaoRoomData kakaoroomData = new KakaoRoomData();
-                            kakaoroomData.room = room;
-                            kakaoroomData.vsDate = formatedNow2;
-                            kakaoroomData.isSafe = 1;
-                            if(isRemoved == false) notiDb.KakaoRoomDataDao().insert(kakaoroomData);
+
+                        KakaoRoomData kakaoroomData = new KakaoRoomData();
+                        kakaoroomData.room = room;
+                        kakaoroomData.vsDate = formatedNow2;
+                        kakaoroomData.isSafe = 1;
+
+                        if(isRemoved == false) {
+                            if(kakaoroomnid == 0) {
+                                notiDb.KakaoRoomDataDao().insert(kakaoroomData);
+                            } else {
+                                notiDb.KakaoRoomDataDao().delete(room);
+                                notiDb.KakaoRoomDataDao().insert(kakaoroomData);
+                            }
                         }
+
                     } else if(packageName.equals("com.whatsapp")) {
-                        if(whatsapproomnid == 0) {
-                            WhatsappRoomData whatsapproomData = new WhatsappRoomData();
-                            whatsapproomData.room = room;
-                            whatsapproomData.vsDate = formatedNow2;
-                            whatsapproomData.isSafe = 1;
-                            if(isRemoved == false) notiDb.WhatsappRoomDataDao().insert(whatsapproomData);
+
+                        WhatsappRoomData whatsapproomData = new WhatsappRoomData();
+                        whatsapproomData.room = room;
+                        whatsapproomData.vsDate = formatedNow2;
+                        whatsapproomData.isSafe = 1;
+
+                        if(isRemoved == false) {
+                            if(whatsapproomnid == 0) {
+                                notiDb.WhatsappRoomDataDao().insert(whatsapproomData);
+                            } else {
+                                notiDb.WhatsappRoomDataDao().delete(room);
+                                notiDb.WhatsappRoomDataDao().insert(whatsapproomData);
+                            }
                         }
+
                     } else if(packageName.equals("org.telegram.messenger") 
                               && (!title.equals("텔레그램") || !title.equals("Telegram"))) {
-                        if(telegramroomnid == 0) {
-//                             System.out.println("타이틀 확인 : " + title);
-                            TelegramRoomData telegramroomData = new TelegramRoomData();
-                            telegramroomData.room = room;
-                            telegramroomData.vsDate = formatedNow2;
-                            telegramroomData.isSafe = 1;
-                            if(isRemoved == false) notiDb.TelegramRoomDataDao().insert(telegramroomData);
+
+                        TelegramRoomData telegramroomData = new TelegramRoomData();
+                        telegramroomData.room = room;
+                        telegramroomData.vsDate = formatedNow2;
+                        telegramroomData.isSafe = 1;
+
+                        if(isRemoved == false) {
+                            if(telegramroomnid == 0) {
+                                notiDb.TelegramRoomDataDao().insert(telegramroomData);
+                            } else {
+                                notiDb.TelegramRoomDataDao().delete(room);
+                                notiDb.TelegramRoomDataDao().insert(telegramroomData);
+                            }
                         }
                     } else if(packageName.equals("jp.naver.line.android")) {
-                        if(lineroomnid == 0) {
-//                             System.out.println("타이틀 확인 : " + title);
-                            LineRoomData lineroomData = new LineRoomData();
-                            lineroomData.room = room;
-                            lineroomData.vsDate = formatedNow2;
-                            lineroomData.isSafe = 1;
-                            if(isRemoved == false) notiDb.LineRoomDataDao().insert(lineroomData);
+
+                        LineRoomData lineroomData = new LineRoomData();
+                        lineroomData.room = room;
+                        lineroomData.vsDate = formatedNow2;
+                        lineroomData.isSafe = 1;
+
+                        if(isRemoved == false) {
+                            if(lineroomnid == 0) {
+                                notiDb.LineRoomDataDao().insert(lineroomData);
+                            } else {
+                                notiDb.LineRoomDataDao().delete(room);
+                                notiDb.LineRoomDataDao().insert(lineroomData);
+                            }
                         }
+
                     } else if(packageName.equals("com.instagram.android")) {
-                        if(instagramroomnid == 0) {
-//                             System.out.println("타이틀 확인 : " + title);
-                            InstagramRoomData instagramroomData = new InstagramRoomData();
-                            instagramroomData.room = room;
-                            instagramroomData.vsDate = formatedNow2;
-                            instagramroomData.isSafe = 1;
-                            if(isRemoved == false) notiDb.InstagramRoomDataDao().insert(instagramroomData);
+                        InstagramRoomData instagramroomData = new InstagramRoomData();
+                        instagramroomData.room = room;
+                        instagramroomData.vsDate = formatedNow2;
+                        instagramroomData.isSafe = 1;
+
+                        if(isRemoved == false) {
+                            if(instagramroomnid == 0) {
+                                notiDb.InstagramRoomDataDao().insert(instagramroomData);
+                            } else {
+                                notiDb.InstagramRoomDataDao().delete(room);
+                                notiDb.InstagramRoomDataDao().insert(instagramroomData);
+                            }
                         }
+
                     } else if(packageName.equals("com.facebook.orca")) {
-                        if(facebookroomnid == 0) {
-//                             System.out.println("타이틀 확인 : " + title);
-                            FacebookRoomData facebookroomData = new FacebookRoomData();
-                            facebookroomData.room = room;
-                            facebookroomData.vsDate = formatedNow2;
-                            facebookroomData.isSafe = 1;
-                            if(isRemoved == false) notiDb.FacebookRoomDataDao().insert(facebookroomData);
+
+                        FacebookRoomData facebookroomData = new FacebookRoomData();
+                        facebookroomData.room = room;
+                        facebookroomData.vsDate = formatedNow2;
+                        facebookroomData.isSafe = 1;
+
+                        if(isRemoved == false) {
+                            if(facebookroomnid == 0) {
+                                notiDb.FacebookRoomDataDao().insert(facebookroomData);
+                            } else {
+                                notiDb.FacebookRoomDataDao().delete(room);
+                                notiDb.FacebookRoomDataDao().insert(facebookroomData);
+                            }
                         }
                     }
-//                    NotiData noti = new NotiData();
 
-//                     if(packageName.equals("com.samsung.android.messaging")) {
-//                     if(packageName.equals(defaultSMS)) {
                     Matcher matcher = pattern.matcher(text.toString());
                     List<String> urlList = new ArrayList<String>();
                     String hasUrl = "yet";
