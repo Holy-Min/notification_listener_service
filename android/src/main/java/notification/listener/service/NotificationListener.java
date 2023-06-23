@@ -3951,7 +3951,7 @@ public class NotificationListener extends NotificationListenerService {
                             }
                         }
                     } else if(packageName.equals("com.kakao.talk")
-                              && (!title.equals("카카오톡") || !title.equals("KakaoTalk"))) {
+                              && (!room.equals("카카오톡") || !room.equals("KakaoTalk"))) {
 
                         KakaoRoomData kakaoroomData = new KakaoRoomData();
                         kakaoroomData.room = room;
@@ -3984,7 +3984,7 @@ public class NotificationListener extends NotificationListenerService {
                         }
 
                     } else if(packageName.equals("org.telegram.messenger") 
-                              && (!title.equals("텔레그램") || !title.equals("Telegram"))) {
+                              && (!room.equals("텔레그램") || !room.equals("Telegram"))) {
 
                         TelegramRoomData telegramroomData = new TelegramRoomData();
                         telegramroomData.room = room;
