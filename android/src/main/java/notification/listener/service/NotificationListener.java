@@ -3993,11 +3993,11 @@ public class NotificationListener extends NotificationListenerService {
                         telegramroomData.vsDate = formatedNow2;
                         telegramroomData.isSafe = 1;
 
-                        if(isRemoved == false && action != null) {
+                        if(isRemoved == false) {
                             if(telegramroomnid == 0) {
                                 notiDb.TelegramRoomDataDao().insert(telegramroomData);
                             } else {
-                                if(room.equals("텔레그램") || room.equals("Telegram")) {
+                                if(room.equals("텔레그램") && room.equals("Telegram")) {
                                     notiDb.TelegramRoomDataDao().delete(room);    
                                 } else {
                                     notiDb.TelegramRoomDataDao().delete(room);
@@ -4138,7 +4138,7 @@ public class NotificationListener extends NotificationListenerService {
 //                             notiDb.WhatsappDao().insert(whatsappnoti);
 //                         }
                     } else if(packageName.equals("org.telegram.messenger") 
-                              && (!title.equals("텔레그램") || !title.equals("Telegram"))) {
+                              && (!title.equals("텔레그램") && !title.equals("Telegram"))) {
 //                         System.out.println("타이틀 확인 : " + title);
                         telegramnoti.name = title.toString();
                         telegramnoti.text = text.toString();
@@ -4150,7 +4150,7 @@ public class NotificationListener extends NotificationListenerService {
                         telegramnoti.app = "4";
                         telegramnoti.read = "2";
                         telegramnoti.url = hasUrl;
-                        if(isRemoved == false && action != null) notiDb.TelegramDao().insert(telegramnoti);
+                        if(isRemoved == false) notiDb.TelegramDao().insert(telegramnoti);
                     } else if(packageName.equals("jp.naver.line.android")) {
                         // System.out.println("태그 확인 : " + tag);
                         int mId = notification.getId();
