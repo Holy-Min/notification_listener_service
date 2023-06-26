@@ -3997,7 +3997,7 @@ public class NotificationListener extends NotificationListenerService {
                             if(telegramroomnid == 0) {
                                 notiDb.TelegramRoomDataDao().insert(telegramroomData);
                             } else {
-                                if(room.equals("텔레그램") || room.equals("Telegram") {
+                                if(room.equals("텔레그램") || room.equals("Telegram")) {
                                     notiDb.TelegramRoomDataDao().delete(room);    
                                 } else {
                                     notiDb.TelegramRoomDataDao().delete(room);
