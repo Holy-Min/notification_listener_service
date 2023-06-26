@@ -3881,7 +3881,7 @@ public class NotificationListener extends NotificationListenerService {
 //                 System.out.println("텍스트 확인 : " + text);
 //                 System.out.println("서브텍스트 확인 : " + subText);
                 if(packageName.equals("org.telegram.messenger")) {
-                    System.out.println("텔레그램 액션값 확인 : " + action);
+                    // System.out.println("텔레그램 액션값 확인 : " + action);
                     if(title.toString().contains(":")) {
                         subText = title.toString().substring(0, title.toString().indexOf(":"));
                         title = title.toString().substring(title.toString().indexOf(":") + 2, title.toString().length());
@@ -3985,15 +3985,15 @@ public class NotificationListener extends NotificationListenerService {
                         }
 
                     } else if(packageName.equals("org.telegram.messenger") 
-                              && (!room.equals("텔레그램") || !room.equals("Telegram"))) {
+                              && (!room.equals("텔레그램") && !room.equals("Telegram"))) {
 
-                        System.out.println("채팅방 제목 확인 : " + room);
+                        // System.out.println("채팅방 제목 확인 : " + room);
                         TelegramRoomData telegramroomData = new TelegramRoomData();
                         telegramroomData.room = room;
                         telegramroomData.vsDate = formatedNow2;
                         telegramroomData.isSafe = 1;
 
-                        if(isRemoved == false) {
+                        if(isRemoved == false && action != null) {
                             if(telegramroomnid == 0) {
                                 notiDb.TelegramRoomDataDao().insert(telegramroomData);
                             } else {
@@ -4146,7 +4146,7 @@ public class NotificationListener extends NotificationListenerService {
                         telegramnoti.app = "4";
                         telegramnoti.read = "2";
                         telegramnoti.url = hasUrl;
-                        if(isRemoved == false) notiDb.TelegramDao().insert(telegramnoti);
+                        if(isRemoved == false && action != null) notiDb.TelegramDao().insert(telegramnoti);
                     } else if(packageName.equals("jp.naver.line.android")) {
                         // System.out.println("태그 확인 : " + tag);
                         int mId = notification.getId();
