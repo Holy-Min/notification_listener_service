@@ -3985,7 +3985,7 @@ public class NotificationListener extends NotificationListenerService {
                         }
 
                     } else if(packageName.equals("org.telegram.messenger") 
-                              && (!room.equals("텔레그램") || !room.equals("Telegram"))) {
+                              && (!room.equals("텔레그램") && !room.equals("Telegram"))) {
 
                         // System.out.println("채팅방 제목 확인 : " + room);
                         TelegramRoomData telegramroomData = new TelegramRoomData();
@@ -3997,12 +3997,14 @@ public class NotificationListener extends NotificationListenerService {
                             if(telegramroomnid == 0) {
                                 notiDb.TelegramRoomDataDao().insert(telegramroomData);
                             } else {
-                                if(room.equals("텔레그램") && room.equals("Telegram")) {
-                                    notiDb.TelegramRoomDataDao().delete(room);    
-                                } else {
-                                    notiDb.TelegramRoomDataDao().delete(room);
-                                    notiDb.TelegramRoomDataDao().insert(telegramroomData);
-                                }
+                                notiDb.TelegramRoomDataDao().delete(room);
+                                notiDb.TelegramRoomDataDao().insert(telegramroomData);
+                                // if(room.equals("텔레그램") && room.equals("Telegram")) {
+                                //     notiDb.TelegramRoomDataDao().delete(room);    
+                                // } else {
+                                //     notiDb.TelegramRoomDataDao().delete(room);
+                                //     notiDb.TelegramRoomDataDao().insert(telegramroomData);
+                                // }
                             }
                         }
                     } else if(packageName.equals("jp.naver.line.android")) {
