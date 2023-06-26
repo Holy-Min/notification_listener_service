@@ -3841,7 +3841,7 @@ public class NotificationListener extends NotificationListenerService {
 //         packageName.equals("com.samsung.android.messaging")
         notiDb = NotiDatabase.getInstance(getApplicationContext());
          List<String> m1 = notiDb.MessageListDao().getAll();
-        System.out.println("알림 받을 앱 확인 : " + m1);
+        // System.out.println("알림 받을 앱 확인 : " + m1);
 
 //          if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.equals(defaultSMS)) {
 //        if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.equals("com.samsung.android.messaging") || packageName.equals("com.google.android.apps.messaging")
@@ -4152,7 +4152,7 @@ public class NotificationListener extends NotificationListenerService {
                         telegramnoti.app = "4";
                         telegramnoti.read = "2";
                         telegramnoti.url = hasUrl;
-                        if(isRemoved == false) notiDb.TelegramDao().insert(telegramnoti);
+                        if(isRemoved == false && action != null) notiDb.TelegramDao().insert(telegramnoti);
                     } else if(packageName.equals("jp.naver.line.android")) {
                         // System.out.println("태그 확인 : " + tag);
                         int mId = notification.getId();
