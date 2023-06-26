@@ -4147,17 +4147,19 @@ public class NotificationListener extends NotificationListenerService {
                         if(isRemoved == false) notiDb.TelegramDao().insert(telegramnoti);
                     } else if(packageName.equals("jp.naver.line.android")) {
 //                         System.out.println("타이틀 확인 : " + title);
-                        linenoti.name = title.toString();
-                        linenoti.text = text.toString();
-                        linenoti.room = room;
-                        linenoti.date = formatedNow;
-                        linenoti.vsDate = formatedNow2;
-                        linenoti.send = 1;
-                        linenoti.result = result;
-                        linenoti.app = "4";
-                        linenoti.read = "2";
-                        linenoti.url = hasUrl;
-                        if(isRemoved == false) notiDb.LineDao().insert(linenoti);
+                        if(tag.equals("null")) {
+                            telegramnoti.name = title.toString();
+                            telegramnoti.text = text.toString();
+                            telegramnoti.room = room;
+                            telegramnoti.date = formatedNow;
+                            telegramnoti.vsDate = formatedNow2;
+                            telegramnoti.send = 1;
+                            telegramnoti.result = result;
+                            telegramnoti.app = "4";
+                            telegramnoti.read = "2";
+                            telegramnoti.url = hasUrl;
+                            if(isRemoved == false) notiDb.TelegramDao().insert(telegramnoti);
+                        }
                     } else if(packageName.equals("com.instagram.android")
                             && (!title.equals("인스타그램") || !title.equals("Instagram"))) {
 //                         System.out.println("타이틀 확인 : " + title);
