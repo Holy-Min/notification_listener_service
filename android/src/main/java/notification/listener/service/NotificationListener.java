@@ -4146,7 +4146,7 @@ public class NotificationListener extends NotificationListenerService {
                         telegramnoti.url = hasUrl;
                         if(isRemoved == false) notiDb.TelegramDao().insert(telegramnoti);
                     } else if(packageName.equals("jp.naver.line.android")) {
-                        System.out.println("태그 확인 : " + tag);
+                        System.out.println("태그 확인 : " + tag);
                         linenoti.name = title.toString();
                         linenoti.text = text.toString();
                         linenoti.room = room;
