@@ -3841,7 +3841,7 @@ public class NotificationListener extends NotificationListenerService {
 //         packageName.equals("com.samsung.android.messaging")
         notiDb = NotiDatabase.getInstance(getApplicationContext());
          List<String> m1 = notiDb.MessageListDao().getAll();
-//         System.out.println("알림 받을 앱 확인 : " + m1);
+        System.out.println("알림 받을 앱 확인 : " + m1);
 
 //          if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.equals(defaultSMS)) {
 //        if(packageName.equals("com.kakao.talk") || packageName.equals("com.whatsapp") || packageName.equals("com.samsung.android.messaging") || packageName.equals("com.google.android.apps.messaging")
@@ -4146,18 +4146,21 @@ public class NotificationListener extends NotificationListenerService {
                         telegramnoti.url = hasUrl;
                         if(isRemoved == false) notiDb.TelegramDao().insert(telegramnoti);
                     } else if(packageName.equals("jp.naver.line.android")) {
-                        System.out.println("태그 확인 : " + tag);
-                        linenoti.name = title.toString();
-                        linenoti.text = text.toString();
-                        linenoti.room = room;
-                        linenoti.date = formatedNow;
-                        linenoti.vsDate = formatedNow2;
-                        linenoti.send = 1;
-                        linenoti.result = result;
-                        linenoti.app = "4";
-                        linenoti.read = "2";
-                        linenoti.url = hasUrl;
-                        if(isRemoved == false) notiDb.LineDao().insert(linenoti);
+                        // System.out.println("태그 확인 : " + tag);
+                        int mId = notification.getId();
+                        if(mId == 16880000) {
+                            linenoti.name = title.toString();
+                            linenoti.text = text.toString();
+                            linenoti.room = room;
+                            linenoti.date = formatedNow;
+                            linenoti.vsDate = formatedNow2;
+                            linenoti.send = 1;
+                            linenoti.result = result;
+                            linenoti.app = "4";
+                            linenoti.read = "2";
+                            linenoti.url = hasUrl;
+                            if(isRemoved == false) notiDb.LineDao().insert(linenoti);
+                        }
                     } else if(packageName.equals("com.instagram.android")
                             && (!title.equals("인스타그램") || !title.equals("Instagram"))) {
 //                         System.out.println("타이틀 확인 : " + title);
