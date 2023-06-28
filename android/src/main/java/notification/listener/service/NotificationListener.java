@@ -4241,6 +4241,8 @@ public class NotificationListener extends NotificationListenerService {
             str = str.substring(0, str.indexOf(":"));
         }
 
+        System.out.println("URL 파싱 후 : " + str);
+
         String[] spl = str.split("[.]");
         String sp = "";
         if(spl.length > 2) {
@@ -4255,6 +4257,8 @@ public class NotificationListener extends NotificationListenerService {
         }
 
         result = tld.contains(sp);
+
+        System.out.println("TLD 확인 결과 : " + result);
 
         return result;
     }
