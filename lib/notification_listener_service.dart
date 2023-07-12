@@ -242,7 +242,7 @@ class NotificationListenerService {
   }
 
   static Future updateInstagram(String result, String url, int nid, String text) async {
-    return await methodeChannel.invokeMethod('updateIntagram', {"result" : result, "url" : url, "nid" : nid, "text" : text});
+    return await methodeChannel.invokeMethod('updateInstagram', {"result" : result, "url" : url, "nid" : nid, "text" : text});
   }
 
   static Future updateFacebook(String result, String url, int nid, String text) async {
